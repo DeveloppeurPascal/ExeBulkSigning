@@ -1,0 +1,380 @@
+object frmMain: TfrmMain
+  Left = 0
+  Top = 0
+  Caption = 'EXE / MSIX Bulk Signing Tool'
+  ClientHeight = 434
+  ClientWidth = 640
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnCreate = FormCreate
+  OnCloseQuery = FormCloseQuery
+  DesignerMasterStyle = 0
+  object VertScrollBox1: TVertScrollBox
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 434.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 640.000000000000000000
+    Viewport.Height = 434.000000000000000000
+    object lblSignedFolderPath: TLabel
+      Align = Top
+      FocusControl = edtSignedFolderPath
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 329.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Folder into you want to works'
+      TabOrder = 12
+    end
+    object edtSigntoolPath: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 1
+      Position.X = 5.000000000000000000
+      Position.Y = 27.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 30.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 605.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object btnSigntoolPathFind: TButton
+        Align = Right
+        Margins.Right = -22.000000000000000000
+        Position.X = 605.000000000000000000
+        Size.Width = 22.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = '...'
+        OnClick = btnSigntoolPathFindClick
+      end
+    end
+    object lblProgramURL: TLabel
+      Align = Top
+      FocusControl = edtProgramURL
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 275.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Program URL (used for signing exe files)'
+      TabOrder = 10
+    end
+    object edtTimeStampServerURL: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 7
+      Position.X = 5.000000000000000000
+      Position.Y = 189.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lblProgramTitle: TLabel
+      Align = Top
+      FocusControl = edtProgramTitle
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 221.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Program title (used for signing exe files)'
+      TabOrder = 8
+    end
+    object lblSignToolPath: TLabel
+      Align = Top
+      FocusControl = edtSigntoolPath
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 5.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Path to signtool.exe'
+      TabOrder = 0
+      object lblDownloadWindowsSDK: TLabel
+        Align = Right
+        Cursor = crHandPoint
+        StyledSettings = [Family, Size]
+        HitTest = True
+        Position.X = 440.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {04040000000000000004000000}
+        TextSettings.FontColor = claRoyalblue
+        Text = 'Click to download Windows SDK'
+        TabOrder = 4
+        OnClick = lblDownloadWindowsSDKClick
+      end
+    end
+    object edtProgramURL: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 11
+      Position.X = 5.000000000000000000
+      Position.Y = 297.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object lblPFXPassword: TLabel
+      Align = Top
+      FocusControl = edtPFXPassword
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 113.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Certificate password'
+      TabOrder = 4
+    end
+    object lblPFXFiePath: TLabel
+      Align = Top
+      FocusControl = edtPFXFilePath
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 59.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Path to your code signing certificate (PFX file)'
+      TabOrder = 2
+      object lblBuyACodeSigningCertificate: TLabel
+        Align = Right
+        Cursor = crHandPoint
+        StyledSettings = [Family, Size]
+        HitTest = True
+        Position.X = 440.000000000000000000
+        Size.Width = 190.000000000000000000
+        Size.Height = 17.000000000000000000
+        Size.PlatformDefault = False
+        TextSettings.Font.StyleExt = {04040000000000000004000000}
+        TextSettings.FontColor = claRoyalblue
+        Text = 'Buy a code signing certificate'
+        TabOrder = 4
+        OnClick = lblBuyACodeSigningCertificateClick
+      end
+    end
+    object lblTimeStampServerURL: TLabel
+      Align = Top
+      FocusControl = edtTimeStampServerURL
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Position.X = 5.000000000000000000
+      Position.Y = 167.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 17.000000000000000000
+      Size.PlatformDefault = False
+      Text = 'Time stamp server URL'
+      TabOrder = 6
+    end
+    object edtProgramTitle: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 9
+      Position.X = 5.000000000000000000
+      Position.Y = 243.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object edtPFXPassword: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 5
+      Password = True
+      Position.X = 5.000000000000000000
+      Position.Y = 135.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 630.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+    object edtSignedFolderPath: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 13
+      Position.X = 5.000000000000000000
+      Position.Y = 351.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 30.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 605.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object btnSignedFolderPathFind: TButton
+        Align = Right
+        Margins.Right = -22.000000000000000000
+        Position.X = 605.000000000000000000
+        Size.Width = 22.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = '...'
+        OnClick = btnSignedFolderPathFindClick
+      end
+    end
+    object edtPFXFilePath: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 3
+      Position.X = 5.000000000000000000
+      Position.Y = 81.000000000000000000
+      Margins.Left = 5.000000000000000000
+      Margins.Top = 5.000000000000000000
+      Margins.Right = 30.000000000000000000
+      Margins.Bottom = 5.000000000000000000
+      Size.Width = 605.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+      object btnPFXFilePathFind: TButton
+        Align = Right
+        Margins.Right = -22.000000000000000000
+        Position.X = 605.000000000000000000
+        Size.Width = 22.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = '...'
+        OnClick = btnPFXFilePathFindClick
+      end
+    end
+    object GridPanelLayout1: TGridPanelLayout
+      Align = Top
+      Position.Y = 378.000000000000000000
+      Size.Width = 640.000000000000000000
+      Size.Height = 50.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 14
+      ColumnCollection = <
+        item
+          Value = 50.000000000000000000
+        end
+        item
+          Value = 50.000000000000000000
+        end>
+      ControlCollection = <
+        item
+          Column = 0
+          Control = btnStart
+          Row = 0
+        end
+        item
+          Column = 1
+          Control = bntCancel
+          Row = 0
+        end>
+      RowCollection = <
+        item
+          Value = 100.000000000000000000
+        end>
+      object btnStart: TButton
+        Align = Client
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Size.Width = 310.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Text = 'Start'
+        OnClick = btnStartClick
+      end
+      object bntCancel: TButton
+        Align = Client
+        Cancel = True
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Size.Width = 310.000000000000000000
+        Size.Height = 40.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 1
+        Text = 'Close'
+        OnClick = bntCancelClick
+      end
+    end
+  end
+  object FindSigntoolDialog: TOpenDialog
+    Filter = 'SignTool|signtool.exe'
+    Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Title = 'Choose signtool.exe file'
+    Left = 120
+  end
+  object FindPFXFileDialog: TOpenDialog
+    DefaultExt = 'pfx'
+    Filter = 'Code Signing Certificate|*.pfx'
+    Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Title = 'Choose your code signing certificate'
+    Left = 256
+    Top = 56
+  end
+  object LockScreen: TLayout
+    Align = Contents
+    Size.Width = 640.000000000000000000
+    Size.Height = 434.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 4
+    object LockScreenBackground: TRectangle
+      Align = Client
+      Fill.Color = claFloralwhite
+      Opacity = 0.400000005960464500
+      Size.Width = 640.000000000000000000
+      Size.Height = 434.000000000000000000
+      Size.PlatformDefault = False
+      Stroke.Kind = None
+    end
+    object LockScreenAnimation: TAniIndicator
+      Align = Center
+      HitTest = False
+    end
+  end
+  object ChooseFolderToSignIn: TOpenDialog
+    Filter = 'Programs|*.exe;*.msix'
+    Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
+    Title = 'Select a program in the folder you want to sign'
+    Left = 176
+    Top = 328
+  end
+end
