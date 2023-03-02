@@ -357,7 +357,7 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
 {$IFDEF DEBUG}
   caption := caption + ' - DEBUG MODE';
-{$ELSE IF Defined(PRIVATERELEASE)}
+{$ELSEIF Defined(PRIVATERELEASE)}
   caption := caption + ' - PERSONAL RELEASE - DON''T DISTRIBUTE';
 {$ENDIF}
   EndBlockingActivity;
