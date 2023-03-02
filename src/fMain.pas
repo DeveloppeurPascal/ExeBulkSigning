@@ -346,7 +346,7 @@ end;
 procedure TfrmMain.lblDownloadWindowsSDKClick(Sender: TObject);
 begin
   url_Open_In_Browser
-    ('https://developer.microsoft.com/fr-fr/windows/downloads/windows-sdk/');
+    ('https://developer.microsoft.com/windows/downloads/windows-sdk/');
 end;
 
 procedure TfrmMain.UpdateChanges;
