@@ -6,7 +6,8 @@ uses
   System.SysUtils, System.Types, System.UITypes, System.Classes,
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
-  FMX.StdCtrls, FMX.Edit, FMX.Controls.Presentation, FMX.Objects;
+  FMX.StdCtrls, FMX.Edit, FMX.Controls.Presentation, FMX.Objects, FMX.Menus,
+  Olf.FMX.AboutDialog;
 
 type
   TfrmMain = class(TForm)
@@ -39,8 +40,13 @@ type
     LockScreenBackground: TRectangle;
     LockScreen: TLayout;
     LockScreenAnimation: TAniIndicator;
+    MainMenu1: TMainMenu;
+    mnuFile: TMenuItem;
+    mnuQuit: TMenuItem;
+    mnuHelp: TMenuItem;
+    mnuAbout: TMenuItem;
+    OlfAboutDialog1: TOlfAboutDialog;
     procedure FormCreate(Sender: TObject);
-    procedure bntCancelClick(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
     procedure lblDownloadWindowsSDKClick(Sender: TObject);
@@ -48,6 +54,9 @@ type
     procedure btnSigntoolPathFindClick(Sender: TObject);
     procedure btnPFXFilePathFindClick(Sender: TObject);
     procedure btnSignedFolderPathFindClick(Sender: TObject);
+    procedure mnuQuitClick(Sender: TObject);
+    procedure mnuAboutClick(Sender: TObject);
+    procedure OlfAboutDialog1URLClick(const AURL: string);
   private
     { Déclarations privées }
     function HasChanged: Boolean;
@@ -77,11 +86,6 @@ begin
   LockScreenBackground.Visible := true;
   LockScreenAnimation.Enabled := true;
   LockScreenAnimation.BringToFront;
-end;
-
-procedure TfrmMain.bntCancelClick(Sender: TObject);
-begin
-  close;
 end;
 
 procedure TfrmMain.btnPFXFilePathFindClick(Sender: TObject);
@@ -347,6 +351,21 @@ procedure TfrmMain.lblDownloadWindowsSDKClick(Sender: TObject);
 begin
   url_Open_In_Browser
     ('https://developer.microsoft.com/windows/downloads/windows-sdk/');
+end;
+
+procedure TfrmMain.mnuAboutClick(Sender: TObject);
+begin
+  OlfAboutDialog1.Execute;
+end;
+
+procedure TfrmMain.mnuQuitClick(Sender: TObject);
+begin
+  close;
+end;
+
+procedure TfrmMain.OlfAboutDialog1URLClick(const AURL: string);
+begin
+  url_Open_In_Browser(AURL);
 end;
 
 procedure TfrmMain.UpdateChanges;
