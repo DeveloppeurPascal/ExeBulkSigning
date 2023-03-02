@@ -311,6 +311,9 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+{$IFDEF DEBUG}
+  caption := caption + ' - DEBUG MODE';
+{$ENDIF}
   EndBlockingActivity;
   edtSigntoolPath.Text := tparams.getValue('SignToolPath', '');
   edtPFXFilePath.Text := tparams.getValue('PFXFilePath', '');

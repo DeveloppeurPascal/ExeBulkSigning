@@ -11,5 +11,3 @@
 * add a dark mode (style)
 
 * add recursivity signing (the choosen folder + its subfolders)
-
-* add "debug" in main form caption when program is in DEBUG mode
