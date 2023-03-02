@@ -6,3 +6,4 @@
 * added a menu to the program
 * added a Help / About dialog box
 * added recursivity signing (the choosen folder + its subfolders)
+* updated FR/EN doc (dependency + traduction FR)

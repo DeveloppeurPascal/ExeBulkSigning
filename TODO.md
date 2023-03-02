@@ -9,5 +9,3 @@
 
 * add a light mode (style)
 * add a dark mode (style)
-
-* add recursivity signing (the choosen folder + its subfolders)
