@@ -46,6 +46,8 @@ type
     mnuHelp: TMenuItem;
     mnuAbout: TMenuItem;
     OlfAboutDialog1: TOlfAboutDialog;
+    cbRecursivity: TCheckBox;
+    lblRecursivity: TLabel;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
@@ -59,12 +61,15 @@ type
     procedure OlfAboutDialog1URLClick(const AURL: string);
   private
     { Déclarations privées }
+    FOldRecursivityValue: Boolean;
     function HasChanged: Boolean;
     procedure UpdateParams;
     procedure UpdateChanges;
     procedure CancelChanges;
     procedure BeginBlockingActivity;
     procedure EndBlockingActivity;
+    procedure SignAFolder(SignedFolderPath: string; cmd: string;
+      cmdparam: string; WithSubFolders: Boolean);
   public
     { Déclarations publiques }
   end;
@@ -231,38 +236,15 @@ begin
     tthread.CreateAnonymousThread(
       procedure
       var
-        cmdParamWithFile: string;
-        FileList: tstringdynarray;
-        FileName: string;
+        WithSubFolders: Boolean;
       begin
         try
-          FileList := tdirectory.GetFiles(SignedFolderPath);
-          for FileName in FileList do
-            if (tpath.GetExtension(FileName).ToLower = '.exe') or
-              (tpath.GetExtension(FileName).ToLower = '.msix') then
+          tthread.Synchronize(nil,
+            procedure
             begin
-              cmdParamWithFile := cmdparam + ' "' + FileName + '"';
-{$IFDEF DEBUG}
-              // tthread.Synchronize(nil,
-              // procedure
-              // begin
-              // showmessage(FileName);
-              // showmessage(cmdWithFile);
-              // end);
-{$ENDIF}
-              tthread.Synchronize(nil,
-                procedure
-                var
-                  res: integer;
-                begin
-                  res := ShellExecute(0, 'OPEN', PWideChar(cmd),
-                    PWideChar(cmdParamWithFile), nil, SW_SHOWNORMAL);
-                  if (res <= 32) then
-                    raise exception.Create('ShellExecute error ' + res.ToString
-                      + ' for file ' + FileName);
-                  // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
-                end);
-            end;
+              WithSubFolders := cbRecursivity.IsChecked;
+            end);
+          SignAFolder(SignedFolderPath, cmd, cmdparam, WithSubFolders);
         finally
           tthread.forcequeue(nil,
             procedure
@@ -285,12 +267,52 @@ begin
   edtProgramTitle.Text := edtProgramTitle.tagstring;
   edtProgramURL.Text := edtProgramURL.tagstring;
   edtSignedFolderPath.Text := edtSignedFolderPath.tagstring;
+  cbRecursivity.IsChecked := FOldRecursivityValue;
 end;
 
 procedure TfrmMain.EndBlockingActivity;
 begin
   LockScreenAnimation.Enabled := false;
   LockScreen.Visible := false;
+end;
+
+procedure TfrmMain.SignAFolder(SignedFolderPath: string; cmd: string;
+cmdparam: string; WithSubFolders: Boolean);
+var
+  cmdParamWithFile: string;
+  FileList: tstringdynarray;
+  FileName: string;
+  FolderList: tstringdynarray;
+  NewPath: string;
+begin
+  if not tdirectory.Exists(SignedFolderPath) then
+    exit;
+
+  FileList := tdirectory.GetFiles(SignedFolderPath);
+  for FileName in FileList do
+    if (tpath.GetExtension(FileName).ToLower = '.exe') or
+      (tpath.GetExtension(FileName).ToLower = '.msix') then
+    begin
+      cmdParamWithFile := cmdparam + ' "' + FileName + '"';
+      tthread.Synchronize(nil,
+        procedure
+        begin
+          var
+          res := ShellExecute(0, 'OPEN', PWideChar(cmd),
+            PWideChar(cmdParamWithFile), nil, SW_SHOWNORMAL);
+          if (res <= 32) then
+            raise exception.Create('ShellExecute error ' + res.ToString +
+              ' for file ' + FileName);
+          // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
+        end);
+      // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
+    end;
+  if WithSubFolders then
+  begin
+    FolderList := tdirectory.GetDirectories(SignedFolderPath);
+    for NewPath in FolderList do
+      SignAFolder(NewPath, cmd, cmdparam, WithSubFolders);
+  end;
 end;
 
 procedure TfrmMain.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
@@ -327,8 +349,9 @@ begin
   edtProgramTitle.Text := tparams.getValue('ProgramTitle', '');
   edtProgramURL.Text := tparams.getValue('ProgramURL', '');
   edtSignedFolderPath.Text := tparams.getValue('SignedFolderPath', '');
+  cbRecursivity.IsChecked := tparams.getValue
+    ('SignedFolderWithSubFolders', false);
   UpdateChanges;
-
 end;
 
 function TfrmMain.HasChanged: Boolean;
@@ -339,7 +362,8 @@ begin
     (edtTimeStampServerURL.tagstring <> edtTimeStampServerURL.Text) or
     (edtProgramTitle.tagstring <> edtProgramTitle.Text) or
     (edtProgramURL.tagstring <> edtProgramURL.Text) or
-    (edtSignedFolderPath.tagstring <> edtSignedFolderPath.Text);
+    (edtSignedFolderPath.tagstring <> edtSignedFolderPath.Text) or
+    (FOldRecursivityValue <> cbRecursivity.IsChecked);
 end;
 
 procedure TfrmMain.lblBuyACodeSigningCertificateClick(Sender: TObject);
@@ -377,6 +401,7 @@ begin
   edtProgramTitle.tagstring := edtProgramTitle.Text;
   edtProgramURL.tagstring := edtProgramURL.Text;
   edtSignedFolderPath.tagstring := edtSignedFolderPath.Text;
+  FOldRecursivityValue := cbRecursivity.IsChecked;
 end;
 
 procedure TfrmMain.UpdateParams;
@@ -388,6 +413,7 @@ begin
   tparams.setValue('ProgramTitle', edtProgramTitle.Text);
   tparams.setValue('ProgramURL', edtProgramURL.Text);
   tparams.setValue('SignedFolderPath', edtSignedFolderPath.Text);
+  tparams.setValue('SignedFolderWithSubFolders', cbRecursivity.IsChecked);
   tparams.Save;
   UpdateChanges;
 end;
