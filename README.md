@@ -1,10 +1,12 @@
 # ExeBulkSigning
 
+[Cette page en français.](LISEZMOI.md)
+
 Simple tool to sign all EXE and MSIX files in a folder.
 
-This program is a Delphi FireMonkey project.
+This program is a Delphi FireMonkey project but only useful in Windows environment because it uses a Windows SDK utility.
 
-You don't know what Delphi is and where to download it ? You'll learn more [on this web site](https://delphi-resources.developpeur-pascal.fr/).
+This code repository contains a project developed in Object Pascal language under Delphi. You don't know what Delphi is and where to download it ? You'll learn more [on this web site](https://delphi-resources.developpeur-pascal.fr/).
 
 ## Use case
 
@@ -51,6 +53,19 @@ Signing MSIX files is available only if MSIX is not signed or if it has been sig
 
 In case of error, nothing is done, the file doesn't change.
 In case of it works, the date/time of the file change. You can display signature informations from file property dialog box.
+
+## Install
+
+To download this project you better should use "git" command but you also can download a ZIP from [its GitHub repository](https://github.com/DeveloppeurPascal/ExeBulkSigning).
+
+**Warning :** if the project has submodules dependencies they wont be in the ZIP file. You'll have to download them manually.
+
+## Dependencies
+
+This project depends on :
+
+* [DeveloppeurPascal/AboutDialog-Delphi-Component](https://github.com/DeveloppeurPascal/AboutDialog-Delphi-Component) have to be in sub folder ./lib-externes/AboutDialog-Delphi-Component
+* [DeveloppeurPascal/librairies](https://github.com/DeveloppeurPascal/librairies) have to be in sub folder ./lib-externes/librairies
 
 ## How to ask a new feature, report a bug or a security issue ?
 
