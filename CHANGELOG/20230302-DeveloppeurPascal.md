@@ -7,3 +7,4 @@
 * added a Help / About dialog box
 * added recursivity signing (the choosen folder + its subfolders)
 * updated FR/EN doc (dependency + traduction FR)
+* added structure in the program to generate a personal release with the password in code

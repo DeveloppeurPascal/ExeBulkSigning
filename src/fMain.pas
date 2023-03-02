@@ -84,6 +84,19 @@ implementation
 uses Olf.RTL.Params, System.IOUtils, FMX.DialogService, u_urlOpen,
   Winapi.ShellAPI, Winapi.Windows;
 
+{$IFDEF PRIVATERELEASE}
+{$INCLUDE '../_PRIVATE/PFXPasswordConst.inc.pas'}
+(*
+  Copy this lines in '../_PRIVATE/PFXPasswordConst.inc.pas' file with your real
+  developer certificate if you want a personal release with the password
+  hardcoded.
+
+  Const
+  CPFXCertificate = 'MyCertificat.pfx'; // name of your certificate file
+  CPFXPassword = 'MyPassword'; // password of the pfx file
+*)
+{$ENDIF}
+
 procedure TfrmMain.BeginBlockingActivity;
 begin
   LockScreen.Visible := true;
@@ -189,6 +202,11 @@ begin
   end;
   if not edtPFXPassword.Text.IsEmpty then
     PFXPassword := edtPFXPassword.Text
+{$IFDEF PRIVATERELEASE}
+  else if edtPFXFilePath.Text.EndsWith(CPFXCertificate) and
+    (not CPFXPassword.IsEmpty) then
+    PFXPassword := CPFXPassword
+{$ENDIF}
   else
   begin
     edtPFXPassword.SetFocus;
@@ -339,6 +357,8 @@ procedure TfrmMain.FormCreate(Sender: TObject);
 begin
 {$IFDEF DEBUG}
   caption := caption + ' - DEBUG MODE';
+{$ELSE IF Defined(PRIVATERELEASE)}
+  caption := caption + ' - PERSONAL RELEASE - DON''T DISTRIBUTE';
 {$ENDIF}
   EndBlockingActivity;
   edtSigntoolPath.Text := tparams.getValue('SignToolPath', '');
