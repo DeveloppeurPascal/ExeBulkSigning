@@ -1,11 +1,11 @@
 ﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
     <PropertyGroup>
         <ProjectGuid>{BBEDD2CC-4137-4344-9417-233330D6D6E4}</ProjectGuid>
-        <ProjectVersion>19.5</ProjectVersion>
+        <ProjectVersion>20.1</ProjectVersion>
         <FrameworkType>FMX</FrameworkType>
         <Base>True</Base>
         <Config Condition="'$(Config)'==''">Debug</Config>
-        <Platform Condition="'$(Platform)'==''">Win64</Platform>
+        <Platform Condition="'$(Platform)'==''">Win32</Platform>
         <TargetedPlatforms>3</TargetedPlatforms>
         <AppType>Application</AppType>
         <MainSource>ExeBulkSigning.dpr</MainSource>
@@ -30,11 +30,6 @@
     </PropertyGroup>
     <PropertyGroup Condition="('$(Platform)'=='iOSSimARM64' and '$(Base)'=='true') or '$(Base_iOSSimARM64)'!=''">
         <Base_iOSSimARM64>true</Base_iOSSimARM64>
-        <CfgParent>Base</CfgParent>
-        <Base>true</Base>
-    </PropertyGroup>
-    <PropertyGroup Condition="('$(Platform)'=='Linux64' and '$(Base)'=='true') or '$(Base_Linux64)'!=''">
-        <Base_Linux64>true</Base_Linux64>
         <CfgParent>Base</CfgParent>
         <Base>true</Base>
     </PropertyGroup>
@@ -231,9 +226,6 @@
         <iPad_Setting58>$(BDS)\bin\Artwork\iOS\iPad\FM_SettingIcon_58x58.png</iPad_Setting58>
         <iPad_Notification40>$(BDS)\bin\Artwork\iOS\iPad\FM_NotificationIcon_40x40.png</iPad_Notification40>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Base_Linux64)'!=''">
-        <DCC_UsePackage>DataSnapServer;fmx;emshosting;DbxCommonDriver;bindengine;FireDACCommonODBC;emsclient;FireDACCommonDriver;IndyProtocols;Skia.Package.RTL;dbxcds;emsedge;inetdb;FireDACSqliteDriver;DbxClientDriver;FireDACASADriver;soapmidas;dbexpress;FireDACInfxDriver;inet;DataSnapCommon;BoiteDeDialogueAProposFMXPkg;dbrtl;FireDACOracleDriver;Skia.Package.FMX;CustomIPTransport;FireDACMSSQLDriver;DataSnapIndy10ServerTransport;DataSnapConnectors;FireDACMongoDBDriver;IndySystem;FireDACTDataDriver;bindcomp;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;emsserverresource;IndyCore;RESTBackendComponents;rtl;FireDACMySQLDriver;FireDACADSDriver;RESTComponents;dsnapxml;DataSnapClient;DataSnapFireDAC;emsclientfiredac;FireDACPgDriver;FireDAC;xmlrtl;dsnap;CloudService;FireDACDb2Driver;DataSnapNativeClient;DatasnapConnectorsFreePascal;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
-    </PropertyGroup>
     <PropertyGroup Condition="'$(Base_OSX64)'!=''">
         <DCC_UsePackage>DataSnapServer;fmx;DbxCommonDriver;bindengine;IndyIPCommon;FireDACCommonODBC;emsclient;FireDACCommonDriver;IndyProtocols;RadiantShapesFmx_Design;Skia.Package.RTL;IndyIPClient;dbxcds;FmxTeeUI;bindcompfmx;DBXFirebirdDriver;inetdb;ibmonitor;FireDACSqliteDriver;DbxClientDriver;FireDACASADriver;soapmidas;fmxFireDAC;dbexpress;DBXMySQLDriver;inet;DataSnapCommon;BoiteDeDialogueAProposFMXPkg;fmxase;DzHTMLText_FMX;dbrtl;FireDACDBXDriver;FireDACOracleDriver;Skia.Package.FMX;fmxdae;CustomIPTransport;FireDACMSSQLDriver;DataSnapIndy10ServerTransport;DBXInterBaseDriver;FireDACMongoDBDriver;IndySystem;RadiantShapesFmx;FireDACTDataDriver;ibxbindings;bindcomp;FireDACCommon;DataSnapServerMidas;FireDACODBCDriver;IndyCore;RESTBackendComponents;bindcompdbx;rtl;FireDACMySQLDriver;RESTComponents;DBXSqliteDriver;IndyIPServer;dsnapxml;DataSnapClient;DataSnapProviderClient;DataSnapFireDAC;emsclientfiredac;FireDACPgDriver;FireDAC;FireDACDSDriver;inetdbxpress;xmlrtl;tethering;ibxpress;dsnap;CloudService;DBXSybaseASADriver;DBXOracleDriver;DBXInformixDriver;fmxobj;FMXTee;DataSnapNativeClient;soaprtl;soapserver;FireDACIBDriver;$(DCC_UsePackage)</DCC_UsePackage>
         <VerInfo_Keys>CFBundleName=$(MSBuildProjectName);CFBundleDisplayName=$(MSBuildProjectName);CFBundleIdentifier=$(MSBuildProjectName);CFBundleVersion=1.0.0;CFBundleShortVersionString=1.0.0;CFBundlePackageType=APPL;CFBundleSignature=????;CFBundleAllowMixedLocalizations=YES;CFBundleExecutable=$(MSBuildProjectName);NSHighResolutionCapable=true;LSApplicationCategoryType=public.app-category.utilities;NSLocationUsageDescription=The reason for accessing the location information of the user;NSContactsUsageDescription=The reason for accessing the contacts;NSCalendarsUsageDescription=The reason for accessing the calendar data;NSRemindersUsageDescription=The reason for accessing the reminders;NSCameraUsageDescription=The reason for accessing the camera;NSMicrophoneUsageDescription=The reason for accessing the microphone;NSMotionUsageDescription=The reason for accessing the accelerometer;NSDesktopFolderUsageDescription=The reason for accessing the Desktop folder;NSDocumentsFolderUsageDescription=The reason for accessing the Documents folder;NSDownloadsFolderUsageDescription=The reason for accessing the Downloads folder;NSNetworkVolumesUsageDescription=The reason for accessing files on a network volume;NSRemovableVolumesUsageDescription=The reason for accessing files on a removable volume;NSSpeechRecognitionUsageDescription=The reason for requesting to send user data to Apple&apos;s speech recognition servers</VerInfo_Keys>
@@ -294,10 +286,12 @@
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_1_Win64)'!=''">
-        <AppEnableRuntimeThemes>true</AppEnableRuntimeThemes>
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
+        <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
+        <Icon_MainIcon>..\assets\icons\ExeBulkSigning.ico</Icon_MainIcon>
+        <Icns_MainIcns>..\assets\icons\ExeBulkSigning.icns</Icns_MainIcns>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2)'!=''">
         <DCC_LocalDebugSymbols>false</DCC_LocalDebugSymbols>
@@ -312,10 +306,9 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>..\assets\icons\ExeBulkSigning.ico</Icon_MainIcon>
         <Icns_MainIcns>..\assets\icons\ExeBulkSigning.icns</Icns_MainIcns>
-        <VerInfo_Build>4</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.1.0.4;InternalName=;LegalCopyright=2022-2023 Patrick Prémartin - Olf Software;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.exebulksigning;ProductName=$(MSBuildProjectName);ProductVersion=1.1;Comments=</VerInfo_Keys>
-        <BT_BuildType>AppStore</BT_BuildType>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_Build>5</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.2.0.5;InternalName=;LegalCopyright=2022-2023 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.exebulksigning;ProductName=$(MSBuildProjectName);ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_MinorVer>2</VerInfo_MinorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_2_Win64)'!=''">
         <AppDPIAwarenessMode>PerMonitorV2</AppDPIAwarenessMode>
@@ -324,20 +317,20 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>..\assets\icons\ExeBulkSigning.ico</Icon_MainIcon>
         <Icns_MainIcns>..\assets\icons\ExeBulkSigning.icns</Icns_MainIcns>
-        <VerInfo_Build>3</VerInfo_Build>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.1.0.3;InternalName=;LegalCopyright=2022 Patrick Prémartin - Olf Software;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.exebulksigning;ProductName=$(MSBuildProjectName);ProductVersion=1.1;Comments=</VerInfo_Keys>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
-        <BT_BuildType>AppStore</BT_BuildType>
+        <VerInfo_Build>4</VerInfo_Build>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.2.0.4;InternalName=;LegalCopyright=2022-2023 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.exebulksigning;ProductName=$(MSBuildProjectName);ProductVersion=1.2;Comments=</VerInfo_Keys>
+        <VerInfo_MinorVer>2</VerInfo_MinorVer>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win32)'!=''">
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_MinorVer>2</VerInfo_MinorVer>
         <VerInfo_Build>3</VerInfo_Build>
         <VerInfo_AutoIncVersion>true</VerInfo_AutoIncVersion>
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>..\assets\icons\ExeBulkSigning.ico</Icon_MainIcon>
         <Icns_MainIcns>..\assets\icons\ExeBulkSigning.icns</Icns_MainIcns>
         <DCC_Define>PRIVATERELEASE;$(DCC_Define)</DCC_Define>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.2.0.3;InternalName=;LegalCopyright=2022-2023 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.exebulksigning;ProductName=$(MSBuildProjectName);ProductVersion=1.2;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <PropertyGroup Condition="'$(Cfg_3_Win64)'!=''">
         <DCC_Define>PRIVATERELEASE;$(DCC_Define)</DCC_Define>
@@ -347,7 +340,8 @@
         <VerInfo_Locale>1033</VerInfo_Locale>
         <Icon_MainIcon>..\assets\icons\ExeBulkSigning.ico</Icon_MainIcon>
         <Icns_MainIcns>..\assets\icons\ExeBulkSigning.icns</Icns_MainIcns>
-        <VerInfo_MinorVer>1</VerInfo_MinorVer>
+        <VerInfo_MinorVer>2</VerInfo_MinorVer>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=1.2.0.2;InternalName=;LegalCopyright=2022-2023 Patrick Prémartin;LegalTrademarks=;OriginalFilename=;ProgramID=fr.olfsoftware.exebulksigning;ProductName=$(MSBuildProjectName);ProductVersion=1.2;Comments=</VerInfo_Keys>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">
@@ -363,6 +357,11 @@
         <DCCReference Include="..\lib-externes\AboutDialog-Delphi-Component\sources\Olf.FMX.AboutDialogForm.pas">
             <Form>OlfAboutDialogForm</Form>
             <FormType>fmx</FormType>
+        </DCCReference>
+        <DCCReference Include="uDMProjectLogo.pas">
+            <Form>dmProjectLogo</Form>
+            <FormType>dfm</FormType>
+            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
@@ -389,10 +388,10 @@
                     <Source Name="MainSource">ExeBulkSigning.dpr</Source>
                 </Source>
                 <Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k280.bpl">Package Serveurs Office 2000 Embarcadero C++Builder</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp280.bpl">Package Serveurs Office XP Embarcadero C++Builder</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k280.bpl">Composants Microsoft Office 2000 Sample Automation Server Wrapper</Excluded_Packages>
-                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp280.bpl">Composants Microsoft Office XP Sample Automation Server Wrapper</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcboffice2k290.bpl">Package Serveurs Office 2000 Embarcadero C++Builder</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\bcbofficexp290.bpl">Package Serveurs Office XP Embarcadero C++Builder</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dcloffice2k290.bpl">Composants Microsoft Office 2000 Sample Automation Server Wrapper</Excluded_Packages>
+                    <Excluded_Packages Name="$(BDSBIN)\dclofficexp290.bpl">Composants Microsoft Office XP Sample Automation Server Wrapper</Excluded_Packages>
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
@@ -456,6 +455,12 @@
                 <DeployFile LocalName="Win64\Debug\ExeBulkSigning.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win64">
                         <RemoteName>ExeBulkSigning.exe</RemoteName>
+                        <Overwrite>true</Overwrite>
+                    </Platform>
+                </DeployFile>
+                <DeployFile LocalName="Win64\Debug\ExeBulkSigning.rsm" Configuration="Debug" Class="DebugSymbols">
+                    <Platform Name="Win64">
+                        <RemoteName>ExeBulkSigning.rsm</RemoteName>
                         <Overwrite>true</Overwrite>
                     </Platform>
                 </DeployFile>
@@ -568,6 +573,16 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="AndroidSplashImageDefV21">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="AndroidSplashStyles">
                     <Platform Name="Android">
                         <RemoteDir>res\values</RemoteDir>
@@ -588,6 +603,66 @@
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
+                <DeployClass Name="AndroidSplashStylesV31">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v26</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v26</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconBackground">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconForeground">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconMonochrome">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_AdaptiveIconV33">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v33</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v33</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
                 <DeployClass Name="Android_Colors">
                     <Platform Name="Android">
                         <RemoteDir>res\values</RemoteDir>
@@ -595,6 +670,16 @@
                     </Platform>
                     <Platform Name="Android64">
                         <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_ColorsDark">
+                    <Platform Name="Android">
+                        <RemoteDir>res\values-night-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\values-night-v21</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -765,6 +850,56 @@
                     </Platform>
                     <Platform Name="Android64">
                         <RemoteDir>res\values</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedNotificationIcon">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v24</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v24</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplash">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplashDark">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-night-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-night-anydpi-v21</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplashV31">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-anydpi-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-anydpi-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                </DeployClass>
+                <DeployClass Name="Android_VectorizedSplashV31Dark">
+                    <Platform Name="Android">
+                        <RemoteDir>res\drawable-night-anydpi-v31</RemoteDir>
+                        <Operation>1</Operation>
+                    </Platform>
+                    <Platform Name="Android64">
+                        <RemoteDir>res\drawable-night-anydpi-v31</RemoteDir>
                         <Operation>1</Operation>
                     </Platform>
                 </DeployClass>
@@ -1307,7 +1442,6 @@
                 <Platform value="Android64">False</Platform>
                 <Platform value="iOSDevice64">False</Platform>
                 <Platform value="iOSSimARM64">False</Platform>
-                <Platform value="Linux64">False</Platform>
                 <Platform value="OSX64">False</Platform>
                 <Platform value="OSXARM64">False</Platform>
                 <Platform value="Win32">True</Platform>
