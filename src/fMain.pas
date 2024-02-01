@@ -3,11 +3,24 @@ unit fMain;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes,
+  System.SysUtils,
+  System.Types,
+  System.UITypes,
+  System.Classes,
   System.Variants,
-  FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
-  FMX.StdCtrls, FMX.Edit, FMX.Controls.Presentation, FMX.Objects, FMX.Menus,
-  Olf.FMX.AboutDialog, uDMProjectLogo;
+  FMX.Types,
+  FMX.Controls,
+  FMX.Forms,
+  FMX.Graphics,
+  FMX.Dialogs,
+  FMX.Layouts,
+  FMX.StdCtrls,
+  FMX.Edit,
+  FMX.Controls.Presentation,
+  FMX.Objects,
+  FMX.Menus,
+  Olf.FMX.AboutDialog,
+  uDMProjectLogo;
 
 type
   TfrmMain = class(TForm)
@@ -81,8 +94,13 @@ implementation
 
 {$R *.fmx}
 
-uses Olf.RTL.Params, System.IOUtils, FMX.DialogService, u_urlOpen,
-  Winapi.ShellAPI, Winapi.Windows;
+uses
+  Olf.RTL.Params,
+  System.IOUtils,
+  FMX.DialogService,
+  u_urlOpen,
+  Winapi.ShellAPI,
+  Winapi.Windows;
 
 {$IFDEF PRIVATERELEASE}
 {$INCLUDE '../_PRIVATE/PFXPasswordConst.inc.pas'}
