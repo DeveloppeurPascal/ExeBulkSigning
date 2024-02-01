@@ -7,7 +7,7 @@ uses
   System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.Layouts,
   FMX.StdCtrls, FMX.Edit, FMX.Controls.Presentation, FMX.Objects, FMX.Menus,
-  Olf.FMX.AboutDialog;
+  Olf.FMX.AboutDialog, uDMProjectLogo;
 
 type
   TfrmMain = class(TForm)
