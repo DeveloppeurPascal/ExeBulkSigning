@@ -45,11 +45,11 @@ Vérifiez les virus avant de signer les programmes. Ne signez pas un fichier EXE
 
 Juste pour dire, le programme fait une simple boucle sur les fichiers dans le dossier choisi et pour chaque fichier sélectionné il exécute cette commande :
 
-"path to signtool.exe" sign /v /debug /f "PFXFilePath" /p PFXPassWord /tr "TimestampServerURLIfSpecified (recommanded)" /td SHA256 /fd SHA256 /d "ProgramTitle (si spécifié)" /du "YourURL (si précisé)" "chemin vers le fichier EXE ou MSIX à signer"
+"path to signtool.exe" sign /v /debug /f "PFXFilePath" /p PFXPassWord /tr "TimestampServerURLIfSpecified (recommandé)" /td SHA256 /fd SHA256 /d "ProgramTitle (si spécifié)" /du "YourURL (si précisé)" "chemin vers le fichier EXE ou MSIX à signer"
 
-"path to signtool.exe" sign /v /debug /n "UID" /tr "TimestampServerURLIfSpecified (recommanded)" /td SHA256 /fd SHA256 /d "ProgramTitle (if specified)" /du "YourURL (if specified)" "path to EXE or MSIX file to sign"
+"path to signtool.exe" sign /v /debug /n "UID" /tr "TimestampServerURLIfSpecified (recommandé)" /td SHA256 /fd SHA256 /d "ProgramTitle (si spécifié)" /du "YourURL (si spécifié)" "path to EXE or MSIX file to sign"
 
-"path to signtool.exe" sign /v /debug /n "Certificate name" /tr "TimestampServerURLIfSpecified (recommanded)" /td SHA256 /fd SHA256 /d "ProgramTitle (if specified)" /du "YourURL (if specified)" "path to EXE or MSIX file to sign"
+"path to signtool.exe" sign /v /debug /n "Certificate name" /tr "TimestampServerURLIfSpecified (recommandé)" /td SHA256 /fd SHA256 /d "ProgramTitle (si spécifié)" /du "YourURL (si spécifié)" "path to EXE or MSIX file to sign"
 
 ## Avertissements
 
