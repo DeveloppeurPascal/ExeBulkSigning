@@ -388,7 +388,7 @@ end;
 
 procedure TfrmMain.lblBuyACodeSigningCertificateClick(Sender: TObject);
 begin
-  url_Open_In_Browser('https://www.ksoftware.net/code-signing-certificates/');
+  url_Open_In_Browser('https://www.certum.eu/en/code-signing-certificates/');
 end;
 
 procedure TfrmMain.lblDownloadWindowsSDKClick(Sender: TObject);
