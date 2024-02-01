@@ -4,384 +4,27 @@ object frmMain: TfrmMain
   Caption = 'EXE / MSIX Bulk Signing Tool'
   ClientHeight = 474
   ClientWidth = 640
+  StyleBook = StyleBook1
   FormFactor.Width = 320
   FormFactor.Height = 480
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnCloseQuery = FormCloseQuery
   DesignerMasterStyle = 0
-  object VertScrollBox1: TVertScrollBox
-    Align = Client
-    Size.Width = 640.000000000000000000
-    Size.Height = 474.000000000000000000
-    Size.PlatformDefault = False
-    TabOrder = 0
-    Viewport.Width = 640.000000000000000000
-    Viewport.Height = 474.000000000000000000
-    object lblSignedFolderPath: TLabel
-      Align = Top
-      FocusControl = edtSignedFolderPath
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 329.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Folder into you want to works'
-      TabOrder = 12
-      object cbRecursivity: TCheckBox
-        Align = MostRight
-        Position.X = 603.000000000000000000
-        Size.Width = 27.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 4
-      end
-      object lblRecursivity: TLabel
-        Align = Right
-        AutoSize = True
-        FocusControl = cbRecursivity
-        Margins.Right = 5.000000000000000000
-        Position.X = 478.000000000000000000
-        TextSettings.HorzAlign = Trailing
-        TextSettings.Trimming = None
-        Text = 'with sub folders'
-        TabOrder = 5
-      end
-    end
-    object edtSigntoolPath: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Top
-      TabOrder = 1
-      Position.X = 5.000000000000000000
-      Position.Y = 27.000000000000000000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 30.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 605.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      object btnSigntoolPathFind: TButton
-        Align = Right
-        Margins.Right = -22.000000000000000000
-        Position.X = 605.000000000000000000
-        Size.Width = 22.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        Text = '...'
-        TextSettings.Trimming = None
-        OnClick = btnSigntoolPathFindClick
-      end
-    end
-    object lblProgramURL: TLabel
-      Align = Top
-      FocusControl = edtProgramURL
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 275.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Program URL (used for signing exe files)'
-      TabOrder = 10
-    end
-    object edtTimeStampServerURL: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Top
-      TabOrder = 7
-      Position.X = 5.000000000000000000
-      Position.Y = 189.000000000000000000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object lblProgramTitle: TLabel
-      Align = Top
-      FocusControl = edtProgramTitle
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 221.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Program title (used for signing exe files)'
-      TabOrder = 8
-    end
-    object lblSignToolPath: TLabel
-      Align = Top
-      FocusControl = edtSigntoolPath
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 5.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Path to signtool.exe'
-      TabOrder = 0
-      object lblDownloadWindowsSDK: TLabel
-        Align = Right
-        Cursor = crHandPoint
-        StyledSettings = [Family, Size]
-        HitTest = True
-        Position.X = 440.000000000000000000
-        Size.Width = 190.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.StyleExt = {04040000000000000004000000}
-        TextSettings.FontColor = claRoyalblue
-        TextSettings.Trimming = None
-        Text = 'Click to download Windows SDK'
-        TabOrder = 4
-        OnClick = lblDownloadWindowsSDKClick
-      end
-    end
-    object edtProgramURL: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Top
-      TabOrder = 11
-      Position.X = 5.000000000000000000
-      Position.Y = 297.000000000000000000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object lblPFXPassword: TLabel
-      Align = Top
-      FocusControl = edtPFXPassword
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 113.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Certificate password'
-      TabOrder = 4
-    end
-    object lblPFXFiePath: TLabel
-      Align = Top
-      FocusControl = edtPFXFilePath
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 59.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Path to your code signing certificate (PFX file)'
-      TabOrder = 2
-      object lblBuyACodeSigningCertificate: TLabel
-        Align = Right
-        Cursor = crHandPoint
-        StyledSettings = [Family, Size]
-        HitTest = True
-        Position.X = 440.000000000000000000
-        Size.Width = 190.000000000000000000
-        Size.Height = 17.000000000000000000
-        Size.PlatformDefault = False
-        TextSettings.Font.StyleExt = {04040000000000000004000000}
-        TextSettings.FontColor = claRoyalblue
-        TextSettings.Trimming = None
-        Text = 'Buy a code signing certificate'
-        TabOrder = 4
-        OnClick = lblBuyACodeSigningCertificateClick
-      end
-    end
-    object lblTimeStampServerURL: TLabel
-      Align = Top
-      FocusControl = edtTimeStampServerURL
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Position.X = 5.000000000000000000
-      Position.Y = 167.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 17.000000000000000000
-      Size.PlatformDefault = False
-      TextSettings.Trimming = None
-      Text = 'Time stamp server URL'
-      TabOrder = 6
-    end
-    object edtProgramTitle: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Top
-      TabOrder = 9
-      Position.X = 5.000000000000000000
-      Position.Y = 243.000000000000000000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object edtPFXPassword: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Top
-      TabOrder = 5
-      Password = True
-      Position.X = 5.000000000000000000
-      Position.Y = 135.000000000000000000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 5.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 630.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-    end
-    object edtSignedFolderPath: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Top
-      TabOrder = 13
-      Position.X = 5.000000000000000000
-      Position.Y = 351.000000000000000000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 30.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 605.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      object btnSignedFolderPathFind: TButton
-        Align = Right
-        Margins.Right = -22.000000000000000000
-        Position.X = 605.000000000000000000
-        Size.Width = 22.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        Text = '...'
-        TextSettings.Trimming = None
-        OnClick = btnSignedFolderPathFindClick
-      end
-    end
-    object edtPFXFilePath: TEdit
-      Touch.InteractiveGestures = [LongTap, DoubleTap]
-      Align = Top
-      TabOrder = 3
-      Position.X = 5.000000000000000000
-      Position.Y = 81.000000000000000000
-      Margins.Left = 5.000000000000000000
-      Margins.Top = 5.000000000000000000
-      Margins.Right = 30.000000000000000000
-      Margins.Bottom = 5.000000000000000000
-      Size.Width = 605.000000000000000000
-      Size.Height = 22.000000000000000000
-      Size.PlatformDefault = False
-      object btnPFXFilePathFind: TButton
-        Align = Right
-        Margins.Right = -22.000000000000000000
-        Position.X = 605.000000000000000000
-        Size.Width = 22.000000000000000000
-        Size.Height = 22.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        Text = '...'
-        TextSettings.Trimming = None
-        OnClick = btnPFXFilePathFindClick
-      end
-    end
-    object GridPanelLayout1: TGridPanelLayout
-      Align = Top
-      Position.Y = 378.000000000000000000
-      Size.Width = 640.000000000000000000
-      Size.Height = 50.000000000000000000
-      Size.PlatformDefault = False
-      TabOrder = 14
-      ColumnCollection = <
-        item
-          Value = 50.000000000000000000
-        end
-        item
-          Value = 50.000000000000000000
-        end>
-      ControlCollection = <
-        item
-          Column = 0
-          Control = btnStart
-          Row = 0
-        end
-        item
-          Column = 1
-          Control = bntCancel
-          Row = 0
-        end>
-      RowCollection = <
-        item
-          Value = 100.000000000000000000
-        end>
-      object btnStart: TButton
-        Align = Client
-        Margins.Left = 5.000000000000000000
-        Margins.Top = 5.000000000000000000
-        Margins.Right = 5.000000000000000000
-        Margins.Bottom = 5.000000000000000000
-        Size.Width = 310.000000000000000000
-        Size.Height = 40.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 0
-        Text = 'Start'
-        TextSettings.Trimming = None
-        OnClick = btnStartClick
-      end
-      object bntCancel: TButton
-        Align = Client
-        Cancel = True
-        Margins.Left = 5.000000000000000000
-        Margins.Top = 5.000000000000000000
-        Margins.Right = 5.000000000000000000
-        Margins.Bottom = 5.000000000000000000
-        Size.Width = 310.000000000000000000
-        Size.Height = 40.000000000000000000
-        Size.PlatformDefault = False
-        TabOrder = 1
-        Text = 'Close'
-        TextSettings.Trimming = None
-        OnClick = mnuQuitClick
-      end
-    end
-  end
   object FindSigntoolDialog: TOpenDialog
     Filter = 'SignTool|signtool.exe'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Title = 'Choose signtool.exe file'
-    Left = 120
+    Left = 424
+    Top = 376
   end
   object FindPFXFileDialog: TOpenDialog
     DefaultExt = 'pfx'
     Filter = 'Code Signing Certificate|*.pfx'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Title = 'Choose your code signing certificate'
-    Left = 256
-    Top = 56
+    Left = 280
+    Top = 352
   end
   object LockScreen: TLayout
     Align = Contents
@@ -389,7 +32,7 @@ object frmMain: TfrmMain
     Size.Height = 434.000000000000000000
     Size.PlatformDefault = False
     Visible = False
-    TabOrder = 4
+    TabOrder = 3
     object LockScreenBackground: TRectangle
       Align = Client
       Fill.Color = claFloralwhite
@@ -408,12 +51,12 @@ object frmMain: TfrmMain
     Filter = 'Programs|*.exe;*.msix'
     Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
     Title = 'Select a program in the folder you want to sign'
-    Left = 24
+    Left = 128
     Top = 352
   end
   object MainMenu1: TMainMenu
-    Left = 320
-    Top = 216
+    Left = 344
+    Top = 296
     object mnuFile: TMenuItem
       Text = '&File'
       object mnuQuit: TMenuItem
@@ -468,7 +111,584 @@ object frmMain: TfrmMain
         'oppement par l'#39'achat d'#39'une licence.')
     onURLClick = OlfAboutDialog1URLClick
     Langue = EN
-    Left = 512
-    Top = 224
+    Left = 528
+    Top = 288
+  end
+  object TabControl1: TTabControl
+    Align = Client
+    Size.Width = 640.000000000000000000
+    Size.Height = 474.000000000000000000
+    Size.PlatformDefault = False
+    TabIndex = 0
+    TabOrder = 4
+    TabPosition = PlatformDefault
+    Sizes = (
+      640s
+      448s
+      640s
+      448s
+      640s
+      448s)
+    object tiProject: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = True
+      Size.Width = 57.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Project'
+      object vsbProject: TVertScrollBox
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 448.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 640.000000000000000000
+        Viewport.Height = 448.000000000000000000
+        object lblProgramTitle: TLabel
+          Align = Top
+          FocusControl = edtProgramTitle
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Program title (for EXE files) (/d "ProgramTitle")'
+          TabOrder = 0
+        end
+        object edtProgramTitle: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 1
+          Position.X = 5.000000000000000000
+          Position.Y = 27.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblProgramURL: TLabel
+          Align = Top
+          FocusControl = edtProgramURL
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 59.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Program URL (for EXE files) (/du "ProgramURL")'
+          TabOrder = 2
+        end
+        object edtProgramURL: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 3
+          Position.X = 5.000000000000000000
+          Position.Y = 81.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblSignedFolderPath: TLabel
+          Align = Top
+          FocusControl = edtSignedFolderPath
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 113.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Folder into you want to works'
+          TabOrder = 4
+          object cbRecursivity: TCheckBox
+            Align = Right
+            Position.X = 510.000000000000000000
+            Size.Width = 120.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            StyleLookup = 'cbRecursivityStyle1'
+            TabOrder = 4
+            Text = 'with sub folders'
+            TextSettings.HorzAlign = Trailing
+          end
+        end
+        object edtSignedFolderPath: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 5
+          Position.X = 5.000000000000000000
+          Position.Y = 135.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          object btnSignedFolderPathFind: TEllipsesEditButton
+            Touch.InteractiveGestures = [LongTap]
+            CanFocus = False
+            Cursor = crArrow
+            TextSettings.Trimming = None
+            Size.Width = 28.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            OnClick = btnSignedFolderPathFindClick
+          end
+        end
+        object GridPanelLayout1: TGridPanelLayout
+          Align = Top
+          Position.Y = 162.000000000000000000
+          Size.Width = 640.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 6
+          ColumnCollection = <
+            item
+              Value = 50.000000000000000000
+            end
+            item
+              Value = 50.000000000000000000
+            end>
+          ControlCollection = <
+            item
+              Column = 0
+              Control = btnStart
+              Row = 0
+            end
+            item
+              Column = 1
+              Control = bntCancel
+              Row = 0
+            end>
+          RowCollection = <
+            item
+              Value = 100.000000000000000000
+            end>
+          object btnStart: TButton
+            Align = Client
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Margins.Bottom = 5.000000000000000000
+            Size.Width = 310.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Start'
+            TextSettings.Trimming = None
+            OnClick = btnStartClick
+          end
+          object bntCancel: TButton
+            Align = Client
+            Cancel = True
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Margins.Bottom = 5.000000000000000000
+            Size.Width = 310.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'Close'
+            TextSettings.Trimming = None
+            OnClick = mnuQuitClick
+          end
+        end
+      end
+    end
+    object tiCertificate: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 74.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Certificate'
+      object vsbCertificate: TVertScrollBox
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 448.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 640.000000000000000000
+        Viewport.Height = 448.000000000000000000
+        object lblPFXFilePath: TLabel
+          Align = Top
+          FocusControl = edtPFXFilePath
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Path to your code signing certificate (/f "PFXFilePath")'
+          TabOrder = 0
+          object lblBuyACodeSigningCertificate: TLabel
+            Align = Right
+            Cursor = crHandPoint
+            StyledSettings = [Family, Size]
+            HitTest = True
+            Position.X = 440.000000000000000000
+            Size.Width = 190.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {04040000000000000004000000}
+            TextSettings.FontColor = claRoyalblue
+            TextSettings.HorzAlign = Trailing
+            TextSettings.Trimming = None
+            Text = 'Buy a code signing certificate'
+            TabOrder = 4
+            OnClick = lblBuyACodeSigningCertificateClick
+          end
+        end
+        object edtPFXFilePath: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 1
+          Position.X = 5.000000000000000000
+          Position.Y = 27.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          object btnPFXFilePathFind: TEllipsesEditButton
+            Touch.InteractiveGestures = [LongTap]
+            CanFocus = False
+            Cursor = crArrow
+            TextSettings.Trimming = None
+            Size.Width = 28.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            OnClick = EllipsesEditButton2Click
+          end
+        end
+        object lblPFXPassword: TLabel
+          Align = Top
+          FocusControl = edtPFXPassword
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 113.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Certificate password (/p PFXPassWord)'
+          TabOrder = 4
+        end
+        object edtPFXPassword: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 5
+          Password = True
+          Position.X = 5.000000000000000000
+          Position.Y = 135.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          object edtPFXPasswordShowBtn: TPasswordEditButton
+            Touch.InteractiveGestures = [LongTap]
+            CanFocus = False
+            Cursor = crArrow
+            TextSettings.Trimming = None
+            Size.Width = 28.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+          end
+        end
+        object lblTimeStampServerURL: TLabel
+          Align = Top
+          FocusControl = edtTimeStampServerURL
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 167.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Time stamp server URL (/tr "TimestampServerURL")'
+          TabOrder = 6
+        end
+        object edtTimeStampServerURL: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 7
+          Position.X = 5.000000000000000000
+          Position.Y = 189.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblCertificateName: TLabel
+          Align = Top
+          FocusControl = edtCertificateName
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 59.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Certificate name or ID (/n "CertificateNameOrId")'
+          TabOrder = 2
+        end
+        object edtCertificateName: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 3
+          Position.X = 5.000000000000000000
+          Position.Y = 81.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          object ShowCertificateManager: TEllipsesEditButton
+            Touch.InteractiveGestures = [LongTap]
+            CanFocus = False
+            Cursor = crArrow
+            TextSettings.Trimming = None
+            Size.Width = 28.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            OnClick = ShowCertificateManagerClick
+          end
+        end
+      end
+    end
+    object tiSignTool: TTabItem
+      CustomIcon = <
+        item
+        end>
+      TextSettings.Trimming = None
+      IsSelected = False
+      Size.Width = 96.000000000000000000
+      Size.Height = 26.000000000000000000
+      Size.PlatformDefault = False
+      StyleLookup = ''
+      TabOrder = 0
+      Text = 'Microsoft SDK'
+      object vsbSignTool: TVertScrollBox
+        Align = Client
+        Size.Width = 640.000000000000000000
+        Size.Height = 448.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+        Viewport.Width = 640.000000000000000000
+        Viewport.Height = 448.000000000000000000
+        object lblSignToolPath: TLabel
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'Path to signtool.exe'
+          TabOrder = 1
+          object lblDownloadWindowsSDK: TLabel
+            Align = Right
+            Cursor = crHandPoint
+            StyledSettings = [Family, Size]
+            HitTest = True
+            Position.X = 440.000000000000000000
+            Size.Width = 190.000000000000000000
+            Size.Height = 17.000000000000000000
+            Size.PlatformDefault = False
+            TextSettings.Font.StyleExt = {04040000000000000004000000}
+            TextSettings.FontColor = claRoyalblue
+            TextSettings.HorzAlign = Trailing
+            TextSettings.Trimming = None
+            Text = 'Click to download Windows SDK'
+            TabOrder = 4
+            OnClick = lblDownloadWindowsSDKClick
+          end
+        end
+        object edtSigntoolPath: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 0
+          Position.X = 5.000000000000000000
+          Position.Y = 27.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
+          object btnSigntoolPathFind: TEllipsesEditButton
+            Touch.InteractiveGestures = [LongTap]
+            CanFocus = False
+            Cursor = crArrow
+            TextSettings.Trimming = None
+            Size.Width = 28.000000000000000000
+            Size.Height = 18.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            OnClick = EllipsesEditButton3Click
+          end
+        end
+      end
+    end
+  end
+  object StyleBook1: TStyleBook
+    Styles = <
+      item
+        ResourcesBin = {
+          464D585F5354594C4520322E3501061363625265637572736976697479537479
+          6C653103ED0B005450463007544C61796F757400095374796C654E616D650613
+          636252656375727369766974795374796C653105416C69676E070643656E7465
+          720A53697A652E57696474680500000000000000F005400B53697A652E486569
+          67687405000000000000008803401453697A652E506C6174666F726D44656661
+          756C7408085461624F7264657202120007544C61796F75740005416C69676E07
+          0552696768740A506F736974696F6E2E580500000000000000CC05400A53697A
+          652E576964746805000000000000009003400B53697A652E4865696768740500
+          0000000000008803401453697A652E506C6174666F726D44656661756C740800
+          1154436865636B5374796C654F626A65637400095374796C654E616D65060A62
+          61636B67726F756E6405416C69676E070643656E746572074361704D6F646507
+          0454696C65064C6F636B6564090C536F757263654C6F6F6B7570061B57696E64
+          6F7773203131204465736B746F707374796C652E706E670A53697A652E576964
+          74680500000000000000D002400B53697A652E48656967687405000000000000
+          00D002401453697A652E506C6174666F726D44656661756C740808577261704D
+          6F6465070643656E7465720D416374697665547269676765720707436865636B
+          65640A4163746976654C696E6B0E010F536F75726365526563742E4C65667405
+          00000000000000F803400E536F75726365526563742E546F7005000000000000
+          0092064010536F75726365526563742E52696768740500000000000000B00440
+          11536F75726365526563742E426F74746F6D05000000000000009F0640000105
+          5363616C650500000000000000C0FF3F0F536F75726365526563742E4C656674
+          0500000000000000B804400E536F75726365526563742E546F70050000000000
+          0000DB064010536F75726365526563742E526967687405000000000000008405
+          4011536F75726365526563742E426F74746F6D0500000000000000EF06400001
+          055363616C6505000000000000008000400F536F75726365526563742E4C6566
+          740500000000000000F804400E536F75726365526563742E546F700500000000
+          00000092074010536F75726365526563742E52696768740500000000000000B0
+          054011536F75726365526563742E426F74746F6D05000000000000009F074000
+          000A536F757263654C696E6B0E010F536F75726365526563742E4C6566740500
+          000000000000C000400E536F75726365526563742E546F700500000000000000
+          92064010536F75726365526563742E5269676874050000000000000080034011
+          536F75726365526563742E426F74746F6D05000000000000009F064000010553
+          63616C650500000000000000C0FF3F0F536F75726365526563742E4C65667405
+          000000000000008001400E536F75726365526563742E546F7005000000000000
+          00DB064010536F75726365526563742E52696768740500000000000000C00340
+          11536F75726365526563742E426F74746F6D0500000000000000EF0640000105
+          5363616C6505000000000000008000400F536F75726365526563742E4C656674
+          0500000000000000C001400E536F75726365526563742E546F70050000000000
+          000092074010536F75726365526563742E526967687405000000000000008004
+          4011536F75726365526563742E426F74746F6D05000000000000009F07400000
+          07486F744C696E6B0E010F536F75726365526563742E4C656674050000000000
+          00008803400E536F75726365526563742E546F70050000000000000092064010
+          536F75726365526563742E52696768740500000000000000F0034011536F7572
+          6365526563742E426F74746F6D05000000000000009F06400001055363616C65
+          0500000000000000C0FF3F0F536F75726365526563742E4C6566740500000000
+          000000C803400E536F75726365526563742E546F700500000000000000DB0640
+          10536F75726365526563742E52696768740500000000000000B4044011536F75
+          726365526563742E426F74746F6D0500000000000000EF06400001055363616C
+          6505000000000000008000400F536F75726365526563742E4C65667405000000
+          000000008804400E536F75726365526563742E546F7005000000000000009207
+          4010536F75726365526563742E52696768740500000000000000F0044011536F
+          75726365526563742E426F74746F6D05000000000000009F074000000D416374
+          697665486F744C696E6B0E010F536F75726365526563742E4C65667405000000
+          00000000B404400E536F75726365526563742E546F7005000000000000009206
+          4010536F75726365526563742E52696768740500000000000000E8044011536F
+          75726365526563742E426F74746F6D05000000000000009F0640000105536361
+          6C650500000000000000C0FF3F0F536F75726365526563742E4C656674050000
+          00000000008605400E536F75726365526563742E546F700500000000000000DB
+          064010536F75726365526563742E52696768740500000000000000AE05401153
+          6F75726365526563742E426F74746F6D0500000000000000EF06400001055363
+          616C6505000000000000008000400F536F75726365526563742E4C6566740500
+          000000000000B405400E536F75726365526563742E546F700500000000000000
+          92074010536F75726365526563742E52696768740500000000000000E8054011
+          536F75726365526563742E426F74746F6D05000000000000009F074000000B46
+          6F63757365644C696E6B0E010F536F75726365526563742E4C65667405000000
+          000000008803400E536F75726365526563742E546F7005000000000000009206
+          4010536F75726365526563742E52696768740500000000000000F0034011536F
+          75726365526563742E426F74746F6D05000000000000009F0640000105536361
+          6C650500000000000000C0FF3F0F536F75726365526563742E4C656674050000
+          0000000000C803400E536F75726365526563742E546F700500000000000000DB
+          064010536F75726365526563742E52696768740500000000000000B404401153
+          6F75726365526563742E426F74746F6D0500000000000000EF06400001055363
+          616C6505000000000000008000400F536F75726365526563742E4C6566740500
+          0000000000008804400E536F75726365526563742E546F700500000000000000
+          92074010536F75726365526563742E52696768740500000000000000F0044011
+          536F75726365526563742E426F74746F6D05000000000000009F074000001141
+          6374697665466F63757365644C696E6B0E010F536F75726365526563742E4C65
+          66740500000000000000B404400E536F75726365526563742E546F7005000000
+          0000000092064010536F75726365526563742E52696768740500000000000000
+          E8044011536F75726365526563742E426F74746F6D05000000000000009F0640
+          0001055363616C650500000000000000C0FF3F0F536F75726365526563742E4C
+          65667405000000000000008605400E536F75726365526563742E546F70050000
+          0000000000DB064010536F75726365526563742E526967687405000000000000
+          00AE054011536F75726365526563742E426F74746F6D0500000000000000EF06
+          400001055363616C6505000000000000008000400F536F75726365526563742E
+          4C6566740500000000000000B405400E536F75726365526563742E546F700500
+          00000000000092074010536F75726365526563742E5269676874050000000000
+          0000E8054011536F75726365526563742E426F74746F6D05000000000000009F
+          074000000000001654427574746F6E5374796C65546578744F626A6563740009
+          5374796C654E616D6506047465787405416C69676E0706436C69656E74064C6F
+          636B6564090C4D617267696E732E4C6566740500000000000000C000400A5369
+          7A652E57696474680500000000000000C605400B53697A652E48656967687405
+          000000000000008803401453697A652E506C6174666F726D44656661756C7408
+          04546578740604546578740D536861646F7756697369626C650808486F74436F
+          6C6F720708636C61426C61636B0C466F6375736564436F6C6F720708636C6142
+          6C61636B0B4E6F726D616C436F6C6F720708636C61426C61636B0C5072657373
+          6564436F6C6F720708636C61426C61636B000000}
+      end>
+    Left = 208
+    Top = 312
   end
 end

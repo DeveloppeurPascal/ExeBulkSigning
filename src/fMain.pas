@@ -20,22 +20,20 @@ uses
   FMX.Objects,
   FMX.Menus,
   Olf.FMX.AboutDialog,
-  uDMProjectLogo;
+  uDMProjectLogo,
+  FMX.TabControl;
 
 type
   TfrmMain = class(TForm)
-    VertScrollBox1: TVertScrollBox;
     lblSignedFolderPath: TLabel;
-    edtSigntoolPath: TEdit;
     lblProgramURL: TLabel;
     edtTimeStampServerURL: TEdit;
     lblProgramTitle: TLabel;
     edtProgramURL: TEdit;
-    lblSignToolPath: TLabel;
     edtProgramTitle: TEdit;
     lblTimeStampServerURL: TLabel;
     edtPFXPassword: TEdit;
-    lblPFXFiePath: TLabel;
+    lblPFXFilePath: TLabel;
     edtSignedFolderPath: TEdit;
     lblPFXPassword: TLabel;
     edtPFXFilePath: TEdit;
@@ -44,10 +42,6 @@ type
     btnStart: TButton;
     bntCancel: TButton;
     GridPanelLayout1: TGridPanelLayout;
-    btnSigntoolPathFind: TButton;
-    btnPFXFilePathFind: TButton;
-    btnSignedFolderPathFind: TButton;
-    lblDownloadWindowsSDK: TLabel;
     lblBuyACodeSigningCertificate: TLabel;
     ChooseFolderToSignIn: TOpenDialog;
     LockScreenBackground: TRectangle;
@@ -60,21 +54,40 @@ type
     mnuAbout: TMenuItem;
     OlfAboutDialog1: TOlfAboutDialog;
     cbRecursivity: TCheckBox;
-    lblRecursivity: TLabel;
+    TabControl1: TTabControl;
+    tiProject: TTabItem;
+    tiCertificate: TTabItem;
+    vsbProject: TVertScrollBox;
+    vsbCertificate: TVertScrollBox;
+    btnSignedFolderPathFind: TEllipsesEditButton;
+    btnPFXFilePathFind: TEllipsesEditButton;
+    StyleBook1: TStyleBook;
+    tiSignTool: TTabItem;
+    vsbSignTool: TVertScrollBox;
+    lblSignToolPath: TLabel;
+    lblDownloadWindowsSDK: TLabel;
+    edtSigntoolPath: TEdit;
+    btnSigntoolPathFind: TEllipsesEditButton;
+    lblCertificateName: TLabel;
+    edtCertificateName: TEdit;
+    ShowCertificateManager: TEllipsesEditButton;
+    edtPFXPasswordShowBtn: TPasswordEditButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
     procedure lblDownloadWindowsSDKClick(Sender: TObject);
     procedure lblBuyACodeSigningCertificateClick(Sender: TObject);
-    procedure btnSigntoolPathFindClick(Sender: TObject);
-    procedure btnPFXFilePathFindClick(Sender: TObject);
-    procedure btnSignedFolderPathFindClick(Sender: TObject);
     procedure mnuQuitClick(Sender: TObject);
     procedure mnuAboutClick(Sender: TObject);
     procedure OlfAboutDialog1URLClick(const AURL: string);
+    procedure btnSignedFolderPathFindClick(Sender: TObject);
+    procedure EllipsesEditButton2Click(Sender: TObject);
+    procedure EllipsesEditButton3Click(Sender: TObject);
+    procedure ShowCertificateManagerClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
+    FDefaultSignToolPath: string;
     function HasChanged: Boolean;
     procedure UpdateParams;
     procedure UpdateChanges;
@@ -124,100 +137,39 @@ begin
   LockScreenAnimation.BringToFront;
 end;
 
-procedure TfrmMain.btnPFXFilePathFindClick(Sender: TObject);
-var
-  FileName: string;
-begin
-  if (edtPFXFilePath.Text.IsEmpty) then
-    FindPFXFileDialog.InitialDir := tpath.GetDocumentsPath
-  else
-    FindPFXFileDialog.InitialDir := tpath.GetDirectoryName(edtPFXFilePath.Text);
-  FindPFXFileDialog.FileName := '';
-  if FindPFXFileDialog.Execute then
-  begin
-    FileName := FindPFXFileDialog.FileName;
-    if FileName.IsEmpty then
-      raise exception.Create('Select your code signing certificate file !');
-    if not tfile.Exists(FileName) then
-      raise exception.Create(FileName + ' doesn''t exist !');
-    if not tpath.GetExtension(FileName).ToLower.Equals('.pfx') then
-      raise exception.Create('Please choose a PFX file !');
-    edtPFXFilePath.Text := FileName;
-  end;
-end;
-
-procedure TfrmMain.btnSignedFolderPathFindClick(Sender: TObject);
-var
-  FolderName: string;
-begin
-  if (edtSignedFolderPath.Text.IsEmpty) then
-    ChooseFolderToSignIn.InitialDir := tpath.GetDocumentsPath
-  else
-    ChooseFolderToSignIn.InitialDir := edtSignedFolderPath.Text;
-  ChooseFolderToSignIn.FileName := '';
-  if ChooseFolderToSignIn.Execute then
-  begin
-    FolderName := tpath.GetDirectoryName(ChooseFolderToSignIn.FileName);
-    if FolderName.IsEmpty then
-      raise exception.Create
-        ('Select a file in the directory you want to sign in !');
-    if not tdirectory.Exists(FolderName) then
-      raise exception.Create(FolderName + ' doesn''t exist !');
-    if FolderName.StartsWith(GetEnvironmentVariable('PROGRAMFILES(X86)')) or
-      FolderName.StartsWith(GetEnvironmentVariable('PROGRAMFILES')) or
-      FolderName.StartsWith(GetEnvironmentVariable('SYSTEMROOT')) or
-      FolderName.StartsWith(GetEnvironmentVariable('WINDIR')) then
-      raise exception.Create('Folder ' + FolderName + ' not authorized !');
-    edtSignedFolderPath.Text := FolderName;
-  end;
-
-end;
-
-procedure TfrmMain.btnSigntoolPathFindClick(Sender: TObject);
-var
-  FileName: string;
-begin
-  if (edtSigntoolPath.Text.IsEmpty) then
-    FindSigntoolDialog.InitialDir := 'C:\Program Files (x86)\Windows Kits'
-  else
-    FindSigntoolDialog.InitialDir := tpath.GetDirectoryName
-      (edtSigntoolPath.Text);
-  FindSigntoolDialog.FileName := '';
-  if FindSigntoolDialog.Execute then
-  begin
-    FileName := FindSigntoolDialog.FileName;
-    if FileName.IsEmpty then
-      raise exception.Create('Select SignTool.exe file !');
-    if not tfile.Exists(FileName) then
-      raise exception.Create(FileName + ' doesn''t exist !');
-    if not tpath.GetFileName(FileName).ToLower.Equals('signtool.exe') then
-      raise exception.Create('Please choose "signtool.exe" file !');
-    edtSigntoolPath.Text := FileName;
-  end;
-end;
-
 procedure TfrmMain.btnStartClick(Sender: TObject);
 var
   SigntoolPath, PFXFilePath, PFXPassword, TimeStampServerURL, ProgramTitle,
     ProgramURL, SignedFolderPath: string;
   cmd, cmdparam: string;
+  CertificateName: string;
 begin
-  if (not edtSigntoolPath.Text.IsEmpty) and (tfile.Exists(edtSigntoolPath.Text))
-    and (edtSigntoolPath.Text.EndsWith('signtool.exe')) then
+  if not edtSigntoolPath.Text.IsEmpty then
     SigntoolPath := edtSigntoolPath.Text
+  else if not FDefaultSignToolPath.IsEmpty then
+    SigntoolPath := FDefaultSignToolPath
   else
+    SigntoolPath := '';
+
+  if SigntoolPath.IsEmpty or (not tfile.Exists(SigntoolPath)) or
+    (not SigntoolPath.EndsWith('signtool.exe')) then
   begin
+    TabControl1.ActiveTab := tiSignTool;
     edtSigntoolPath.SetFocus;
     raise exception.Create('Invalid signtool.exe path');
   end;
-  if (not edtPFXFilePath.Text.IsEmpty) and (tfile.Exists(edtPFXFilePath.Text))
-    and (edtPFXFilePath.Text.EndsWith('.pfx')) then
-    PFXFilePath := edtPFXFilePath.Text
-  else
-  begin
-    edtPFXFilePath.SetFocus;
-    raise exception.Create('Invalid code signing certificate file path');
-  end;
+  if not edtPFXFilePath.Text.IsEmpty then
+    if tfile.Exists(edtPFXFilePath.Text) and
+      (edtPFXFilePath.Text.EndsWith('.pfx')) then
+      PFXFilePath := edtPFXFilePath.Text
+    else
+    begin
+      TabControl1.ActiveTab := tiCertificate;
+      edtPFXFilePath.SetFocus;
+      raise exception.Create('Invalid code signing certificate file path');
+    end;
+  if not edtCertificateName.Text.IsEmpty then
+    CertificateName := edtCertificateName.Text;
   if not edtPFXPassword.Text.IsEmpty then
     PFXPassword := edtPFXPassword.Text
 {$IFDEF PRIVATERELEASE}
@@ -225,8 +177,9 @@ begin
     (not CPFXPassword.IsEmpty) then
     PFXPassword := CPFXPassword
 {$ENDIF}
-  else
+  else if not PFXFilePath.IsEmpty then
   begin
+    TabControl1.ActiveTab := tiCertificate;
     edtPFXPassword.SetFocus;
     raise exception.Create('Invalid PFX password');
   end;
@@ -250,6 +203,7 @@ begin
     SignedFolderPath := edtSignedFolderPath.Text
   else
   begin
+    TabControl1.ActiveTab := tiProject;
     edtSignedFolderPath.SetFocus;
     raise exception.Create('Invalid folder path');
   end;
@@ -257,8 +211,17 @@ begin
   BeginBlockingActivity;
   try
     cmd := '"' + SigntoolPath + '"';
-    cmdparam := 'sign /v /debug /td SHA256 /fd SHA256 /f "' + PFXFilePath +
-      '" /p ' + PFXPassword;
+{$IFDEF DEBUG}
+    cmdparam := 'sign /v /debug /td SHA256 /fd SHA256';
+{$ELSE}
+    cmdparam := 'sign /td SHA256 /fd SHA256';
+{$ENDIF}
+    if (not PFXFilePath.IsEmpty) then
+      cmdparam := cmdparam + ' /f "' + PFXFilePath + '"';
+    if (not PFXPassword.IsEmpty) then
+      cmdparam := cmdparam + ' /p ' + PFXPassword;
+    if (not CertificateName.IsEmpty) then
+      cmdparam := cmdparam + ' /n "' + CertificateName + '"';
     if (not TimeStampServerURL.IsEmpty) then
       cmdparam := cmdparam + ' /tr "' + TimeStampServerURL + '"';
     if (not ProgramTitle.IsEmpty) then
@@ -298,7 +261,7 @@ procedure TfrmMain.CancelChanges;
 begin
   edtSigntoolPath.Text := edtSigntoolPath.tagstring;
   edtPFXFilePath.Text := edtPFXFilePath.tagstring;
-  // edtPFXPassword.text := edtPFXPassword.tagstring;
+  edtCertificateName.Text := edtCertificateName.tagstring;
   edtTimeStampServerURL.Text := edtTimeStampServerURL.tagstring;
   edtProgramTitle.Text := edtProgramTitle.tagstring;
   edtProgramURL.Text := edtProgramURL.tagstring;
@@ -306,10 +269,89 @@ begin
   cbRecursivity.IsChecked := FOldRecursivityValue;
 end;
 
+procedure TfrmMain.btnSignedFolderPathFindClick(Sender: TObject);
+var
+  FolderName: string;
+begin
+  if (edtSignedFolderPath.Text.IsEmpty) then
+    ChooseFolderToSignIn.InitialDir := tpath.GetDocumentsPath
+  else
+    ChooseFolderToSignIn.InitialDir := edtSignedFolderPath.Text;
+  ChooseFolderToSignIn.FileName := '';
+  if ChooseFolderToSignIn.Execute then
+  begin
+    FolderName := tpath.GetDirectoryName(ChooseFolderToSignIn.FileName);
+    if FolderName.IsEmpty then
+      raise exception.Create
+        ('Select a file in the directory you want to sign in !');
+    if not tdirectory.Exists(FolderName) then
+      raise exception.Create(FolderName + ' doesn''t exist !');
+    if FolderName.StartsWith(GetEnvironmentVariable('PROGRAMFILES(X86)')) or
+      FolderName.StartsWith(GetEnvironmentVariable('PROGRAMFILES')) or
+      FolderName.StartsWith(GetEnvironmentVariable('SYSTEMROOT')) or
+      FolderName.StartsWith(GetEnvironmentVariable('WINDIR')) then
+      raise exception.Create('Folder ' + FolderName + ' not authorized !');
+    edtSignedFolderPath.Text := FolderName;
+  end;
+end;
+
+procedure TfrmMain.EllipsesEditButton2Click(Sender: TObject);
+var
+  FileName: string;
+begin
+  if (edtPFXFilePath.Text.IsEmpty) then
+    FindPFXFileDialog.InitialDir := tpath.GetDocumentsPath
+  else
+    FindPFXFileDialog.InitialDir := tpath.GetDirectoryName(edtPFXFilePath.Text);
+  FindPFXFileDialog.FileName := '';
+  if FindPFXFileDialog.Execute then
+  begin
+    FileName := FindPFXFileDialog.FileName;
+    if FileName.IsEmpty then
+      raise exception.Create('Select your code signing certificate file !');
+    if not tfile.Exists(FileName) then
+      raise exception.Create(FileName + ' doesn''t exist !');
+    if not tpath.GetExtension(FileName).ToLower.Equals('.pfx') then
+      raise exception.Create('Please choose a PFX file !');
+    edtPFXFilePath.Text := FileName;
+  end;
+end;
+
+procedure TfrmMain.EllipsesEditButton3Click(Sender: TObject);
+var
+  FileName: string;
+begin
+  if (edtSigntoolPath.Text.IsEmpty) then
+    FindSigntoolDialog.InitialDir := 'C:\Program Files (x86)\Windows Kits'
+  else
+    FindSigntoolDialog.InitialDir := tpath.GetDirectoryName
+      (edtSigntoolPath.Text);
+  FindSigntoolDialog.FileName := '';
+  if FindSigntoolDialog.Execute then
+  begin
+    FileName := FindSigntoolDialog.FileName;
+    if FileName.IsEmpty then
+      raise exception.Create('Select SignTool.exe file !');
+    if not tfile.Exists(FileName) then
+      raise exception.Create(FileName + ' doesn''t exist !');
+    if not tpath.GetFileName(FileName).ToLower.Equals('signtool.exe') then
+      raise exception.Create('Please choose "signtool.exe" file !');
+    edtSigntoolPath.Text := FileName;
+  end;
+end;
+
 procedure TfrmMain.EndBlockingActivity;
 begin
   LockScreenAnimation.Enabled := false;
   LockScreen.Visible := false;
+end;
+
+procedure TfrmMain.ShowCertificateManagerClick(Sender: TObject);
+begin
+  // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
+  if (ShellExecute(0, 'OPEN', PWideChar('certmgr.msc'), nil, nil, SW_SHOWNORMAL)
+    <= 32) then
+    raise exception.Create('Can''t open Windows certificate Manager.');
 end;
 
 procedure TfrmMain.SignAFolder(SignedFolderPath: string; cmd: string;
@@ -336,12 +378,11 @@ begin
           var
           res := ShellExecute(0, 'OPEN', PWideChar(cmd),
             PWideChar(cmdParamWithFile), nil, SW_SHOWNORMAL);
+          // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
           if (res <= 32) then
             raise exception.Create('ShellExecute error ' + res.ToString +
               ' for file ' + FileName);
-          // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
         end);
-      // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
     end;
   if WithSubFolders then
   begin
@@ -373,17 +414,36 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  TabControl1.ActiveTab := tiProject;
+
+  caption := OlfAboutDialog1.Titre + ' v' + OlfAboutDialog1.VersionNumero;
+
 {$IFDEF DEBUG}
-  caption := caption + ' - DEBUG MODE';
+  caption := '[DEBUG] ' + caption;
 {$ELSEIF Defined(PRIVATERELEASE)}
-  caption := caption + ' - PERSONAL RELEASE - DON''T DISTRIBUTE';
+  caption := '[DEBUG] ' + caption + ' - PERSONAL RELEASE - DON''T DISTRIBUTE';
 {$ENDIF}
   EndBlockingActivity;
   edtSigntoolPath.Text := tparams.getValue('SignToolPath', '');
+  if tfile.Exists
+    ('C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe')
+  then
+    FDefaultSignToolPath :=
+      'C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe'
+  else if tfile.Exists
+    ('C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe')
+  then
+    FDefaultSignToolPath :=
+      'C:\Program Files (x86)\Windows Kits\10\bin\10.0.19041.0\x64\signtool.exe'
+  else
+    FDefaultSignToolPath := '';
+  edtSigntoolPath.TextPrompt := FDefaultSignToolPath;
   edtPFXFilePath.Text := tparams.getValue('PFXFilePath', '');
-  // edtPFXPassword.text := tparams.getValue('PFXPassword', '');
+  edtCertificateName.Text := tparams.getValue('CertNameOrId', '');
   edtPFXPassword.Text := '';
   edtTimeStampServerURL.Text := tparams.getValue('TimeStampServerURL', '');
+  edtTimeStampServerURL.TextPrompt :=
+    'http://time.certum.pl, http://timestamp.digicert.com, http://timestamp.sectigo.com, ...';
   edtProgramTitle.Text := tparams.getValue('ProgramTitle', '');
   edtProgramURL.Text := tparams.getValue('ProgramURL', '');
   edtSignedFolderPath.Text := tparams.getValue('SignedFolderPath', '');
@@ -396,7 +456,7 @@ function TfrmMain.HasChanged: Boolean;
 begin
   result := (edtSigntoolPath.tagstring <> edtSigntoolPath.Text) or
     (edtPFXFilePath.tagstring <> edtPFXFilePath.Text) or
-  // (edtPFXPassword.tagstring <> edtPFXPassword.text) or
+    (edtCertificateName.tagstring <> edtCertificateName.Text) or
     (edtTimeStampServerURL.tagstring <> edtTimeStampServerURL.Text) or
     (edtProgramTitle.tagstring <> edtProgramTitle.Text) or
     (edtProgramURL.tagstring <> edtProgramURL.Text) or
@@ -434,7 +494,7 @@ procedure TfrmMain.UpdateChanges;
 begin
   edtSigntoolPath.tagstring := edtSigntoolPath.Text;
   edtPFXFilePath.tagstring := edtPFXFilePath.Text;
-  // edtPFXPassword.tagstring := edtPFXPassword.text;
+  edtCertificateName.tagstring := edtCertificateName.Text;
   edtTimeStampServerURL.tagstring := edtTimeStampServerURL.Text;
   edtProgramTitle.tagstring := edtProgramTitle.Text;
   edtProgramURL.tagstring := edtProgramURL.Text;
@@ -446,7 +506,7 @@ procedure TfrmMain.UpdateParams;
 begin
   tparams.setValue('SignToolPath', edtSigntoolPath.Text);
   tparams.setValue('PFXFilePath', edtPFXFilePath.Text);
-  // tparams.setValue('PFXPassword', edtPFXPassword.text);
+  tparams.setValue('CertNameOrId', edtCertificateName.Text);
   tparams.setValue('TimeStampServerURL', edtTimeStampServerURL.Text);
   tparams.setValue('ProgramTitle', edtProgramTitle.Text);
   tparams.setValue('ProgramURL', edtProgramURL.Text);
