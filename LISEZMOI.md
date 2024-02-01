@@ -16,13 +16,15 @@ Vous pouvez l'utiliser pour signer vos programmes avant de les distribuer ou pou
 
 Pour utiliser ce programme, vous avez besoin du Microsoft Windows SDK sur votre ordinateur Windows 10 ou 11. Localisez signtool.exe sur votre ordinateur pour vérifier s'il est installé.
 
-Vous avez besoin d'un certificat de signature de code (fichier PFX et son mot de passe). Si vous n'en avez pas, achetez-en un auprès d'une autorité comme Sectigo, Thawte, Digicert ou autre autorité reconnue par Microsoft pour Authenticode et le système Windows Smart Screen.
+Vous avez besoin d'un certificat de signature de code (fichier PFX et son mot de passe ou token). Si vous n'en avez pas, achetez-en un auprès d'une autorité comme [Sectigo](https://www.sectigo.com/ssl-certificates-tls/code-signing), [Digicert](https://www.digicert.com/software-trust-manager), [Certum](https://www.certum.eu/en/code-signing-certificates/) ou autre autorité reconnue par Microsoft pour Authenticode et le système Windows Smart Screen.
 
-Vous pouvez créer un certificat personnel mais vous devez déployer la clé privée sur les ordinateurs où vous utiliserez vos programmes signés pour éviter les alertes de Windows. Pour la publication publique, vous avez besoin d'un CSC officiel. Dans le passé, j'achetais mes CSC sur le site des auteurs de Tucows. Maintenant je les achète chez [KSoftware](https://www.ksoftware.net) (moins cher pour les certificats Sectigo).
+Vous pouvez créer un certificat personnel mais vous devez déployer la clé privée sur les ordinateurs où vous utiliserez vos programmes signés pour éviter les alertes de Windows. Pour la publication publique, vous avez besoin d'un CSC officiel. Dans le passé, j'achetais mes CSC sur le site des auteurs de Tucows puis KSoftware. Maintenant je les achète chez [Certum](https://www.certum.eu/en/code-signing-certificates/) (le moins cher du marché à ma connaissance au 01/02/2024, mais avec un token qui ne fonctionne pas sous Windows ARM pour le moment).
 
 Protégez votre certificat et son mot de passe : votre réputation est en jeu. La sécurité de vos utilisateurs aussi !
 
 Pour en savoir plus sur signtool.exe, consultez la [documentation Microsoft](https://docs.microsoft.com/en-us/windows-hardware/drivers/devtest/signtool).
+
+Pour en savoir plus sur les remplacements des fichiers de certificats par des token physiques, consultez [cette explication](https://www.finalbuilder.com/resources/blogs/code-signing-with-usb-tokens).
 
 ## Comment utiliser ce programme ?
 
@@ -44,6 +46,10 @@ Vérifiez les virus avant de signer les programmes. Ne signez pas un fichier EXE
 Juste pour dire, le programme fait une simple boucle sur les fichiers dans le dossier choisi et pour chaque fichier sélectionné il exécute cette commande :
 
 "path to signtool.exe" sign /v /debug /f "PFXFilePath" /p PFXPassWord /tr "TimestampServerURLIfSpecified (recommanded)" /td SHA256 /fd SHA256 /d "ProgramTitle (si spécifié)" /du "YourURL (si précisé)" "chemin vers le fichier EXE ou MSIX à signer"
+
+"path to signtool.exe" sign /v /debug /n "UID" /tr "TimestampServerURLIfSpecified (recommanded)" /td SHA256 /fd SHA256 /d "ProgramTitle (if specified)" /du "YourURL (if specified)" "path to EXE or MSIX file to sign"
+
+"path to signtool.exe" sign /v /debug /n "Certificate name" /tr "TimestampServerURLIfSpecified (recommanded)" /td SHA256 /fd SHA256 /d "ProgramTitle (if specified)" /du "YourURL (if specified)" "path to EXE or MSIX file to sign"
 
 ## Avertissements
 
