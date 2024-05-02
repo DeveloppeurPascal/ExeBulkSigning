@@ -76,6 +76,9 @@ type
     GridPanelLayout1: TGridPanelLayout;
     btnCertificateSave: TButton;
     btnCertificateCancel: TButton;
+    GridPanelLayout2: TGridPanelLayout;
+    btnMSSDKSave: TButton;
+    btnMSSDKCancel: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
@@ -90,6 +93,8 @@ type
     procedure mnuQuitClick(Sender: TObject);
     procedure btnCertificateCancelClick(Sender: TObject);
     procedure btnCertificateSaveClick(Sender: TObject);
+    procedure btnMSSDKSaveClick(Sender: TObject);
+    procedure btnMSSDKCancelClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
@@ -98,8 +103,10 @@ type
     procedure UpdateParams;
     procedure UpdateChanges(Const SaveParams: Boolean);
     procedure UpdateCertificateChanges(Const SaveParams: Boolean);
+    procedure UpdateMicrosoftSDKChanges(Const SaveParams: Boolean);
     procedure CancelChanges;
     procedure CancelCertificateChanges;
+    procedure CancelMicrosoftSDKChanges;
     procedure BeginBlockingActivity;
     procedure EndBlockingActivity;
     procedure SignAFolder(SignedFolderPath: string; cmd: string;
@@ -279,13 +286,18 @@ end;
 
 procedure TfrmMain.CancelChanges;
 begin
-  edtSigntoolPath.Text := edtSigntoolPath.tagstring;
-  edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
+  CancelMicrosoftSDKChanges;
   CancelCertificateChanges;
   edtProgramTitle.Text := edtProgramTitle.tagstring;
   edtProgramURL.Text := edtProgramURL.tagstring;
   edtSignedFolderPath.Text := edtSignedFolderPath.tagstring;
   cbRecursivity.IsChecked := FOldRecursivityValue;
+end;
+
+procedure TfrmMain.CancelMicrosoftSDKChanges;
+begin
+  edtSigntoolPath.Text := edtSigntoolPath.tagstring;
+  edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
 end;
 
 procedure TfrmMain.btnCertificateCancelClick(Sender: TObject);
@@ -296,6 +308,17 @@ end;
 procedure TfrmMain.btnCertificateSaveClick(Sender: TObject);
 begin
   UpdateCertificateChanges(true);
+  TParams.Save;
+end;
+
+procedure TfrmMain.btnMSSDKCancelClick(Sender: TObject);
+begin
+  CancelMicrosoftSDKChanges;
+end;
+
+procedure TfrmMain.btnMSSDKSaveClick(Sender: TObject);
+begin
+  UpdateMicrosoftSDKChanges(true);
   TParams.Save;
 end;
 
@@ -607,8 +630,7 @@ end;
 
 procedure TfrmMain.UpdateChanges(Const SaveParams: Boolean);
 begin
-  edtSigntoolPath.tagstring := edtSigntoolPath.Text;
-  edtSignToolOtherOptions.tagstring := edtSignToolOtherOptions.Text;
+  UpdateMicrosoftSDKChanges(SaveParams);
   UpdateCertificateChanges(SaveParams);
   edtProgramTitle.tagstring := edtProgramTitle.Text;
   edtProgramURL.tagstring := edtProgramURL.Text;
@@ -616,12 +638,21 @@ begin
   FOldRecursivityValue := cbRecursivity.IsChecked;
   if SaveParams then
   begin
-    TParams.setValue('SignToolPath', edtSigntoolPath.Text);
-    TParams.setValue('SignToolOptions', edtSignToolOtherOptions.Text);
     TParams.setValue('ProgramTitle', edtProgramTitle.Text);
     TParams.setValue('ProgramURL', edtProgramURL.Text);
     TParams.setValue('SignedFolderPath', edtSignedFolderPath.Text);
     TParams.setValue('SignedFolderWithSubFolders', cbRecursivity.IsChecked);
+  end;
+end;
+
+procedure TfrmMain.UpdateMicrosoftSDKChanges(const SaveParams: Boolean);
+begin
+  edtSigntoolPath.tagstring := edtSigntoolPath.Text;
+  edtSignToolOtherOptions.tagstring := edtSignToolOtherOptions.Text;
+  if SaveParams then
+  begin
+    TParams.setValue('SignToolPath', edtSigntoolPath.Text);
+    TParams.setValue('SignToolOptions', edtSignToolOtherOptions.Text);
   end;
 end;
 
