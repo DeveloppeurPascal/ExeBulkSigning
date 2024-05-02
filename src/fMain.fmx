@@ -112,7 +112,7 @@ object frmMain: TfrmMain
     Size.Width = 640.000000000000000000
     Size.Height = 474.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 2
+    TabIndex = 0
     TabOrder = 4
     TabPosition = PlatformDefault
     Sizes = (
@@ -127,7 +127,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 57.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -157,12 +157,12 @@ object frmMain: TfrmMain
           Size.PlatformDefault = False
           TextSettings.Trimming = None
           Text = 'Program title (for EXE files) (/d "ProgramTitle")'
-          TabOrder = 0
+          TabOrder = 1
         end
         object edtProgramTitle: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 1
+          TabOrder = 2
           Position.X = 5.000000000000000000
           Position.Y = 27.000000000000000000
           Margins.Left = 5.000000000000000000
@@ -186,12 +186,12 @@ object frmMain: TfrmMain
           Size.PlatformDefault = False
           TextSettings.Trimming = None
           Text = 'Program URL (for EXE files) (/du "ProgramURL")'
-          TabOrder = 2
+          TabOrder = 3
         end
         object edtProgramURL: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 3
+          TabOrder = 4
           Position.X = 5.000000000000000000
           Position.Y = 81.000000000000000000
           Margins.Left = 5.000000000000000000
@@ -215,7 +215,7 @@ object frmMain: TfrmMain
           Size.PlatformDefault = False
           TextSettings.Trimming = None
           Text = 'Folder into you want to works'
-          TabOrder = 4
+          TabOrder = 5
           object cbRecursivity: TCheckBox
             Align = Right
             Position.X = 510.000000000000000000
@@ -231,7 +231,7 @@ object frmMain: TfrmMain
         object edtSignedFolderPath: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 5
+          TabOrder = 6
           Position.X = 5.000000000000000000
           Position.Y = 135.000000000000000000
           Margins.Left = 5.000000000000000000
@@ -253,64 +253,21 @@ object frmMain: TfrmMain
             OnClick = btnSignedFolderPathFindClick
           end
         end
-        object GridPanelLayout1: TGridPanelLayout
+        object btnStart: TButton
           Align = Top
-          Position.Y = 162.000000000000000000
-          Size.Width = 640.000000000000000000
-          Size.Height = 50.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 167.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 40.000000000000000000
           Size.PlatformDefault = False
-          TabOrder = 6
-          ColumnCollection = <
-            item
-              Value = 50.000000000000000000
-            end
-            item
-              Value = 50.000000000000000000
-            end>
-          ControlCollection = <
-            item
-              Column = 0
-              Control = btnStart
-              Row = 0
-            end
-            item
-              Column = 1
-              Control = bntCancel
-              Row = 0
-            end>
-          RowCollection = <
-            item
-              Value = 100.000000000000000000
-            end>
-          object btnStart: TButton
-            Align = Client
-            Margins.Left = 5.000000000000000000
-            Margins.Top = 5.000000000000000000
-            Margins.Right = 5.000000000000000000
-            Margins.Bottom = 5.000000000000000000
-            Size.Width = 310.000000000000000000
-            Size.Height = 40.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 0
-            Text = 'Start'
-            TextSettings.Trimming = None
-            OnClick = btnStartClick
-          end
-          object bntCancel: TButton
-            Align = Client
-            Cancel = True
-            Margins.Left = 5.000000000000000000
-            Margins.Top = 5.000000000000000000
-            Margins.Right = 5.000000000000000000
-            Margins.Bottom = 5.000000000000000000
-            Size.Width = 310.000000000000000000
-            Size.Height = 40.000000000000000000
-            Size.PlatformDefault = False
-            TabOrder = 1
-            Text = 'Close'
-            TextSettings.Trimming = None
-            OnClick = mnuQuitClick
-          end
+          TabOrder = 0
+          Text = 'Start'
+          TextSettings.Trimming = None
+          OnClick = btnStartClick
         end
       end
     end
@@ -509,7 +466,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 96.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False

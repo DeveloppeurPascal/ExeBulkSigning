@@ -40,9 +40,6 @@ type
     edtPFXFilePath: TEdit;
     FindSigntoolDialog: TOpenDialog;
     FindPFXFileDialog: TOpenDialog;
-    btnStart: TButton;
-    bntCancel: TButton;
-    GridPanelLayout1: TGridPanelLayout;
     lblBuyACodeSigningCertificate: TLabel;
     LockScreenBackground: TRectangle;
     LockScreen: TLayout;
@@ -75,18 +72,19 @@ type
     ChooseFolderToSignIn: TOlfSelectDirectoryDialog;
     lblSignToolOtherOptions: TLabel;
     edtSignToolOtherOptions: TEdit;
+    btnStart: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
     procedure lblDownloadWindowsSDKClick(Sender: TObject);
     procedure lblBuyACodeSigningCertificateClick(Sender: TObject);
-    procedure mnuQuitClick(Sender: TObject);
     procedure mnuAboutClick(Sender: TObject);
     procedure OlfAboutDialog1URLClick(const AURL: string);
     procedure btnSignedFolderPathFindClick(Sender: TObject);
     procedure EllipsesEditButton2Click(Sender: TObject);
     procedure EllipsesEditButton3Click(Sender: TObject);
     procedure ShowCertificateManagerClick(Sender: TObject);
+    procedure mnuQuitClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
