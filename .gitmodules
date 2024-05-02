@@ -7,3 +7,6 @@
 [submodule "lib-externes/Delphi-FMXExtend-Library"]
 	path = lib-externes/Delphi-FMXExtend-Library
 	url = https://github.com/DeveloppeurPascal/Delphi-FMXExtend-Library.git
+[submodule "lib-externes/Socket-Messaging-Library"]
+	path = lib-externes/Socket-Messaging-Library
+	url = https://github.com/DeveloppeurPascal/Socket-Messaging-Library.git
