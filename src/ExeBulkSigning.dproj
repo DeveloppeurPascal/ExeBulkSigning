@@ -366,6 +366,7 @@
         <DCCReference Include="..\lib-externes\librairies\src\Olf.RTL.Params.pas"/>
         <DCCReference Include="..\lib-externes\librairies\src\u_urlOpen.pas"/>
         <DCCReference Include="..\lib-externes\Delphi-FMXExtend-Library\src\Olf.FMX.SelectDirectory.pas"/>
+        <DCCReference Include="..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
