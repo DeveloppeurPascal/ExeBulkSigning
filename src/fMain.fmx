@@ -77,31 +77,6 @@ object frmMain: TfrmMain
     Images = dmProjectLogo.imgProjectLogo
     ImageIndex = 0
     URL = 'https://exebulksigning.olfsoftware.fr/'
-    Licence.Strings = (
-      
-        'This software is supplied as is, with or without bugs. No warran' +
-        'ty is offered as to its operation or the data processed. Make ba' +
-        'ckups!'
-      ''
-      
-        'This program is distributed as shareware. If you use it (especia' +
-        'lly for commercial or income-generating purposes), please rememb' +
-        'er the author and contribute to its development by purchasing a ' +
-        'license.'
-      ''
-      ''
-      '--'
-      ''
-      
-        'Ce logiciel est fourni tel quel, avec peut-'#234'tre des bogues ou sa' +
-        'ns. Aucune garantie sur son fonctionnement ni sur les donn'#233'es tr' +
-        'ait'#233'es n'#39'est propos'#233'e. Faites des backups !'
-      ''
-      
-        'C'#39'est un programme distribu'#233' en shareware. Si vous l'#39'utilisez (s' +
-        'urtout dans le cadre d'#39'une activit'#233' commerciale ou r'#233'mun'#233'ratrice' +
-        '), merci de ne pas oublier l'#39'auteur et de contribuer '#224' son d'#233'vel' +
-        'oppement par l'#39'achat d'#39'une licence.')
     onURLClick = OlfAboutDialog1URLClick
     Langue = EN
     Left = 528
@@ -699,6 +674,8 @@ object frmMain: TfrmMain
       StyleLookup = ''
       TabOrder = 0
       Text = 'C/S mode'
+      ExplicitSize.cx = 73.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
       object vsbClientServer: TVertScrollBox
         Align = Client
         Size.Width = 640.000000000000000000
