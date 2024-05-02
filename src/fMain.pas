@@ -527,11 +527,7 @@ TDialogService.PreferredMode := TDialogService.TPreferredMode.Async;
 
 {$IFDEF DEBUG}
 ReportMemoryLeaksOnShutdown := true;
-tparams.setFolderName(tpath.Combine(tpath.Combine(tpath.GetDocumentsPath,
-  'OlfSoftware-debug'), 'ExeBulkSigning-debug'));
-{$ELSE}
-tparams.setFolderName(tpath.Combine(tpath.Combine(tpath.GetHomePath,
-  'OlfSoftware'), 'ExeBulkSigning'));
 {$ENDIF}
+tparams.InitDefaultFileNameV2('OlfSoftware', 'ExeBulkSigning');
 
 end.
