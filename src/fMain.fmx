@@ -112,7 +112,7 @@ object frmMain: TfrmMain
     Size.Width = 640.000000000000000000
     Size.Height = 474.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 0
+    TabIndex = 2
     TabOrder = 4
     TabPosition = PlatformDefault
     Sizes = (
@@ -127,7 +127,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 57.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -509,7 +509,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 96.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -538,7 +538,7 @@ object frmMain: TfrmMain
           Size.PlatformDefault = False
           TextSettings.Trimming = None
           Text = 'Path to signtool.exe'
-          TabOrder = 1
+          TabOrder = 0
           object lblDownloadWindowsSDK: TLabel
             Align = Right
             Cursor = crHandPoint
@@ -560,7 +560,7 @@ object frmMain: TfrmMain
         object edtSigntoolPath: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           Align = Top
-          TabOrder = 0
+          TabOrder = 1
           Position.X = 5.000000000000000000
           Position.Y = 27.000000000000000000
           Margins.Left = 5.000000000000000000
@@ -581,6 +581,34 @@ object frmMain: TfrmMain
             TabOrder = 0
             OnClick = EllipsesEditButton3Click
           end
+        end
+        object lblSignToolOtherOptions: TLabel
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 59.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Trimming = None
+          Text = 'SignTool.exe options'
+          TabOrder = 2
+        end
+        object edtSignToolOtherOptions: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          Align = Top
+          TabOrder = 3
+          Position.X = 5.000000000000000000
+          Position.Y = 81.000000000000000000
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 22.000000000000000000
+          Size.PlatformDefault = False
         end
       end
     end

@@ -73,6 +73,8 @@ type
     ShowCertificateManager: TEllipsesEditButton;
     edtPFXPasswordShowBtn: TPasswordEditButton;
     ChooseFolderToSignIn: TOlfSelectDirectoryDialog;
+    lblSignToolOtherOptions: TLabel;
+    edtSignToolOtherOptions: TEdit;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
@@ -143,8 +145,8 @@ end;
 
 procedure TfrmMain.btnStartClick(Sender: TObject);
 var
-  SigntoolPath, PFXFilePath, PFXPassword, TimeStampServerURL, ProgramTitle,
-    ProgramURL, SignedFolderPath: string;
+  SigntoolPath, Signtooloptions, PFXFilePath, PFXPassword, TimeStampServerURL,
+    ProgramTitle, ProgramURL, SignedFolderPath: string;
   cmd, cmdparam: string;
   CertificateName: string;
 begin
@@ -215,11 +217,13 @@ begin
   BeginBlockingActivity;
   try
     cmd := '"' + SigntoolPath + '"';
-{$IFDEF DEBUG}
-    cmdparam := 'sign /v /debug /td SHA256 /fd SHA256';
-{$ELSE}
-    cmdparam := 'sign /td SHA256 /fd SHA256';
-{$ENDIF}
+
+    if edtSignToolOtherOptions.Text.trim.IsEmpty then
+      Signtooloptions := edtSignToolOtherOptions.TextPrompt
+    else
+      Signtooloptions := edtSignToolOtherOptions.Text.trim;
+    cmdparam := 'sign ' + Signtooloptions;
+
     if (not PFXFilePath.IsEmpty) then
       cmdparam := cmdparam + ' /f "' + PFXFilePath + '"';
     if (not PFXPassword.IsEmpty) then
@@ -264,6 +268,7 @@ end;
 procedure TfrmMain.CancelChanges;
 begin
   edtSigntoolPath.Text := edtSigntoolPath.tagstring;
+  edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
   edtPFXFilePath.Text := edtPFXFilePath.tagstring;
   edtCertificateName.Text := edtCertificateName.tagstring;
   edtTimeStampServerURL.Text := edtTimeStampServerURL.tagstring;
@@ -447,6 +452,12 @@ begin
   else
     FDefaultSignToolPath := '';
   edtSigntoolPath.TextPrompt := FDefaultSignToolPath;
+  edtSignToolOtherOptions.Text := tparams.getValue('SignToolOptions', '');
+{$IFDEF DEBUG}
+  edtSignToolOtherOptions.TextPrompt := '/v /debug /td SHA256 /fd SHA256';
+{$ELSE}
+  edtSignToolOtherOptions.TextPrompt := '/td SHA256 /fd SHA256';
+{$ENDIF}
   edtPFXFilePath.Text := tparams.getValue('PFXFilePath', '');
   edtCertificateName.Text := tparams.getValue('CertNameOrId', '');
   edtPFXPassword.Text := '';
@@ -464,6 +475,7 @@ end;
 function TfrmMain.HasChanged: Boolean;
 begin
   result := (edtSigntoolPath.tagstring <> edtSigntoolPath.Text) or
+    (edtSignToolOtherOptions.tagstring <> edtSignToolOtherOptions.Text) or
     (edtPFXFilePath.tagstring <> edtPFXFilePath.Text) or
     (edtCertificateName.tagstring <> edtCertificateName.Text) or
     (edtTimeStampServerURL.tagstring <> edtTimeStampServerURL.Text) or
@@ -479,7 +491,7 @@ var
 begin
   MigrationID := '';
   tparams.InitDefaultFileNameV2('OlfSoftware', 'ExeBulkSigning', false);
-    {$IF Defined(RELEASE)}
+{$IF Defined(RELEASE)}
   if tfile.Exists(tparams.getFilePath) then
   begin
     tparams.load;
@@ -562,6 +574,7 @@ end;
 procedure TfrmMain.UpdateChanges;
 begin
   edtSigntoolPath.tagstring := edtSigntoolPath.Text;
+  edtSignToolOtherOptions.tagstring := edtSignToolOtherOptions.Text;
   edtPFXFilePath.tagstring := edtPFXFilePath.Text;
   edtCertificateName.tagstring := edtCertificateName.Text;
   edtTimeStampServerURL.tagstring := edtTimeStampServerURL.Text;
@@ -574,6 +587,7 @@ end;
 procedure TfrmMain.UpdateParams;
 begin
   tparams.setValue('SignToolPath', edtSigntoolPath.Text);
+  tparams.setValue('SignToolOptions', edtSignToolOtherOptions.Text);
   tparams.setValue('PFXFilePath', edtPFXFilePath.Text);
   tparams.setValue('CertNameOrId', edtCertificateName.Text);
   tparams.setValue('TimeStampServerURL', edtTimeStampServerURL.Text);
