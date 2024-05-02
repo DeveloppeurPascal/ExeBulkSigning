@@ -79,6 +79,18 @@ type
     GridPanelLayout2: TGridPanelLayout;
     btnMSSDKSave: TButton;
     btnMSSDKCancel: TButton;
+    tiClientServer: TTabItem;
+    vsbClientServer: TVertScrollBox;
+    lblCSServerIP: TLabel;
+    lblCSServerPort: TLabel;
+    edtCSServerPort: TEdit;
+    edtCSServerIP: TEdit;
+    lblCSAuthorizationKey: TLabel;
+    edtCSAuthorizationKey: TEdit;
+    GridPanelLayout3: TGridPanelLayout;
+    btnCSSave: TButton;
+    btnCSCancel: TButton;
+    PasswordEditButton1: TPasswordEditButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
@@ -95,6 +107,8 @@ type
     procedure btnCertificateSaveClick(Sender: TObject);
     procedure btnMSSDKSaveClick(Sender: TObject);
     procedure btnMSSDKCancelClick(Sender: TObject);
+    procedure btnCSSaveClick(Sender: TObject);
+    procedure btnCSCancelClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
@@ -104,9 +118,11 @@ type
     procedure UpdateChanges(Const SaveParams: Boolean);
     procedure UpdateCertificateChanges(Const SaveParams: Boolean);
     procedure UpdateMicrosoftSDKChanges(Const SaveParams: Boolean);
+    procedure UpdateClientServerChanges(Const SaveParams: Boolean);
     procedure CancelChanges;
     procedure CancelCertificateChanges;
     procedure CancelMicrosoftSDKChanges;
+    procedure CancelClientServerChanges;
     procedure BeginBlockingActivity;
     procedure EndBlockingActivity;
     procedure SignAFolder(SignedFolderPath: string; cmd: string;
@@ -286,12 +302,20 @@ end;
 
 procedure TfrmMain.CancelChanges;
 begin
+  CancelClientServerChanges;
   CancelMicrosoftSDKChanges;
   CancelCertificateChanges;
   edtProgramTitle.Text := edtProgramTitle.tagstring;
   edtProgramURL.Text := edtProgramURL.tagstring;
   edtSignedFolderPath.Text := edtSignedFolderPath.tagstring;
   cbRecursivity.IsChecked := FOldRecursivityValue;
+end;
+
+procedure TfrmMain.CancelClientServerChanges;
+begin
+  edtCSServerPort.Text := edtCSServerPort.tagstring;
+  edtCSServerIP.Text := edtCSServerIP.tagstring;
+  edtCSAuthorizationKey.Text := edtCSAuthorizationKey.tagstring;
 end;
 
 procedure TfrmMain.CancelMicrosoftSDKChanges;
@@ -308,6 +332,17 @@ end;
 procedure TfrmMain.btnCertificateSaveClick(Sender: TObject);
 begin
   UpdateCertificateChanges(true);
+  TParams.Save;
+end;
+
+procedure TfrmMain.btnCSCancelClick(Sender: TObject);
+begin
+  CancelClientServerChanges;
+end;
+
+procedure TfrmMain.btnCSSaveClick(Sender: TObject);
+begin
+  UpdateClientServerChanges(true);
   TParams.Save;
 end;
 
@@ -513,6 +548,9 @@ begin
   edtSignedFolderPath.Text := TParams.getValue('SignedFolderPath', '');
   cbRecursivity.IsChecked := TParams.getValue
     ('SignedFolderWithSubFolders', false);
+  edtCSServerPort.Text := TParams.getValue('CSSvrPort', '8080');
+  edtCSServerIP.Text := TParams.getValue('CSSvrIP', '0.0.0.0');
+  edtCSAuthorizationKey.Text := TParams.getValue('CSAuthKey', '');
   UpdateChanges(false);
 end;
 
@@ -526,7 +564,10 @@ begin
     (edtProgramTitle.tagstring <> edtProgramTitle.Text) or
     (edtProgramURL.tagstring <> edtProgramURL.Text) or
     (edtSignedFolderPath.tagstring <> edtSignedFolderPath.Text) or
-    (FOldRecursivityValue <> cbRecursivity.IsChecked);
+    (FOldRecursivityValue <> cbRecursivity.IsChecked) or
+    (edtCSServerPort.tagstring <> edtCSServerPort.Text) or
+    (edtCSServerIP.tagstring <> edtCSServerIP.Text) or
+    (edtCSAuthorizationKey.tagstring <> edtCSAuthorizationKey.Text);
 end;
 
 procedure TfrmMain.InitializeProjectSettingsStorrage;
@@ -630,6 +671,7 @@ end;
 
 procedure TfrmMain.UpdateChanges(Const SaveParams: Boolean);
 begin
+  UpdateClientServerChanges(SaveParams);
   UpdateMicrosoftSDKChanges(SaveParams);
   UpdateCertificateChanges(SaveParams);
   edtProgramTitle.tagstring := edtProgramTitle.Text;
@@ -642,6 +684,19 @@ begin
     TParams.setValue('ProgramURL', edtProgramURL.Text);
     TParams.setValue('SignedFolderPath', edtSignedFolderPath.Text);
     TParams.setValue('SignedFolderWithSubFolders', cbRecursivity.IsChecked);
+  end;
+end;
+
+procedure TfrmMain.UpdateClientServerChanges(const SaveParams: Boolean);
+begin
+  edtCSServerPort.tagstring := edtCSServerPort.Text;
+  edtCSServerIP.tagstring := edtCSServerIP.Text;
+  edtCSAuthorizationKey.tagstring := edtCSAuthorizationKey.Text;
+  if SaveParams then
+  begin
+    TParams.setValue('CSSvrPort', edtCSServerPort.Text);
+    TParams.setValue('CSSvrIP', edtCSServerIP.Text);
+    TParams.setValue('CSAuthKey', edtCSAuthorizationKey.Text);
   end;
 end;
 
