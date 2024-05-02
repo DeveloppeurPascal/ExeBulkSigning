@@ -73,6 +73,9 @@ type
     lblSignToolOtherOptions: TLabel;
     edtSignToolOtherOptions: TEdit;
     btnStart: TButton;
+    GridPanelLayout1: TGridPanelLayout;
+    btnCertificateSave: TButton;
+    btnCertificateCancel: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
@@ -85,14 +88,18 @@ type
     procedure EllipsesEditButton3Click(Sender: TObject);
     procedure ShowCertificateManagerClick(Sender: TObject);
     procedure mnuQuitClick(Sender: TObject);
+    procedure btnCertificateCancelClick(Sender: TObject);
+    procedure btnCertificateSaveClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
     FDefaultSignToolPath: string;
     function HasChanged: Boolean;
     procedure UpdateParams;
-    procedure UpdateChanges;
+    procedure UpdateChanges(Const SaveParams: Boolean);
+    procedure UpdateCertificateChanges(Const SaveParams: Boolean);
     procedure CancelChanges;
+    procedure CancelCertificateChanges;
     procedure BeginBlockingActivity;
     procedure EndBlockingActivity;
     procedure SignAFolder(SignedFolderPath: string; cmd: string;
@@ -263,17 +270,33 @@ begin
   end;
 end;
 
+procedure TfrmMain.CancelCertificateChanges;
+begin
+  edtPFXFilePath.Text := edtPFXFilePath.tagstring;
+  edtCertificateName.Text := edtCertificateName.tagstring;
+  edtTimeStampServerURL.Text := edtTimeStampServerURL.tagstring;
+end;
+
 procedure TfrmMain.CancelChanges;
 begin
   edtSigntoolPath.Text := edtSigntoolPath.tagstring;
   edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
-  edtPFXFilePath.Text := edtPFXFilePath.tagstring;
-  edtCertificateName.Text := edtCertificateName.tagstring;
-  edtTimeStampServerURL.Text := edtTimeStampServerURL.tagstring;
+  CancelCertificateChanges;
   edtProgramTitle.Text := edtProgramTitle.tagstring;
   edtProgramURL.Text := edtProgramURL.tagstring;
   edtSignedFolderPath.Text := edtSignedFolderPath.tagstring;
   cbRecursivity.IsChecked := FOldRecursivityValue;
+end;
+
+procedure TfrmMain.btnCertificateCancelClick(Sender: TObject);
+begin
+  CancelCertificateChanges;
+end;
+
+procedure TfrmMain.btnCertificateSaveClick(Sender: TObject);
+begin
+  UpdateCertificateChanges(true);
+  TParams.Save;
 end;
 
 procedure TfrmMain.btnSignedFolderPathFindClick(Sender: TObject);
@@ -436,7 +459,7 @@ begin
   caption := '[DEBUG] ' + caption + ' - PERSONAL RELEASE - DON''T DISTRIBUTE';
 {$ENDIF}
   EndBlockingActivity;
-  edtSigntoolPath.Text := tparams.getValue('SignToolPath', '');
+  edtSigntoolPath.Text := TParams.getValue('SignToolPath', '');
   if tfile.Exists
     ('C:\Program Files (x86)\Windows Kits\10\bin\10.0.22621.0\x64\signtool.exe')
   then
@@ -450,24 +473,24 @@ begin
   else
     FDefaultSignToolPath := '';
   edtSigntoolPath.TextPrompt := FDefaultSignToolPath;
-  edtSignToolOtherOptions.Text := tparams.getValue('SignToolOptions', '');
+  edtSignToolOtherOptions.Text := TParams.getValue('SignToolOptions', '');
 {$IFDEF DEBUG}
   edtSignToolOtherOptions.TextPrompt := '/v /debug /td SHA256 /fd SHA256';
 {$ELSE}
   edtSignToolOtherOptions.TextPrompt := '/td SHA256 /fd SHA256';
 {$ENDIF}
-  edtPFXFilePath.Text := tparams.getValue('PFXFilePath', '');
-  edtCertificateName.Text := tparams.getValue('CertNameOrId', '');
+  edtPFXFilePath.Text := TParams.getValue('PFXFilePath', '');
+  edtCertificateName.Text := TParams.getValue('CertNameOrId', '');
   edtPFXPassword.Text := '';
-  edtTimeStampServerURL.Text := tparams.getValue('TimeStampServerURL', '');
+  edtTimeStampServerURL.Text := TParams.getValue('TimeStampServerURL', '');
   edtTimeStampServerURL.TextPrompt :=
     'http://time.certum.pl, http://timestamp.digicert.com, http://timestamp.sectigo.com, ...';
-  edtProgramTitle.Text := tparams.getValue('ProgramTitle', '');
-  edtProgramURL.Text := tparams.getValue('ProgramURL', '');
-  edtSignedFolderPath.Text := tparams.getValue('SignedFolderPath', '');
-  cbRecursivity.IsChecked := tparams.getValue
+  edtProgramTitle.Text := TParams.getValue('ProgramTitle', '');
+  edtProgramURL.Text := TParams.getValue('ProgramURL', '');
+  edtSignedFolderPath.Text := TParams.getValue('SignedFolderPath', '');
+  cbRecursivity.IsChecked := TParams.getValue
     ('SignedFolderWithSubFolders', false);
-  UpdateChanges;
+  UpdateChanges(false);
 end;
 
 function TfrmMain.HasChanged: Boolean;
@@ -488,17 +511,17 @@ var
   MigrationID: string;
 begin
   MigrationID := '';
-  tparams.InitDefaultFileNameV2('OlfSoftware', 'ExeBulkSigning', false);
+  TParams.InitDefaultFileNameV2('OlfSoftware', 'ExeBulkSigning', false);
 {$IF Defined(RELEASE)}
-  if tfile.Exists(tparams.getFilePath) then
+  if tfile.Exists(TParams.getFilePath) then
   begin
-    tparams.load;
+    TParams.load;
     MigrationID := TOlfRandomIDGenerator.getIDBase62(50);
-    tparams.setValue(MigrationID, '');
-    tparams.Remove(MigrationID);
-    tparams.Delete;
+    TParams.setValue(MigrationID, '');
+    TParams.Remove(MigrationID);
+    TParams.Delete;
   end;
-  tparams.onCryptProc := function(Const AParams: string): TStream
+  TParams.onCryptProc := function(Const AParams: string): TStream
     var
       Keys: TByteDynArray;
       ParStream: TStringStream;
@@ -511,7 +534,7 @@ begin
         ParStream.free;
       end;
     end;
-  tparams.onDecryptProc := function(Const AStream: TStream): string
+  TParams.onDecryptProc := function(Const AStream: TStream): string
     var
       Keys: TByteDynArray;
       Stream: TStream;
@@ -538,9 +561,9 @@ begin
     end;
 {$ENDIF}
   if not MigrationID.IsEmpty then
-    tparams.save
+    TParams.Save
   else
-    tparams.load;
+    TParams.load;
 end;
 
 procedure TfrmMain.lblBuyACodeSigningCertificateClick(Sender: TObject);
@@ -569,32 +592,43 @@ begin
   url_Open_In_Browser(AURL);
 end;
 
-procedure TfrmMain.UpdateChanges;
+procedure TfrmMain.UpdateCertificateChanges(Const SaveParams: Boolean);
 begin
-  edtSigntoolPath.tagstring := edtSigntoolPath.Text;
-  edtSignToolOtherOptions.tagstring := edtSignToolOtherOptions.Text;
   edtPFXFilePath.tagstring := edtPFXFilePath.Text;
   edtCertificateName.tagstring := edtCertificateName.Text;
   edtTimeStampServerURL.tagstring := edtTimeStampServerURL.Text;
+  if SaveParams then
+  begin
+    TParams.setValue('PFXFilePath', edtPFXFilePath.Text);
+    TParams.setValue('CertNameOrId', edtCertificateName.Text);
+    TParams.setValue('TimeStampServerURL', edtTimeStampServerURL.Text);
+  end;
+end;
+
+procedure TfrmMain.UpdateChanges(Const SaveParams: Boolean);
+begin
+  edtSigntoolPath.tagstring := edtSigntoolPath.Text;
+  edtSignToolOtherOptions.tagstring := edtSignToolOtherOptions.Text;
+  UpdateCertificateChanges(SaveParams);
   edtProgramTitle.tagstring := edtProgramTitle.Text;
   edtProgramURL.tagstring := edtProgramURL.Text;
   edtSignedFolderPath.tagstring := edtSignedFolderPath.Text;
   FOldRecursivityValue := cbRecursivity.IsChecked;
+  if SaveParams then
+  begin
+    TParams.setValue('SignToolPath', edtSigntoolPath.Text);
+    TParams.setValue('SignToolOptions', edtSignToolOtherOptions.Text);
+    TParams.setValue('ProgramTitle', edtProgramTitle.Text);
+    TParams.setValue('ProgramURL', edtProgramURL.Text);
+    TParams.setValue('SignedFolderPath', edtSignedFolderPath.Text);
+    TParams.setValue('SignedFolderWithSubFolders', cbRecursivity.IsChecked);
+  end;
 end;
 
 procedure TfrmMain.UpdateParams;
 begin
-  tparams.setValue('SignToolPath', edtSigntoolPath.Text);
-  tparams.setValue('SignToolOptions', edtSignToolOtherOptions.Text);
-  tparams.setValue('PFXFilePath', edtPFXFilePath.Text);
-  tparams.setValue('CertNameOrId', edtCertificateName.Text);
-  tparams.setValue('TimeStampServerURL', edtTimeStampServerURL.Text);
-  tparams.setValue('ProgramTitle', edtProgramTitle.Text);
-  tparams.setValue('ProgramURL', edtProgramURL.Text);
-  tparams.setValue('SignedFolderPath', edtSignedFolderPath.Text);
-  tparams.setValue('SignedFolderWithSubFolders', cbRecursivity.IsChecked);
-  tparams.save;
-  UpdateChanges;
+  UpdateChanges(true);
+  TParams.Save;
 end;
 
 initialization

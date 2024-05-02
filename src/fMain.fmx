@@ -112,7 +112,7 @@ object frmMain: TfrmMain
     Size.Width = 640.000000000000000000
     Size.Height = 474.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 0
+    TabIndex = 1
     TabOrder = 4
     TabPosition = PlatformDefault
     Sizes = (
@@ -127,7 +127,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 57.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -276,7 +276,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 74.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -457,6 +457,64 @@ object frmMain: TfrmMain
             Size.PlatformDefault = False
             TabOrder = 0
             OnClick = ShowCertificateManagerClick
+          end
+        end
+        object GridPanelLayout1: TGridPanelLayout
+          Align = Top
+          Position.Y = 216.000000000000000000
+          Size.Width = 640.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 8
+          ColumnCollection = <
+            item
+              Value = 50.000000000000000000
+            end
+            item
+              Value = 50.000000000000000000
+            end>
+          ControlCollection = <
+            item
+              Column = 0
+              Control = btnCertificateSave
+              Row = 0
+            end
+            item
+              Column = 1
+              Control = btnCertificateCancel
+              Row = 0
+            end>
+          RowCollection = <
+            item
+              Value = 100.000000000000000000
+            end>
+          object btnCertificateSave: TButton
+            Align = Client
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Margins.Bottom = 5.000000000000000000
+            Size.Width = 310.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Save'
+            TextSettings.Trimming = None
+            OnClick = btnCertificateSaveClick
+          end
+          object btnCertificateCancel: TButton
+            Align = Client
+            Margins.Left = 5.000000000000000000
+            Margins.Top = 5.000000000000000000
+            Margins.Right = 5.000000000000000000
+            Margins.Bottom = 5.000000000000000000
+            Size.Width = 310.000000000000000000
+            Size.Height = 40.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            Text = 'Cancel'
+            TextSettings.Trimming = None
+            OnClick = btnCertificateCancelClick
           end
         end
       end
