@@ -367,6 +367,9 @@
         <DCCReference Include="..\lib-externes\librairies\src\u_urlOpen.pas"/>
         <DCCReference Include="..\lib-externes\Delphi-FMXExtend-Library\src\Olf.FMX.SelectDirectory.pas"/>
         <DCCReference Include="..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas"/>
+        <DCCReference Include="ExeBulkSigningClientServerAPI.pas"/>
+        <DCCReference Include="Olf.RTL.FileBuffer.pas"/>
+        <DCCReference Include="..\lib-externes\Socket-Messaging-Library\src\Olf.Net.Socket.Messaging.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
