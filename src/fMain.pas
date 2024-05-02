@@ -97,6 +97,7 @@ type
     procedure EndBlockingActivity;
     procedure SignAFolder(SignedFolderPath: string; cmd: string;
       cmdparam: string; WithSubFolders: Boolean);
+    procedure InitializeProjectSettingsStorrage;
   public
     { Déclarations publiques }
   end;
@@ -114,7 +115,9 @@ uses
   FMX.DialogService,
   u_urlOpen,
   Winapi.ShellAPI,
-  Winapi.Windows;
+  Winapi.Windows,
+  Olf.RTL.CryptDecrypt,
+  Olf.RTL.GenRandomID;
 
 {$IFDEF PRIVATERELEASE}
 {$INCLUDE '../_PRIVATE/PFXPasswordConst.inc.pas'}
@@ -418,6 +421,8 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  InitializeProjectSettingsStorrage;
+
   TabControl1.ActiveTab := tiProject;
 
   caption := OlfAboutDialog1.Titre + ' v' + OlfAboutDialog1.VersionNumero;
@@ -468,6 +473,66 @@ begin
     (FOldRecursivityValue <> cbRecursivity.IsChecked);
 end;
 
+procedure TfrmMain.InitializeProjectSettingsStorrage;
+var
+  MigrationID: string;
+begin
+  MigrationID := '';
+  tparams.InitDefaultFileNameV2('OlfSoftware', 'ExeBulkSigning', false);
+    {$IF Defined(RELEASE)}
+  if tfile.Exists(tparams.getFilePath) then
+  begin
+    tparams.load;
+    MigrationID := TOlfRandomIDGenerator.getIDBase62(50);
+    tparams.setValue(MigrationID, '');
+    tparams.Remove(MigrationID);
+    tparams.Delete;
+  end;
+  tparams.onCryptProc := function(Const AParams: string): TStream
+    var
+      Keys: TByteDynArray;
+      ParStream: TStringStream;
+    begin
+      ParStream := TStringStream.Create(AParams);
+      try
+{$I '..\_PRIVATE\src\paramsxorkey.inc'}
+        result := TOlfCryptDecrypt.XORCrypt(ParStream, Keys);
+      finally
+        ParStream.free;
+      end;
+    end;
+  tparams.onDecryptProc := function(Const AStream: TStream): string
+    var
+      Keys: TByteDynArray;
+      Stream: TStream;
+      StringStream: TStringStream;
+    begin
+{$I '..\_PRIVATE\src\paramsxorkey.inc'}
+      result := '';
+      Stream := TOlfCryptDecrypt.XORdeCrypt(AStream, Keys);
+      try
+        if assigned(Stream) and (Stream.Size > 0) then
+        begin
+          StringStream := TStringStream.Create;
+          try
+            Stream.Position := 0;
+            StringStream.CopyFrom(Stream);
+            result := StringStream.DataString;
+          finally
+            StringStream.free;
+          end;
+        end;
+      finally
+        Stream.free;
+      end;
+    end;
+{$ENDIF}
+  if not MigrationID.IsEmpty then
+    tparams.save
+  else
+    tparams.load;
+end;
+
 procedure TfrmMain.lblBuyACodeSigningCertificateClick(Sender: TObject);
 begin
   url_Open_In_Browser('https://www.certum.eu/en/code-signing-certificates/');
@@ -516,7 +581,7 @@ begin
   tparams.setValue('ProgramURL', edtProgramURL.Text);
   tparams.setValue('SignedFolderPath', edtSignedFolderPath.Text);
   tparams.setValue('SignedFolderWithSubFolders', cbRecursivity.IsChecked);
-  tparams.Save;
+  tparams.save;
   UpdateChanges;
 end;
 
@@ -528,6 +593,5 @@ TDialogService.PreferredMode := TDialogService.TPreferredMode.Async;
 {$IFDEF DEBUG}
 ReportMemoryLeaksOnShutdown := true;
 {$ENDIF}
-tparams.InitDefaultFileNameV2('OlfSoftware', 'ExeBulkSigning');
 
 end.
