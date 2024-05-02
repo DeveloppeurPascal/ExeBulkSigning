@@ -21,7 +21,8 @@ uses
   FMX.Menus,
   Olf.FMX.AboutDialog,
   uDMProjectLogo,
-  FMX.TabControl;
+  FMX.TabControl,
+  Olf.FMX.SelectDirectory;
 
 type
   TfrmMain = class(TForm)
@@ -43,7 +44,6 @@ type
     bntCancel: TButton;
     GridPanelLayout1: TGridPanelLayout;
     lblBuyACodeSigningCertificate: TLabel;
-    ChooseFolderToSignIn: TOpenDialog;
     LockScreenBackground: TRectangle;
     LockScreen: TLayout;
     LockScreenAnimation: TAniIndicator;
@@ -72,6 +72,7 @@ type
     edtCertificateName: TEdit;
     ShowCertificateManager: TEllipsesEditButton;
     edtPFXPasswordShowBtn: TPasswordEditButton;
+    ChooseFolderToSignIn: TOlfSelectDirectoryDialog;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure btnStartClick(Sender: TObject);
@@ -270,28 +271,31 @@ begin
 end;
 
 procedure TfrmMain.btnSignedFolderPathFindClick(Sender: TObject);
-var
-  FolderName: string;
 begin
   if (edtSignedFolderPath.Text.IsEmpty) then
-    ChooseFolderToSignIn.InitialDir := tpath.GetDocumentsPath
+    ChooseFolderToSignIn.Directory := tpath.GetDocumentsPath
   else
-    ChooseFolderToSignIn.InitialDir := edtSignedFolderPath.Text;
-  ChooseFolderToSignIn.FileName := '';
+    ChooseFolderToSignIn.Directory := edtSignedFolderPath.Text;
+
   if ChooseFolderToSignIn.Execute then
   begin
-    FolderName := tpath.GetDirectoryName(ChooseFolderToSignIn.FileName);
-    if FolderName.IsEmpty then
+    if ChooseFolderToSignIn.Directory.IsEmpty then
       raise exception.Create
         ('Select a file in the directory you want to sign in !');
-    if not tdirectory.Exists(FolderName) then
-      raise exception.Create(FolderName + ' doesn''t exist !');
-    if FolderName.StartsWith(GetEnvironmentVariable('PROGRAMFILES(X86)')) or
-      FolderName.StartsWith(GetEnvironmentVariable('PROGRAMFILES')) or
-      FolderName.StartsWith(GetEnvironmentVariable('SYSTEMROOT')) or
-      FolderName.StartsWith(GetEnvironmentVariable('WINDIR')) then
-      raise exception.Create('Folder ' + FolderName + ' not authorized !');
-    edtSignedFolderPath.Text := FolderName;
+    if not tdirectory.Exists(ChooseFolderToSignIn.Directory) then
+      raise exception.Create(ChooseFolderToSignIn.Directory +
+        ' doesn''t exist !');
+    if ChooseFolderToSignIn.Directory.StartsWith
+      (GetEnvironmentVariable('PROGRAMFILES(X86)')) or
+      ChooseFolderToSignIn.Directory.StartsWith
+      (GetEnvironmentVariable('PROGRAMFILES')) or
+      ChooseFolderToSignIn.Directory.StartsWith
+      (GetEnvironmentVariable('SYSTEMROOT')) or
+      ChooseFolderToSignIn.Directory.StartsWith(GetEnvironmentVariable('WINDIR'))
+    then
+      raise exception.Create('Folder ' + ChooseFolderToSignIn.Directory +
+        ' not authorized !');
+    edtSignedFolderPath.Text := ChooseFolderToSignIn.Directory;
   end;
 end;
 

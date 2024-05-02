@@ -47,13 +47,6 @@ object frmMain: TfrmMain
       HitTest = False
     end
   end
-  object ChooseFolderToSignIn: TOpenDialog
-    Filter = 'Programs|*.exe;*.msix'
-    Options = [ofPathMustExist, ofFileMustExist, ofEnableSizing]
-    Title = 'Select a program in the folder you want to sign'
-    Left = 128
-    Top = 352
-  end
   object MainMenu1: TMainMenu
     Left = 344
     Top = 296
@@ -141,6 +134,8 @@ object frmMain: TfrmMain
       StyleLookup = ''
       TabOrder = 0
       Text = 'Project'
+      ExplicitSize.cx = 57.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
       object vsbProject: TVertScrollBox
         Align = Client
         Size.Width = 640.000000000000000000
@@ -331,6 +326,8 @@ object frmMain: TfrmMain
       StyleLookup = ''
       TabOrder = 0
       Text = 'Certificate'
+      ExplicitSize.cx = 74.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
       object vsbCertificate: TVertScrollBox
         Align = Client
         Size.Width = 640.000000000000000000
@@ -519,6 +516,8 @@ object frmMain: TfrmMain
       StyleLookup = ''
       TabOrder = 0
       Text = 'Microsoft SDK'
+      ExplicitSize.cx = 96.000000000000000000
+      ExplicitSize.cy = 26.000000000000000000
       object vsbSignTool: TVertScrollBox
         Align = Client
         Size.Width = 640.000000000000000000
@@ -690,5 +689,10 @@ object frmMain: TfrmMain
       end>
     Left = 208
     Top = 312
+  end
+  object ChooseFolderToSignIn: TOlfSelectDirectoryDialog
+    Root = ''
+    Left = 72
+    Top = 264
   end
 end
