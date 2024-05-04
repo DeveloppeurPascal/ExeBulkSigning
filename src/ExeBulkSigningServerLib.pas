@@ -22,6 +22,8 @@ type
       Const AMessage: TErrorMessage);
     procedure SendErrorMessage(const ToClient: TOlfSMSrvConnectedClient;
       Const ErrorText: string);
+    procedure ServerConnected(AServer: TOlfSMServer);
+    procedure ServerDisconnected(AServer: TOlfSMServer);
   public
     constructor Create(Const AIP: string; Const APort: word;
       Const AAuthKey: string);
@@ -50,6 +52,9 @@ begin
   FAPIServer.onReceiveLoginMessage := ReceiveLoginMessage;
   FAPIServer.onReceiveLogoutMessage := ReceiveLogoutMessage;
   FAPIServer.onReceiveErrorMessage := ReceiveErrorMessage;
+  // TODO : add an onListenError event
+  FAPIServer.onServerConnected := ServerConnected;
+  FAPIServer.onServerDisconnected := ServerDisconnected;
   FAPIServer.Listen;
 end;
 
@@ -119,6 +124,16 @@ begin
   end;
 
   raise Exception.Create(ErrorText);
+end;
+
+procedure TESBServer.ServerConnected(AServer: TOlfSMServer);
+begin
+  // TODO : inform the UI the server is ok
+end;
+
+procedure TESBServer.ServerDisconnected(AServer: TOlfSMServer);
+begin
+  // TODO : inform the UI the server is down
 end;
 
 end.
