@@ -17,7 +17,8 @@ uses
   ExeBulkSigningClientLib in 'ExeBulkSigningClientLib.pas',
   ExeBulkSigningServerLib in 'ExeBulkSigningServerLib.pas',
   ExeBulkSigningClientServerAPIConsts in 'ExeBulkSigningClientServerAPIConsts.pas',
-  Olf.RTL.GenRandomID in '..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas';
+  Olf.RTL.GenRandomID in '..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas',
+  DosCommand in '..\lib-externes\DOSCommand\Source\DosCommand.pas';
 
 {$R *.res}
 

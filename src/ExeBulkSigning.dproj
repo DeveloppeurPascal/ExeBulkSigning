@@ -373,6 +373,7 @@
         <DCCReference Include="ExeBulkSigningServerLib.pas"/>
         <DCCReference Include="ExeBulkSigningClientServerAPIConsts.pas"/>
         <DCCReference Include="..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas"/>
+        <DCCReference Include="..\lib-externes\DOSCommand\Source\DosCommand.pas"/>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
