@@ -11,10 +11,13 @@ uses
   Olf.RTL.Params in '..\lib-externes\librairies\src\Olf.RTL.Params.pas',
   u_urlOpen in '..\lib-externes\librairies\src\u_urlOpen.pas',
   Olf.FMX.SelectDirectory in '..\lib-externes\Delphi-FMXExtend-Library\src\Olf.FMX.SelectDirectory.pas',
-  Olf.RTL.GenRandomID in '..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas',
   ExeBulkSigningClientServerAPI in 'ExeBulkSigningClientServerAPI.pas',
   Olf.Net.Socket.Messaging in '..\lib-externes\Socket-Messaging-Library\src\Olf.Net.Socket.Messaging.pas',
-  Olf.RTL.FileBuffer in '..\lib-externes\librairies\src\Olf.RTL.FileBuffer.pas';
+  Olf.RTL.FileBuffer in '..\lib-externes\librairies\src\Olf.RTL.FileBuffer.pas',
+  ExeBulkSigningClientLib in 'ExeBulkSigningClientLib.pas',
+  ExeBulkSigningServerLib in 'ExeBulkSigningServerLib.pas',
+  ExeBulkSigningClientServerAPIConsts in 'ExeBulkSigningClientServerAPIConsts.pas',
+  Olf.RTL.GenRandomID in '..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas';
 
 {$R *.res}
 
