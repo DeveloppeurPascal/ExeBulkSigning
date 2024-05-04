@@ -7,13 +7,14 @@ uses
   Olf.Net.Socket.Messaging;
 
 type
-  TSignFileEvent = procedure(Const ATitle, AURL, AFileName: string) of object;
+  TGetSignFileCommandEvent = function(Const ATitle, AURL, AFileName: string)
+    : string of object;
 
   TESBServer = class
   private
     FAPIServer: TExeBulkSigningClientServerAPIServer;
-    FonSignFile: TSignFileEvent;
-    procedure SetonSignFile(const Value: TSignFileEvent);
+    FonSignFile: TGetSignFileCommandEvent;
+    procedure SetonSignFile(const Value: TGetSignFileCommandEvent);
   protected
     FAuthKey: string;
     procedure ReceiveFileToSignMessage(Const ASender: TOlfSMSrvConnectedClient;
@@ -29,7 +30,8 @@ type
     procedure ServerConnected(AServer: TOlfSMServer);
     procedure ServerDisconnected(AServer: TOlfSMServer);
   public
-    property onSignFile: TSignFileEvent read FonSignFile write SetonSignFile;
+    property onSignFile: TGetSignFileCommandEvent read FonSignFile
+      write SetonSignFile;
     constructor Create(Const AIP: string; Const APort: word;
       Const AAuthKey: string);
     destructor Destroy; override;
@@ -43,7 +45,8 @@ uses
   System.SysUtils,
   Olf.RTL.FileBuffer,
   ExeBulkSigningClientServerAPIConsts,
-  Olf.RTL.GenRandomID;
+  Olf.RTL.GenRandomID,
+  DosCommand;
 
 { TESBServer }
 
@@ -93,9 +96,9 @@ procedure TESBServer.ReceiveFileToSignMessage(const ASender
   : TOlfSMSrvConnectedClient; const AMessage: TFileToSignMessage);
 var
   FileName: string;
-  FileID: string;
-  Title, URL: string;
-  ToClient: TOlfSMSrvConnectedClient;
+  SignToolCmd: string;
+  DosCommand: TDosCommand;
+  msg: TSignedFileMessage;
 {$IFDEF DEBUG}
   Log: string;
 {$ENDIF}
@@ -123,10 +126,6 @@ begin
     // if (tpath.GetExtension(FileName).ToLower = '.exe') or
     // (tpath.GetExtension(FileName).ToLower = '.msix') then
 
-    ToClient := ASender;
-    FileID := AMessage.FileID;
-    Title := AMessage.SignToolTitle;
-    URL := AMessage.SignToolURL;
     FileName := tpath.GetTempFileName;
     if tfile.Exists(FileName) then
       tfile.Delete(FileName);
@@ -134,23 +133,44 @@ begin
       (AMessage.FileNameWithItsExtension);
     try
       AMessage.FileBuffer.SaveToFile(FileName);
-      tthread.forcequeue(nil,
-        procedure
-        var
-          msg: TSignedFileMessage;
-        begin
-          if assigned(FonSignFile) then
-            FonSignFile(Title, URL, FileName);
-          msg := TSignedFileMessage.Create;
-          try
-            msg.FileBuffer.LoadFromFile(FileName);
-            msg.FileID := FileID;
-            ToClient.SendMessage(msg);
-            tfile.Delete(FileName);
-          finally
-            msg.Free;
-          end;
-        end);
+
+      if assigned(FonSignFile) then
+        tthread.Synchronize(nil,
+          procedure
+          begin
+            SignToolCmd := FonSignFile(AMessage.SignToolTitle,
+              AMessage.SignToolURL, FileName);
+          end)
+      else
+        SignToolCmd := '';
+
+      if not SignToolCmd.IsEmpty then
+      begin
+        DosCommand := TDosCommand.Create(nil);
+        try
+          DosCommand.CommandLine := SignToolCmd;
+          DosCommand.InputToOutput := false;
+          DosCommand.Execute;
+
+          while DosCommand.IsRunning and
+            (DosCommand.EndStatus = TEndStatus.esStill_Active) do
+            sleep(100);
+        finally
+          DosCommand.Free;
+        end;
+
+        msg := TSignedFileMessage.Create;
+        try
+          msg.FileBuffer.LoadFromFile(FileName);
+          msg.FileID := AMessage.FileID;
+          ASender.SendMessage(msg);
+          tfile.Delete(FileName);
+        finally
+          msg.Free;
+        end;
+      end
+      else
+        SendErrorMessage(ASender, 'Can''t calculate the SignTool command.');
     except
       tfile.Delete(FileName);
     end;
@@ -236,7 +256,7 @@ begin
   // TODO : inform the UI the server is down
 end;
 
-procedure TESBServer.SetonSignFile(const Value: TSignFileEvent);
+procedure TESBServer.SetonSignFile(const Value: TGetSignFileCommandEvent);
 begin
   FonSignFile := Value;
 end;
