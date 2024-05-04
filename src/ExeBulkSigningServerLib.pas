@@ -7,9 +7,13 @@ uses
   Olf.Net.Socket.Messaging;
 
 type
+  TSignFileEvent = procedure(Const ATitle, AURL, AFileName: string) of object;
+
   TESBServer = class
   private
     FAPIServer: TExeBulkSigningClientServerAPIServer;
+    FonSignFile: TSignFileEvent;
+    procedure SetonSignFile(const Value: TSignFileEvent);
   protected
     FAuthKey: string;
     procedure ReceiveFileToSignMessage(Const ASender: TOlfSMSrvConnectedClient;
@@ -25,6 +29,7 @@ type
     procedure ServerConnected(AServer: TOlfSMServer);
     procedure ServerDisconnected(AServer: TOlfSMServer);
   public
+    property onSignFile: TSignFileEvent read FonSignFile write SetonSignFile;
     constructor Create(Const AIP: string; Const APort: word;
       Const AAuthKey: string);
     destructor Destroy; override;
@@ -46,6 +51,7 @@ constructor TESBServer.Create(Const AIP: string; Const APort: word;
   Const AAuthKey: string);
 begin
   inherited Create;
+  FonSignFile := nil;
   FAuthKey := AAuthKey;
 
   FAPIServer := TExeBulkSigningClientServerAPIServer.Create(AIP, APort);
@@ -88,6 +94,7 @@ procedure TESBServer.ReceiveFileToSignMessage(const ASender
 var
   FileName: string;
   FileID: string;
+  Title, URL: string;
   ToClient: TOlfSMSrvConnectedClient;
 {$IFDEF DEBUG}
   Log: string;
@@ -112,8 +119,14 @@ begin
   end
   else
   begin
+    // TODO : s'assurer que le fichier transmis a une extension supportée
+    // if (tpath.GetExtension(FileName).ToLower = '.exe') or
+    // (tpath.GetExtension(FileName).ToLower = '.msix') then
+
     ToClient := ASender;
     FileID := AMessage.FileID;
+    Title := AMessage.SignToolTitle;
+    URL := AMessage.SignToolURL;
     FileName := tpath.GetTempFileName;
     if tfile.Exists(FileName) then
       tfile.Delete(FileName);
@@ -126,8 +139,8 @@ begin
         var
           msg: TSignedFileMessage;
         begin
-          // TODO : signer le fichier FileName par un event provenant de l'UI
-
+          if assigned(FonSignFile) then
+            FonSignFile(Title, URL, FileName);
           msg := TSignedFileMessage.Create;
           try
             msg.FileBuffer.LoadFromFile(FileName);
@@ -221,6 +234,11 @@ begin
     'Server disconnected', tencoding.UTF8);
 {$ENDIF}
   // TODO : inform the UI the server is down
+end;
+
+procedure TESBServer.SetonSignFile(const Value: TSignFileEvent);
+begin
+  FonSignFile := Value;
 end;
 
 end.
