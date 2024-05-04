@@ -7,7 +7,7 @@
 // ****************************************
 // File generator : Socket Messaging Code Generator (v1.1)
 // Website : https://smcodegenerator.olfsoftware.fr/ 
-// Generation date : 04/05/2024 15:23:31
+// Generation date : 04/05/2024 16:37:41
 // 
 // Don't do any change on this file. They will be erased by next generation !
 // ****************************************
@@ -26,6 +26,30 @@ uses
   Olf.Net.Socket.Messaging;
 
 type
+  /// <summary>
+  /// Message ID 9: Error message
+  /// </summary>
+  TErrorMessage = class(TOlfSMMessage)
+  private
+    FErrorCode: integer;
+    FErrorText: string;
+    procedure SetErrorCode(const Value: integer);
+    procedure SetErrorText(const Value: string);
+  public
+    /// <summary>
+    /// Error code
+    /// </summary>
+    property ErrorCode: integer read FErrorCode write SetErrorCode;
+    /// <summary>
+    /// Error text
+    /// </summary>
+    property ErrorText: string read FErrorText write SetErrorText;
+    constructor Create; override;
+    procedure LoadFromStream(Stream: TStream); override;
+    procedure SaveToStream(Stream: TStream); override;
+    function GetNewInstance: TOlfSMMessage; override;
+  end;
+
   /// <summary>
   /// Message ID 7: File to sign
   /// </summary>
@@ -179,6 +203,8 @@ type
   TExeBulkSigningClientServerAPIServer = class(TOlfSMServer)
   private
   protected
+    procedure onReceiveMessage9(Const ASender: TOlfSMSrvConnectedClient;
+      Const AMessage: TOlfSMMessage);
     procedure onReceiveMessage7(Const ASender: TOlfSMSrvConnectedClient;
       Const AMessage: TOlfSMMessage);
     procedure onReceiveMessage1(Const ASender: TOlfSMSrvConnectedClient;
@@ -186,6 +212,8 @@ type
     procedure onReceiveMessage6(Const ASender: TOlfSMSrvConnectedClient;
       Const AMessage: TOlfSMMessage);
   public
+    onReceiveErrorMessage
+      : TOlfSMReceivedMessageEvent<TErrorMessage>;
     onReceiveFileToSignMessage
       : TOlfSMReceivedMessageEvent<TFileToSignMessage>;
     onReceiveLoginMessage
@@ -198,11 +226,15 @@ type
   TExeBulkSigningClientServerAPIClient = class(TOlfSMClient)
   private
   protected
+    procedure onReceiveMessage9(Const ASender: TOlfSMSrvConnectedClient;
+      Const AMessage: TOlfSMMessage);
     procedure onReceiveMessage5(Const ASender: TOlfSMSrvConnectedClient;
       Const AMessage: TOlfSMMessage);
     procedure onReceiveMessage8(Const ASender: TOlfSMSrvConnectedClient;
       Const AMessage: TOlfSMMessage);
   public
+    onReceiveErrorMessage
+      : TOlfSMReceivedMessageEvent<TErrorMessage>;
     onReceiveLoginAnswerMessage
       : TOlfSMReceivedMessageEvent<TLoginAnswerMessage>;
     onReceiveSignedFileMessage
@@ -283,6 +315,7 @@ end;
 
 procedure RegisterMessagesReceivedByTheServer(Const Server: TOlfSMServer);
 begin
+  Server.RegisterMessageToReceive(TErrorMessage.Create);
   Server.RegisterMessageToReceive(TFileToSignMessage.Create);
   Server.RegisterMessageToReceive(TLoginMessage.Create);
   Server.RegisterMessageToReceive(TLogoutMessage.Create);
@@ -290,6 +323,7 @@ end;
 
 procedure RegisterMessagesReceivedByTheClient(Const Client: TOlfSMClient);
 begin
+  Client.RegisterMessageToReceive(TErrorMessage.Create);
   Client.RegisterMessageToReceive(TLoginAnswerMessage.Create);
   Client.RegisterMessageToReceive(TSignedFileMessage.Create);
 end;
@@ -300,9 +334,20 @@ constructor TExeBulkSigningClientServerAPIServer.Create;
 begin
   inherited;
   RegisterMessagesReceivedByTheServer(self);
+  SubscribeToMessage(9, onReceiveMessage9);
   SubscribeToMessage(7, onReceiveMessage7);
   SubscribeToMessage(1, onReceiveMessage1);
   SubscribeToMessage(6, onReceiveMessage6);
+end;
+
+procedure TExeBulkSigningClientServerAPIServer.onReceiveMessage9(const ASender: TOlfSMSrvConnectedClient;
+const AMessage: TOlfSMMessage);
+begin
+  if not(AMessage is TErrorMessage) then
+    exit;
+  if not assigned(onReceiveErrorMessage) then
+    exit;
+  onReceiveErrorMessage(ASender, AMessage as TErrorMessage);
 end;
 
 procedure TExeBulkSigningClientServerAPIServer.onReceiveMessage7(const ASender: TOlfSMSrvConnectedClient;
@@ -343,8 +388,19 @@ constructor TExeBulkSigningClientServerAPIClient.Create;
 begin
   inherited;
   RegisterMessagesReceivedByTheClient(self);
+  SubscribeToMessage(9, onReceiveMessage9);
   SubscribeToMessage(5, onReceiveMessage5);
   SubscribeToMessage(8, onReceiveMessage8);
+end;
+
+procedure TExeBulkSigningClientServerAPIClient.onReceiveMessage9(const ASender: TOlfSMSrvConnectedClient;
+const AMessage: TOlfSMMessage);
+begin
+  if not(AMessage is TErrorMessage) then
+    exit;
+  if not assigned(onReceiveErrorMessage) then
+    exit;
+  onReceiveErrorMessage(ASender, AMessage as TErrorMessage);
 end;
 
 procedure TExeBulkSigningClientServerAPIClient.onReceiveMessage5(const ASender: TOlfSMSrvConnectedClient;
@@ -365,6 +421,48 @@ begin
   if not assigned(onReceiveSignedFileMessage) then
     exit;
   onReceiveSignedFileMessage(ASender, AMessage as TSignedFileMessage);
+end;
+
+{$ENDREGION}
+
+{$REGION 'TErrorMessage' }
+
+constructor TErrorMessage.Create;
+begin
+  inherited;
+  MessageID := 9;
+  FErrorCode := 0;
+  FErrorText := '';
+end;
+
+function TErrorMessage.GetNewInstance: TOlfSMMessage;
+begin
+  result := TErrorMessage.Create;
+end;
+
+procedure TErrorMessage.LoadFromStream(Stream: TStream);
+begin
+  inherited;
+  if (Stream.read(FErrorCode, sizeof(FErrorCode)) <> sizeof(FErrorCode)) then
+    raise exception.Create('Can''t load "ErrorCode" value.');
+  FErrorText := LoadStringFromStream(Stream);
+end;
+
+procedure TErrorMessage.SaveToStream(Stream: TStream);
+begin
+  inherited;
+  Stream.Write(FErrorCode, sizeof(FErrorCode));
+  SaveStringToStream(FErrorText, Stream);
+end;
+
+procedure TErrorMessage.SetErrorCode(const Value: integer);
+begin
+  FErrorCode := Value;
+end;
+
+procedure TErrorMessage.SetErrorText(const Value: string);
+begin
+  FErrorText := Value;
 end;
 
 {$ENDREGION}
