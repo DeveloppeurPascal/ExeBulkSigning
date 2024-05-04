@@ -71,7 +71,7 @@ object frmMain: TfrmMain
   object OlfAboutDialog1: TOlfAboutDialog
     Titre = 'Exe Bulk Signing'
     VersionNumero = '1.3'
-    VersionDate = '20240502'
+    VersionDate = '20240504'
     MultiResBitmap = <
       item
       end>
