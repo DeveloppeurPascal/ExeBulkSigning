@@ -119,6 +119,7 @@ type
     procedure btnStartSigningServerClick(Sender: TObject);
     procedure btnStopSigningServerClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
+    procedure btnSignRemotelyClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
@@ -138,8 +139,10 @@ type
     procedure CancelClientServerChanges;
     procedure BeginBlockingActivity;
     procedure EndBlockingActivity;
-    procedure SignAFolder(SignedFolderPath: string; cmd: string;
-      cmdparam: string; WithSubFolders: Boolean);
+    procedure SignAFolder(Const SignedFolderPath, cmd, cmdparam: string;
+      Const WithSubFolders: Boolean);
+    procedure RemoteSignAFolder(Const ProgramTitle, ProgramURL, SignedFolderPath
+      : string; Const WithSubFolders: Boolean);
     procedure InitializeProjectSettingsStorrage;
     procedure InitAboutDialogDescriptionAndLicense;
   public
@@ -161,7 +164,8 @@ uses
   Winapi.ShellAPI,
   Winapi.Windows,
   Olf.RTL.CryptDecrypt,
-  Olf.RTL.GenRandomID;
+  Olf.RTL.GenRandomID,
+  ExeBulkSigningClientServerAPI;
 
 {$IFDEF PRIVATERELEASE}
 {$INCLUDE '../_PRIVATE/PFXPasswordConst.inc.pas'}
@@ -401,10 +405,90 @@ begin
   end;
 end;
 
+procedure TfrmMain.btnSignRemotelyClick(Sender: TObject);
+var
+  ProgramTitle, ProgramURL, SignedFolderPath, IP, AuthKey: string;
+  Port: word;
+begin
+  BeginBlockingActivity;
+  try
+    ProgramTitle := edtProgramTitle.Text;
+    ProgramURL := edtProgramURL.Text;
+    if (not edtSignedFolderPath.Text.IsEmpty) and
+      tdirectory.Exists(edtSignedFolderPath.Text)
+{$IFDEF MSWINDOWS}
+    // in Win32, ProgramFiles = ProgramFiles(x86)
+    // in Win64, ProgramFiles <> ProgramFiles(x86)
+      and (not edtSignedFolderPath.Text.StartsWith
+      (GetEnvironmentVariable('PROGRAMFILES(X86)'))) and
+      (not edtSignedFolderPath.Text.StartsWith
+      (GetEnvironmentVariable('PROGRAMFILES'))) and
+      (not edtSignedFolderPath.Text.StartsWith
+      (GetEnvironmentVariable('SYSTEMROOT'))) and
+      (not edtSignedFolderPath.Text.StartsWith
+      (GetEnvironmentVariable('WINDIR')))
+{$ENDIF}
+    then
+      SignedFolderPath := edtSignedFolderPath.Text
+    else
+    begin
+      TabControl1.ActiveTab := tiProject;
+      edtSignedFolderPath.SetFocus;
+      raise exception.Create('Invalid folder path');
+    end;
+
+    if assigned(FCSClient) then
+      try
+        freeandnil(FCSClient);
+      except
+        FCSClient := nil;
+      end;
+
+    // TODO : tester la validité de l'adresse IP (v4)
+    IP := edtCSServerIP.Text;
+
+    Port := edtCSServerPort.Text.ToInteger;
+
+    AuthKey := edtCSAuthorizationKey.Text.trim;
+
+    tthread.CreateAnonymousThread(
+      procedure
+      var
+        WithSubFolders: Boolean;
+      begin
+        try
+          FCSClient := TESBClient.Create(IP, Port, AuthKey);
+          try
+            tthread.Synchronize(nil,
+              procedure
+              begin
+                WithSubFolders := cbRecursivity.IsChecked;
+              end);
+            RemoteSignAFolder(ProgramTitle, ProgramURL, SignedFolderPath,
+              WithSubFolders);
+
+            while FCSClient.HasWaitingFiles > 0 do
+              sleep(1000);
+          finally
+            freeandnil(FCSClient);
+          end;
+        finally
+          tthread.forcequeue(nil,
+            procedure
+            begin
+              EndBlockingActivity;
+            end);
+        end;
+      end).Start;
+  except
+    EndBlockingActivity;
+  end;
+end;
+
 procedure TfrmMain.btnStartSigningServerClick(Sender: TObject);
 var
   IP: string;
-  Port: Word;
+  Port: word;
 begin
   // TODO : tester la validité de l'adresse IP (v4)
   IP := edtCSServerIP.Text;
@@ -496,8 +580,8 @@ begin
     raise exception.Create('Can''t open Windows certificate Manager.');
 end;
 
-procedure TfrmMain.SignAFolder(SignedFolderPath: string; cmd: string;
-cmdparam: string; WithSubFolders: Boolean);
+procedure TfrmMain.SignAFolder(Const SignedFolderPath, cmd, cmdparam: string;
+Const WithSubFolders: Boolean);
 var
   cmdParamWithFile: string;
   FileList: tstringdynarray;
@@ -764,6 +848,31 @@ end;
 procedure TfrmMain.OlfAboutDialog1URLClick(const AURL: string);
 begin
   url_Open_In_Browser(AURL);
+end;
+
+procedure TfrmMain.RemoteSignAFolder(Const ProgramTitle, ProgramURL,
+  SignedFolderPath: string; Const WithSubFolders: Boolean);
+var
+  FileList: tstringdynarray;
+  FileName: string;
+  FolderList: tstringdynarray;
+  NewPath: string;
+begin
+  if not tdirectory.Exists(SignedFolderPath) then
+    exit;
+
+  FileList := tdirectory.GetFiles(SignedFolderPath);
+  for FileName in FileList do
+    if (tpath.GetExtension(FileName).ToLower = '.exe') or
+      (tpath.GetExtension(FileName).ToLower = '.msix') then
+      if assigned(FCSClient) and FCSClient.isConnected then
+        FCSClient.SendFileToServer(ProgramTitle, ProgramURL, FileName);
+  if WithSubFolders then
+  begin
+    FolderList := tdirectory.GetDirectories(SignedFolderPath);
+    for NewPath in FolderList do
+      RemoteSignAFolder(ProgramTitle, ProgramURL, NewPath, WithSubFolders);
+  end;
 end;
 
 procedure TfrmMain.UpdateCertificateChanges(Const SaveParams: Boolean);
