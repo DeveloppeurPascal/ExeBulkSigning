@@ -7,7 +7,7 @@
 // ****************************************
 // File generator : Socket Messaging Code Generator (v1.1)
 // Website : https://smcodegenerator.olfsoftware.fr/ 
-// Generation date : 04/05/2024 15:04:23
+// Generation date : 04/05/2024 15:23:31
 // 
 // Don't do any change on this file. They will be erased by next generation !
 // ****************************************
@@ -377,7 +377,7 @@ begin
   MessageID := 7;
   FSignToolTitle := '';
   FSignToolURL := '';
-  FFileBuffer := nil;
+  FFileBuffer := TOlfFileBuffer.Create;
   FFileID := '';
   FSessionID := '';
   FFileNameWithItsExtension := '';
@@ -554,7 +554,7 @@ constructor TSignedFileMessage.Create;
 begin
   inherited;
   MessageID := 8;
-  FFileBuffer := nil;
+  FFileBuffer := TOlfFileBuffer.Create;
   FFileID := '';
 end;
 
