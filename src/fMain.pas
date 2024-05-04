@@ -145,6 +145,7 @@ type
       : string; Const WithSubFolders: Boolean);
     procedure InitializeProjectSettingsStorrage;
     procedure InitAboutDialogDescriptionAndLicense;
+    procedure DoSignFile(Const ATitle, AURL, AFileName: string);
   public
     { Déclarations publiques }
   end;
@@ -221,6 +222,90 @@ begin
   edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
 end;
 
+procedure TfrmMain.DoSignFile(const ATitle, AURL, AFileName: string);
+var
+  SigntoolPath, SigntoolOptions: string;
+  PFXFilePath, CertificateName, PFXPassword, TimeStampServerURL: string;
+  cmd, cmdparam: string;
+  ShellExecuteResult: Cardinal;
+{$IFDEF DEBUG}
+  Log: string;
+{$ENDIF}
+begin
+{$IFDEF DEBUG}
+  Log := tpath.Combine(tpath.GetDocumentsPath, 'ExeBulkSigningServerLog.txt');
+{$ENDIF}
+  if not edtSigntoolPath.Text.IsEmpty then
+    SigntoolPath := edtSigntoolPath.Text
+  else if not FDefaultSignToolPath.IsEmpty then
+    SigntoolPath := FDefaultSignToolPath
+  else
+    SigntoolPath := '';
+
+  if SigntoolPath.IsEmpty or (not tfile.Exists(SigntoolPath)) or
+    (not SigntoolPath.EndsWith('signtool.exe')) then
+    raise exception.Create('Invalid signtool.exe path');
+
+  if not edtPFXFilePath.Text.IsEmpty then
+    if tfile.Exists(edtPFXFilePath.Text) and
+      (edtPFXFilePath.Text.EndsWith('.pfx')) then
+      PFXFilePath := edtPFXFilePath.Text
+    else
+      raise exception.Create('Invalid code signing certificate file path');
+
+  if not edtCertificateName.Text.IsEmpty then
+    CertificateName := edtCertificateName.Text;
+
+  if not edtPFXPassword.Text.IsEmpty then
+    PFXPassword := edtPFXPassword.Text
+{$IFDEF PRIVATERELEASE}
+  else if edtPFXFilePath.Text.EndsWith(CPFXCertificate) and
+    (not CPFXPassword.IsEmpty) then
+    PFXPassword := CPFXPassword
+{$ENDIF}
+  else if not PFXFilePath.IsEmpty then
+  begin
+    TabControl1.ActiveTab := tiCertificate;
+    edtPFXPassword.SetFocus;
+    raise exception.Create('Invalid PFX password');
+  end;
+
+  TimeStampServerURL := edtTimeStampServerURL.Text;
+
+  cmd := '"' + SigntoolPath + '"';
+
+  if edtSignToolOtherOptions.Text.trim.IsEmpty then
+    SigntoolOptions := edtSignToolOtherOptions.TextPrompt
+  else
+    SigntoolOptions := edtSignToolOtherOptions.Text.trim;
+  cmdparam := 'sign ' + SigntoolOptions;
+
+  if (not PFXFilePath.IsEmpty) then
+    cmdparam := cmdparam + ' /f "' + PFXFilePath + '"';
+  if (not PFXPassword.IsEmpty) then
+    cmdparam := cmdparam + ' /p ' + PFXPassword;
+  if (not CertificateName.IsEmpty) then
+    cmdparam := cmdparam + ' /n "' + CertificateName + '"';
+  if (not TimeStampServerURL.IsEmpty) then
+    cmdparam := cmdparam + ' /tr "' + TimeStampServerURL + '"';
+  if (not ATitle.IsEmpty) then
+    cmdparam := cmdparam + ' /d "' + ATitle + '"';
+  if (not AURL.IsEmpty) then
+    cmdparam := cmdparam + ' /du "' + AURL + '"';
+{$IFDEF DEBUG}
+  tfile.WriteAllText(Log, tfile.ReadAllText(Log, tencoding.UTF8) + slinebreak +
+    'cmd : ' + cmd + slinebreak + 'cmdparam : ' + cmdparam, tencoding.UTF8);
+{$ENDIF}
+  cmdparam := cmdparam + ' "' + AFileName + '"';
+
+  ShellExecuteResult := ShellExecute(0, 'OPEN', PWideChar(cmd),
+    PWideChar(cmdparam), nil, SW_SHOWNORMAL);
+  // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
+  if (ShellExecuteResult <= 32) then
+    raise exception.Create('ShellExecute error ' + ShellExecuteResult.ToString +
+      ' for file ' + AFileName);
+end;
+
 procedure TfrmMain.btnCertificateCancelClick(Sender: TObject);
 begin
   CancelCertificateChanges;
@@ -285,7 +370,7 @@ end;
 
 procedure TfrmMain.btnSignLocallyClick(Sender: TObject);
 var
-  SigntoolPath, Signtooloptions, PFXFilePath, PFXPassword, TimeStampServerURL,
+  SigntoolPath, SigntoolOptions, PFXFilePath, PFXPassword, TimeStampServerURL,
     ProgramTitle, ProgramURL, SignedFolderPath: string;
   cmd, cmdparam: string;
   CertificateName: string;
@@ -359,10 +444,10 @@ begin
     cmd := '"' + SigntoolPath + '"';
 
     if edtSignToolOtherOptions.Text.trim.IsEmpty then
-      Signtooloptions := edtSignToolOtherOptions.TextPrompt
+      SigntoolOptions := edtSignToolOtherOptions.TextPrompt
     else
-      Signtooloptions := edtSignToolOtherOptions.Text.trim;
-    cmdparam := 'sign ' + Signtooloptions;
+      SigntoolOptions := edtSignToolOtherOptions.Text.trim;
+    cmdparam := 'sign ' + SigntoolOptions;
 
     if (not PFXFilePath.IsEmpty) then
       cmdparam := cmdparam + ' /f "' + PFXFilePath + '"';
@@ -409,6 +494,7 @@ procedure TfrmMain.btnSignRemotelyClick(Sender: TObject);
 var
   ProgramTitle, ProgramURL, SignedFolderPath, IP, AuthKey: string;
   Port: word;
+  WithSubFolders: Boolean;
 begin
   BeginBlockingActivity;
   try
@@ -451,19 +537,14 @@ begin
 
     AuthKey := edtCSAuthorizationKey.Text.trim;
 
+    WithSubFolders := cbRecursivity.IsChecked;
+
     tthread.CreateAnonymousThread(
       procedure
-      var
-        WithSubFolders: Boolean;
       begin
         try
           FCSClient := TESBClient.Create(IP, Port, AuthKey);
           try
-            tthread.Synchronize(nil,
-              procedure
-              begin
-                WithSubFolders := cbRecursivity.IsChecked;
-              end);
             RemoteSignAFolder(ProgramTitle, ProgramURL, SignedFolderPath,
               WithSubFolders);
 
@@ -506,6 +587,7 @@ begin
     end;
 
   FCSServer := TESBServer.Create(IP, Port, edtCSAuthorizationKey.Text);
+  FCSServer.onSignFile := DoSignFile;
 end;
 
 procedure TfrmMain.btnStopSigningServerClick(Sender: TObject);
