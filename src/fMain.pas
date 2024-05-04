@@ -72,7 +72,6 @@ type
     ChooseFolderToSignIn: TOlfSelectDirectoryDialog;
     lblSignToolOtherOptions: TLabel;
     edtSignToolOtherOptions: TEdit;
-    btnStart: TButton;
     GridPanelLayout1: TGridPanelLayout;
     btnCertificateSave: TButton;
     btnCertificateCancel: TButton;
@@ -91,9 +90,11 @@ type
     btnCSSave: TButton;
     btnCSCancel: TButton;
     PasswordEditButton1: TPasswordEditButton;
+    GridPanelLayout4: TGridPanelLayout;
+    btnSignLocally: TButton;
+    btnSignRemotely: TButton;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-    procedure btnStartClick(Sender: TObject);
     procedure lblDownloadWindowsSDKClick(Sender: TObject);
     procedure lblBuyACodeSigningCertificateClick(Sender: TObject);
     procedure mnuAboutClick(Sender: TObject);
@@ -109,6 +110,7 @@ type
     procedure btnMSSDKCancelClick(Sender: TObject);
     procedure btnCSSaveClick(Sender: TObject);
     procedure btnCSCancelClick(Sender: TObject);
+    procedure btnSignLocallyClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
@@ -172,7 +174,100 @@ begin
   LockScreenAnimation.BringToFront;
 end;
 
-procedure TfrmMain.btnStartClick(Sender: TObject);
+procedure TfrmMain.CancelCertificateChanges;
+begin
+  edtPFXFilePath.Text := edtPFXFilePath.tagstring;
+  edtCertificateName.Text := edtCertificateName.tagstring;
+  edtTimeStampServerURL.Text := edtTimeStampServerURL.tagstring;
+end;
+
+procedure TfrmMain.CancelChanges;
+begin
+  CancelClientServerChanges;
+  CancelMicrosoftSDKChanges;
+  CancelCertificateChanges;
+  edtProgramTitle.Text := edtProgramTitle.tagstring;
+  edtProgramURL.Text := edtProgramURL.tagstring;
+  edtSignedFolderPath.Text := edtSignedFolderPath.tagstring;
+  cbRecursivity.IsChecked := FOldRecursivityValue;
+end;
+
+procedure TfrmMain.CancelClientServerChanges;
+begin
+  edtCSServerPort.Text := edtCSServerPort.tagstring;
+  edtCSServerIP.Text := edtCSServerIP.tagstring;
+  edtCSAuthorizationKey.Text := edtCSAuthorizationKey.tagstring;
+end;
+
+procedure TfrmMain.CancelMicrosoftSDKChanges;
+begin
+  edtSigntoolPath.Text := edtSigntoolPath.tagstring;
+  edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
+end;
+
+procedure TfrmMain.btnCertificateCancelClick(Sender: TObject);
+begin
+  CancelCertificateChanges;
+end;
+
+procedure TfrmMain.btnCertificateSaveClick(Sender: TObject);
+begin
+  UpdateCertificateChanges(true);
+  TParams.Save;
+end;
+
+procedure TfrmMain.btnCSCancelClick(Sender: TObject);
+begin
+  CancelClientServerChanges;
+end;
+
+procedure TfrmMain.btnCSSaveClick(Sender: TObject);
+begin
+  UpdateClientServerChanges(true);
+  TParams.Save;
+end;
+
+procedure TfrmMain.btnMSSDKCancelClick(Sender: TObject);
+begin
+  CancelMicrosoftSDKChanges;
+end;
+
+procedure TfrmMain.btnMSSDKSaveClick(Sender: TObject);
+begin
+  UpdateMicrosoftSDKChanges(true);
+  TParams.Save;
+end;
+
+procedure TfrmMain.btnSignedFolderPathFindClick(Sender: TObject);
+begin
+  if (edtSignedFolderPath.Text.IsEmpty) then
+    ChooseFolderToSignIn.Directory := tpath.GetDocumentsPath
+  else
+    ChooseFolderToSignIn.Directory := edtSignedFolderPath.Text;
+
+  if ChooseFolderToSignIn.Execute then
+  begin
+    if ChooseFolderToSignIn.Directory.IsEmpty then
+      raise exception.Create
+        ('Select a file in the directory you want to sign in !');
+    if not tdirectory.Exists(ChooseFolderToSignIn.Directory) then
+      raise exception.Create(ChooseFolderToSignIn.Directory +
+        ' doesn''t exist !');
+    if ChooseFolderToSignIn.Directory.StartsWith
+      (GetEnvironmentVariable('PROGRAMFILES(X86)')) or
+      ChooseFolderToSignIn.Directory.StartsWith
+      (GetEnvironmentVariable('PROGRAMFILES')) or
+      ChooseFolderToSignIn.Directory.StartsWith
+      (GetEnvironmentVariable('SYSTEMROOT')) or
+      ChooseFolderToSignIn.Directory.StartsWith(GetEnvironmentVariable('WINDIR'))
+    then
+      raise exception.Create('Folder ' + ChooseFolderToSignIn.Directory +
+        ' not authorized !');
+    edtSignedFolderPath.Text := ChooseFolderToSignIn.Directory;
+  end;
+end;
+
+procedure TfrmMain.btnSignLocallyClick(Sender: TObject);
 var
   SigntoolPath, Signtooloptions, PFXFilePath, PFXPassword, TimeStampServerURL,
     ProgramTitle, ProgramURL, SignedFolderPath: string;
@@ -291,99 +386,6 @@ begin
       end).Start;
   except
     EndBlockingActivity;
-  end;
-end;
-
-procedure TfrmMain.CancelCertificateChanges;
-begin
-  edtPFXFilePath.Text := edtPFXFilePath.tagstring;
-  edtCertificateName.Text := edtCertificateName.tagstring;
-  edtTimeStampServerURL.Text := edtTimeStampServerURL.tagstring;
-end;
-
-procedure TfrmMain.CancelChanges;
-begin
-  CancelClientServerChanges;
-  CancelMicrosoftSDKChanges;
-  CancelCertificateChanges;
-  edtProgramTitle.Text := edtProgramTitle.tagstring;
-  edtProgramURL.Text := edtProgramURL.tagstring;
-  edtSignedFolderPath.Text := edtSignedFolderPath.tagstring;
-  cbRecursivity.IsChecked := FOldRecursivityValue;
-end;
-
-procedure TfrmMain.CancelClientServerChanges;
-begin
-  edtCSServerPort.Text := edtCSServerPort.tagstring;
-  edtCSServerIP.Text := edtCSServerIP.tagstring;
-  edtCSAuthorizationKey.Text := edtCSAuthorizationKey.tagstring;
-end;
-
-procedure TfrmMain.CancelMicrosoftSDKChanges;
-begin
-  edtSigntoolPath.Text := edtSigntoolPath.tagstring;
-  edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
-end;
-
-procedure TfrmMain.btnCertificateCancelClick(Sender: TObject);
-begin
-  CancelCertificateChanges;
-end;
-
-procedure TfrmMain.btnCertificateSaveClick(Sender: TObject);
-begin
-  UpdateCertificateChanges(true);
-  TParams.Save;
-end;
-
-procedure TfrmMain.btnCSCancelClick(Sender: TObject);
-begin
-  CancelClientServerChanges;
-end;
-
-procedure TfrmMain.btnCSSaveClick(Sender: TObject);
-begin
-  UpdateClientServerChanges(true);
-  TParams.Save;
-end;
-
-procedure TfrmMain.btnMSSDKCancelClick(Sender: TObject);
-begin
-  CancelMicrosoftSDKChanges;
-end;
-
-procedure TfrmMain.btnMSSDKSaveClick(Sender: TObject);
-begin
-  UpdateMicrosoftSDKChanges(true);
-  TParams.Save;
-end;
-
-procedure TfrmMain.btnSignedFolderPathFindClick(Sender: TObject);
-begin
-  if (edtSignedFolderPath.Text.IsEmpty) then
-    ChooseFolderToSignIn.Directory := tpath.GetDocumentsPath
-  else
-    ChooseFolderToSignIn.Directory := edtSignedFolderPath.Text;
-
-  if ChooseFolderToSignIn.Execute then
-  begin
-    if ChooseFolderToSignIn.Directory.IsEmpty then
-      raise exception.Create
-        ('Select a file in the directory you want to sign in !');
-    if not tdirectory.Exists(ChooseFolderToSignIn.Directory) then
-      raise exception.Create(ChooseFolderToSignIn.Directory +
-        ' doesn''t exist !');
-    if ChooseFolderToSignIn.Directory.StartsWith
-      (GetEnvironmentVariable('PROGRAMFILES(X86)')) or
-      ChooseFolderToSignIn.Directory.StartsWith
-      (GetEnvironmentVariable('PROGRAMFILES')) or
-      ChooseFolderToSignIn.Directory.StartsWith
-      (GetEnvironmentVariable('SYSTEMROOT')) or
-      ChooseFolderToSignIn.Directory.StartsWith(GetEnvironmentVariable('WINDIR'))
-    then
-      raise exception.Create('Folder ' + ChooseFolderToSignIn.Directory +
-        ' not authorized !');
-    edtSignedFolderPath.Text := ChooseFolderToSignIn.Directory;
   end;
 end;
 
