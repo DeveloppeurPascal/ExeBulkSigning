@@ -7,7 +7,7 @@
 // ****************************************
 // File generator : Socket Messaging Code Generator (v1.1)
 // Website : https://smcodegenerator.olfsoftware.fr/ 
-// Generation date : 02/05/2024 17:43:34
+// Generation date : 04/05/2024 15:04:23
 // 
 // Don't do any change on this file. They will be erased by next generation !
 // ****************************************
@@ -41,11 +41,13 @@ type
     FFileBuffer: TOlfFileBuffer;
     FFileID: string;
     FSessionID: string;
+    FFileNameWithItsExtension: string;
     procedure SetSignToolTitle(const Value: string);
     procedure SetSignToolURL(const Value: string);
     procedure SetFileBuffer(const Value: TOlfFileBuffer);
     procedure SetFileID(const Value: string);
     procedure SetSessionID(const Value: string);
+    procedure SetFileNameWithItsExtension(const Value: string);
   public
     /// <summary>
     /// SignTool Title
@@ -71,6 +73,10 @@ type
     /// Session ID
     /// </summary>
     property SessionID: string read FSessionID write SetSessionID;
+    /// <summary>
+    /// File name (with its extension)
+    /// </summary>
+    property FileNameWithItsExtension: string read FFileNameWithItsExtension write SetFileNameWithItsExtension;
     constructor Create; override;
     destructor Destroy; override;
     procedure LoadFromStream(Stream: TStream); override;
@@ -374,6 +380,7 @@ begin
   FFileBuffer := nil;
   FFileID := '';
   FSessionID := '';
+  FFileNameWithItsExtension := '';
 end;
 
 destructor TFileToSignMessage.Destroy;
@@ -395,6 +402,7 @@ begin
   FFileBuffer.LoadFromStream(Stream);
   FFileID := LoadStringFromStream(Stream);
   FSessionID := LoadStringFromStream(Stream);
+  FFileNameWithItsExtension := LoadStringFromStream(Stream);
 end;
 
 procedure TFileToSignMessage.SaveToStream(Stream: TStream);
@@ -405,6 +413,7 @@ begin
   FFileBuffer.SaveToStream(Stream);
   SaveStringToStream(FFileID, Stream);
   SaveStringToStream(FSessionID, Stream);
+  SaveStringToStream(FFileNameWithItsExtension, Stream);
 end;
 
 procedure TFileToSignMessage.SetSignToolTitle(const Value: string);
@@ -430,6 +439,11 @@ end;
 procedure TFileToSignMessage.SetSessionID(const Value: string);
 begin
   FSessionID := Value;
+end;
+
+procedure TFileToSignMessage.SetFileNameWithItsExtension(const Value: string);
+begin
+  FFileNameWithItsExtension := Value;
 end;
 
 {$ENDREGION}
