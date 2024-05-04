@@ -10,3 +10,6 @@
 [submodule "lib-externes/Socket-Messaging-Library"]
 	path = lib-externes/Socket-Messaging-Library
 	url = https://github.com/DeveloppeurPascal/Socket-Messaging-Library.git
+[submodule "lib-externes/DOSCommand"]
+	path = lib-externes/DOSCommand
+	url = https://github.com/TurboPack/DOSCommand.git
