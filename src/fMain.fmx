@@ -87,7 +87,7 @@ object frmMain: TfrmMain
     Size.Width = 640.000000000000000000
     Size.Height = 474.000000000000000000
     Size.PlatformDefault = False
-    TabIndex = 0
+    TabIndex = 3
     TabOrder = 4
     TabPosition = PlatformDefault
     Sizes = (
@@ -104,7 +104,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = True
+      IsSelected = False
       Size.Width = 57.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -709,7 +709,7 @@ object frmMain: TfrmMain
         item
         end>
       TextSettings.Trimming = None
-      IsSelected = False
+      IsSelected = True
       Size.Width = 73.000000000000000000
       Size.Height = 26.000000000000000000
       Size.PlatformDefault = False
@@ -817,7 +817,7 @@ object frmMain: TfrmMain
         end
         object GridPanelLayout3: TGridPanelLayout
           Align = Top
-          Position.Y = 147.000000000000000000
+          Position.Y = 176.000000000000000000
           Size.Width = 640.000000000000000000
           Size.Height = 50.000000000000000000
           Size.PlatformDefault = False
@@ -872,6 +872,52 @@ object frmMain: TfrmMain
             TextSettings.Trimming = None
             OnClick = btnCSCancelClick
           end
+        end
+        object btnStartSigningServer: TButton
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 231.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 7
+          Text = 'Start the signing server'
+          TextSettings.Trimming = None
+          OnClick = btnStartSigningServerClick
+        end
+        object btnStopSigningServer: TButton
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 281.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 8
+          Text = 'Stop the signing server'
+          TextSettings.Trimming = None
+          OnClick = btnStopSigningServerClick
+        end
+        object cbCSServerAutoStart: TCheckBox
+          Align = Top
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 152.000000000000000000
+          Size.Width = 630.000000000000000000
+          Size.Height = 19.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 9
+          Text = 'Start the server on program launch'
         end
       end
     end

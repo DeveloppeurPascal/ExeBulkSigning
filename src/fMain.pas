@@ -93,6 +93,9 @@ type
     GridPanelLayout4: TGridPanelLayout;
     btnSignLocally: TButton;
     btnSignRemotely: TButton;
+    btnStartSigningServer: TButton;
+    btnStopSigningServer: TButton;
+    cbCSServerAutoStart: TCheckBox;
     procedure FormCreate(Sender: TObject);
     procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
     procedure lblDownloadWindowsSDKClick(Sender: TObject);
@@ -111,9 +114,12 @@ type
     procedure btnCSSaveClick(Sender: TObject);
     procedure btnCSCancelClick(Sender: TObject);
     procedure btnSignLocallyClick(Sender: TObject);
+    procedure btnStartSigningServerClick(Sender: TObject);
+    procedure btnStopSigningServerClick(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
+    FOldStartServerAtLaunchValue: Boolean;
     FDefaultSignToolPath: string;
     function HasChanged: Boolean;
     procedure UpdateParams;
@@ -197,6 +203,7 @@ begin
   edtCSServerPort.Text := edtCSServerPort.tagstring;
   edtCSServerIP.Text := edtCSServerIP.tagstring;
   edtCSAuthorizationKey.Text := edtCSAuthorizationKey.tagstring;
+  cbCSServerAutoStart.IsChecked := FOldStartServerAtLaunchValue;
 end;
 
 procedure TfrmMain.CancelMicrosoftSDKChanges;
@@ -389,6 +396,20 @@ begin
   end;
 end;
 
+procedure TfrmMain.btnStartSigningServerClick(Sender: TObject);
+begin
+  btnStartSigningServer.Visible := false;
+  btnStopSigningServer.Visible := not btnStartSigningServer.Visible;
+  // TODO
+end;
+
+procedure TfrmMain.btnStopSigningServerClick(Sender: TObject);
+begin
+  // TODO
+  btnStartSigningServer.Visible := true;
+  btnStopSigningServer.Visible := not btnStartSigningServer.Visible;
+end;
+
 procedure TfrmMain.EllipsesEditButton2Click(Sender: TObject);
 var
   FileName: string;
@@ -556,7 +577,17 @@ begin
   edtCSServerPort.Text := TParams.getValue('CSSvrPort', '8080');
   edtCSServerIP.Text := TParams.getValue('CSSvrIP', '0.0.0.0');
   edtCSAuthorizationKey.Text := TParams.getValue('CSAuthKey', '');
+  cbCSServerAutoStart.IsChecked := TParams.getValue('CSAutoStartServer', false);
   UpdateChanges(false);
+
+  btnStartSigningServer.Visible := true;
+  btnStopSigningServer.Visible := not btnStartSigningServer.Visible;
+  tthread.forcequeue(nil,
+    procedure
+    begin
+      if cbCSServerAutoStart.IsChecked then
+        btnStartSigningServerClick(Sender);
+    end);
 end;
 
 function TfrmMain.HasChanged: Boolean;
@@ -572,7 +603,8 @@ begin
     (FOldRecursivityValue <> cbRecursivity.IsChecked) or
     (edtCSServerPort.tagstring <> edtCSServerPort.Text) or
     (edtCSServerIP.tagstring <> edtCSServerIP.Text) or
-    (edtCSAuthorizationKey.tagstring <> edtCSAuthorizationKey.Text);
+    (edtCSAuthorizationKey.tagstring <> edtCSAuthorizationKey.Text) or
+    (FOldStartServerAtLaunchValue <> cbCSServerAutoStart.IsChecked);
 end;
 
 procedure TfrmMain.InitAboutDialogDescriptionAndLicense;
@@ -728,11 +760,13 @@ begin
   edtCSServerPort.tagstring := edtCSServerPort.Text;
   edtCSServerIP.tagstring := edtCSServerIP.Text;
   edtCSAuthorizationKey.tagstring := edtCSAuthorizationKey.Text;
+  FOldStartServerAtLaunchValue := cbCSServerAutoStart.IsChecked;
   if SaveParams then
   begin
     TParams.setValue('CSSvrPort', edtCSServerPort.Text);
     TParams.setValue('CSSvrIP', edtCSServerIP.Text);
     TParams.setValue('CSAuthKey', edtCSAuthorizationKey.Text);
+    TParams.setValue('CSAutoStartServer', cbCSServerAutoStart.IsChecked);
   end;
 end;
 
