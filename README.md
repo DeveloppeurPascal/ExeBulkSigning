@@ -84,6 +84,7 @@ This project uses dependencies in the form of sub-modules. They will be absent f
 * [DeveloppeurPascal/Delphi-FMXExtend-Library](https://github.com/DeveloppeurPascal/Delphi-FMXExtend-Library) must be installed in the ./lib-externes/Delphi-FMXExtend-Library subfolder.
 * [DeveloppeurPascal/librairies](https://github.com/DeveloppeurPascal/librairies) must be installed in the ./lib-externes/librairies subfolder.
 * [DeveloppeurPascal/Socket-Messaging-Library](https://github.com/DeveloppeurPascal/Socket-Messaging-Library) must be installed in the ./lib-externes/Socket-Messaging-Library subfolder.
+* [TurboPack/DOSCommand](https://github.com/TurboPack/DOSCommand) must be installed in the ./lib-externes/DOSCommand subfolder.
 
 ## License to use this code repository and its contents
 
