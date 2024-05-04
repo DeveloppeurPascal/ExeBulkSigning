@@ -13,8 +13,8 @@ uses
   Olf.FMX.SelectDirectory in '..\lib-externes\Delphi-FMXExtend-Library\src\Olf.FMX.SelectDirectory.pas',
   Olf.RTL.GenRandomID in '..\lib-externes\librairies\src\Olf.RTL.GenRandomID.pas',
   ExeBulkSigningClientServerAPI in 'ExeBulkSigningClientServerAPI.pas',
-  Olf.RTL.FileBuffer in 'Olf.RTL.FileBuffer.pas',
-  Olf.Net.Socket.Messaging in '..\lib-externes\Socket-Messaging-Library\src\Olf.Net.Socket.Messaging.pas';
+  Olf.Net.Socket.Messaging in '..\lib-externes\Socket-Messaging-Library\src\Olf.Net.Socket.Messaging.pas',
+  Olf.RTL.FileBuffer in '..\lib-externes\librairies\src\Olf.RTL.FileBuffer.pas';
 
 {$R *.res}
 
