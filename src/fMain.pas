@@ -145,7 +145,7 @@ type
       : string; Const WithSubFolders: Boolean);
     procedure InitializeProjectSettingsStorrage;
     procedure InitAboutDialogDescriptionAndLicense;
-    procedure DoSignFile(Const ATitle, AURL, AFileName: string);
+    function GetSignFileCommand(Const ATitle, AURL, AFileName: string): string;
   public
     { Déclarations publiques }
   end;
@@ -222,12 +222,12 @@ begin
   edtSignToolOtherOptions.Text := edtSignToolOtherOptions.tagstring;
 end;
 
-procedure TfrmMain.DoSignFile(const ATitle, AURL, AFileName: string);
+function TfrmMain.GetSignFileCommand(Const ATitle, AURL,
+  AFileName: string): string;
 var
   SigntoolPath, SigntoolOptions: string;
   PFXFilePath, CertificateName, PFXPassword, TimeStampServerURL: string;
   cmd, cmdparam: string;
-  ShellExecuteResult: Cardinal;
 {$IFDEF DEBUG}
   Log: string;
 {$ENDIF}
@@ -292,18 +292,13 @@ begin
     cmdparam := cmdparam + ' /d "' + ATitle + '"';
   if (not AURL.IsEmpty) then
     cmdparam := cmdparam + ' /du "' + AURL + '"';
+
+  result := cmd + ' ' + cmdparam + ' "' + AFileName + '"';
+
 {$IFDEF DEBUG}
   tfile.WriteAllText(Log, tfile.ReadAllText(Log, tencoding.UTF8) + slinebreak +
-    'cmd : ' + cmd + slinebreak + 'cmdparam : ' + cmdparam, tencoding.UTF8);
+    result, tencoding.UTF8);
 {$ENDIF}
-  cmdparam := cmdparam + ' "' + AFileName + '"';
-
-  ShellExecuteResult := ShellExecute(0, 'OPEN', PWideChar(cmd),
-    PWideChar(cmdparam), nil, SW_SHOWNORMAL);
-  // Look at http://delphiprogrammingdiary.blogspot.com/2014/07/shellexecute-in-delphi.html for return values
-  if (ShellExecuteResult <= 32) then
-    raise exception.Create('ShellExecute error ' + ShellExecuteResult.ToString +
-      ' for file ' + AFileName);
 end;
 
 procedure TfrmMain.btnCertificateCancelClick(Sender: TObject);
@@ -587,7 +582,7 @@ begin
     end;
 
   FCSServer := TESBServer.Create(IP, Port, edtCSAuthorizationKey.Text);
-  FCSServer.onSignFile := DoSignFile;
+  FCSServer.onSignFile := GetSignFileCommand;
 end;
 
 procedure TfrmMain.btnStopSigningServerClick(Sender: TObject);
