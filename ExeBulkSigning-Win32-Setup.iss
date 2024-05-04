@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Exe Bulk Signing"
-#define MyAppVersion "1.2"
+#define MyAppVersion "1.3"
 #define MyAppPublisher "Olf Software"
 #define MyAppURL "https://exebulksigning.olfsoftware.fr"
 #define MyAppExeName "ExeBulkSigning.exe"
@@ -34,7 +34,7 @@ Name: "fr"; MessagesFile: "compiler:Languages\French.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: ".\Win32\Release\ExeBulkSigning.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: ".\src\Win32\Release\ExeBulkSigning.exe"; DestDir: "{app}"; Flags: ignoreversion
 
 [Icons]
 Name: "{commonprograms}\{#MyAppName}\ExeBulkSigning (32 bits)"; Filename: "{app}\{#MyAppExeName}"
