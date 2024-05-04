@@ -22,7 +22,9 @@ uses
   Olf.FMX.AboutDialog,
   uDMProjectLogo,
   FMX.TabControl,
-  Olf.FMX.SelectDirectory;
+  Olf.FMX.SelectDirectory,
+  ExeBulkSigningClientLib,
+  ExeBulkSigningServerLib;
 
 type
   TfrmMain = class(TForm)
@@ -116,11 +118,14 @@ type
     procedure btnSignLocallyClick(Sender: TObject);
     procedure btnStartSigningServerClick(Sender: TObject);
     procedure btnStopSigningServerClick(Sender: TObject);
+    procedure FormDestroy(Sender: TObject);
   private
     { Déclarations privées }
     FOldRecursivityValue: Boolean;
     FOldStartServerAtLaunchValue: Boolean;
     FDefaultSignToolPath: string;
+    FCSServer: TESBServer;
+    FCSClient: TESBClient;
     function HasChanged: Boolean;
     procedure UpdateParams;
     procedure UpdateChanges(Const SaveParams: Boolean);
@@ -397,15 +402,37 @@ begin
 end;
 
 procedure TfrmMain.btnStartSigningServerClick(Sender: TObject);
+var
+  IP: string;
+  Port: Word;
 begin
+  // TODO : tester la validité de l'adresse IP (v4)
+  IP := edtCSServerIP.Text;
+
+  Port := edtCSServerPort.Text.ToInteger;
+
   btnStartSigningServer.Visible := false;
   btnStopSigningServer.Visible := not btnStartSigningServer.Visible;
-  // TODO
+
+  if assigned(FCSServer) then
+    try
+      freeandnil(FCSServer);
+    except
+      FCSServer := nil;
+    end;
+
+  FCSServer := TESBServer.Create(IP, Port, edtCSAuthorizationKey.Text);
 end;
 
 procedure TfrmMain.btnStopSigningServerClick(Sender: TObject);
 begin
-  // TODO
+  if assigned(FCSServer) then
+    try
+      freeandnil(FCSServer);
+    except
+      FCSServer := nil;
+    end;
+
   btnStartSigningServer.Visible := true;
   btnStopSigningServer.Visible := not btnStartSigningServer.Visible;
 end;
@@ -529,6 +556,12 @@ end;
 
 procedure TfrmMain.FormCreate(Sender: TObject);
 begin
+  FOldRecursivityValue := false;
+  FOldStartServerAtLaunchValue := false;
+  FDefaultSignToolPath := '';
+  FCSServer := nil;
+  FCSClient := nil;
+
   InitializeProjectSettingsStorrage;
 
   TabControl1.ActiveTab := tiProject;
@@ -588,6 +621,15 @@ begin
       if cbCSServerAutoStart.IsChecked then
         btnStartSigningServerClick(Sender);
     end);
+end;
+
+procedure TfrmMain.FormDestroy(Sender: TObject);
+begin
+  if assigned(FCSClient) then
+    FCSClient.free;
+
+  if assigned(FCSServer) then
+    FCSServer.free;
 end;
 
 function TfrmMain.HasChanged: Boolean;
