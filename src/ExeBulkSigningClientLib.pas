@@ -15,6 +15,7 @@ type
     FSentFiles: TDictionary<string, string>;
   protected
     FSessionID: string;
+    FAuthKey: string;
     procedure ReceiveLoginAnswerMessage(Const ASender: TOlfSMSrvConnectedClient;
       Const AMessage: TLoginAnswerMessage);
     procedure ReceiveSignedFileMessage(Const ASender: TOlfSMSrvConnectedClient;
@@ -22,6 +23,7 @@ type
     procedure ReceiveErrorMessage(Const ASender: TOlfSMSrvConnectedClient;
       Const AMessage: TErrorMessage);
     procedure SendErrorMessage(Const ErrorText: string);
+    procedure ClientConnected(Const AConnectedClient: TOlfSMSrvConnectedClient);
   public
     /// <summary>
     /// Check if the client is connected to a server.
@@ -57,13 +59,27 @@ uses
 
 { TESBClient }
 
-constructor TESBClient.Create(Const AIP: string; Const APort: word;
-  Const AAuthKey: string);
+procedure TESBClient.ClientConnected(const AConnectedClient
+  : TOlfSMSrvConnectedClient);
 var
   LoginMsg: TLoginMessage;
 begin
+  LoginMsg := TLoginMessage.Create;
+  try
+    LoginMsg.APIVersionNumber := CESBAPIVersion;
+    LoginMsg.AuthorizationKey := FAuthKey;
+    AConnectedClient.SendMessage(LoginMsg);
+  finally
+    LoginMsg.Free;
+  end;
+end;
+
+constructor TESBClient.Create(Const AIP: string; Const APort: word;
+  Const AAuthKey: string);
+begin
   inherited Create;
   FSessionID := '';
+  FAuthKey := AAuthKey;
 
   FWaitingFiles := TObjectQueue<TFileToSignMessage>.Create(true);
   FSentFiles := TDictionary<string, string>.Create;
@@ -72,16 +88,8 @@ begin
   FAPIClient.onReceiveLoginAnswerMessage := ReceiveLoginAnswerMessage;
   FAPIClient.onReceiveSignedFileMessage := ReceiveSignedFileMessage;
   FAPIClient.onReceiveErrorMessage := ReceiveErrorMessage;
+  FAPIClient.onConnected := ClientConnected;
   FAPIClient.Connect;
-
-  LoginMsg := TLoginMessage.Create;
-  try
-    LoginMsg.APIVersionNumber := CESBAPIVersion;
-    LoginMsg.AuthorizationKey := AAuthKey;
-    FAPIClient.SendMessage(LoginMsg);
-  finally
-    LoginMsg.Free;
-  end;
 end;
 
 destructor TESBClient.Destroy;
@@ -176,7 +184,7 @@ procedure TESBClient.ReceiveLoginAnswerMessage(const ASender
   : TOlfSMSrvConnectedClient; const AMessage: TLoginAnswerMessage);
 begin
   if AMessage.SessionID.IsEmpty then
-    raise exception.Create('Can''t login.');
+    raise Exception.Create('Can''t login.');
 
   FSessionID := AMessage.SessionID;
 end;
@@ -236,12 +244,11 @@ begin
     msg.Free;
   end;
 
-  raise exception.Create(ErrorText);
+  raise Exception.Create(ErrorText);
 end;
 
 procedure TESBClient.SendFileToServer(const Title, URL, Filename: string);
 var
-  FileID: string;
   msg: TFileToSignMessage;
 {$IFDEF DEBUG}
   Log: string;
@@ -251,7 +258,7 @@ begin
   Log := tpath.Combine(tpath.GetDocumentsPath, 'ExeBulkSigningClientLog.txt');
 {$ENDIF}
   if not tfile.Exists(Filename) then
-    raise exception.Create('File "' + Filename + '" doesn''t exist !');
+    raise Exception.Create('File "' + Filename + '" doesn''t exist !');
 
   if FSessionID.IsEmpty then
   begin
