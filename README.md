@@ -68,6 +68,8 @@ You can download and redistribute it free of charge, provided you do not modify 
 
 [Download program or installer](https://olfsoftware.lemonsqueezy.com/checkout/buy/84b7ba9b-5c2f-48bb-b53f-c59faed560cf)
 
+It is also available [from GetIt](https://getitnow.embarcadero.com/exe-bulk-signing/) directly in the Delphi, C++Builder and RAD Studio development environment.
+
 If you use this software regularly and are satisfied with it, you are invited to purchase an end-user license. Purchasing a license will give you access to software updates, as well as enabling optional features.
 
 [Buy a license](https://olfsoftware.lemonsqueezy.com/checkout/buy/8a5006e1-aebd-41ed-a531-0102fad08cd8)
