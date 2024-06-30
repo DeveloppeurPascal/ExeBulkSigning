@@ -1,3 +1,7 @@
-# Public assets for this project
+# Assets for this code repository
 
-"public" doesn't mean free to do anything with them, read the README.md files before using the assets outside this project.
+Having public resources does not mean you can use them.
+
+By default, you are not authorized to use the files in this folder's tree outside the projects in this repository. They are licensed by their authors and designers.
+
+Please refer to the README.md files in each folder to check license information, use cases and source links.
