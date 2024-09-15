@@ -60,6 +60,12 @@ Signing MSIX files is available only if MSIX is not signed or if it has been sig
 In case of error, nothing is done, the file doesn't change.
 In case of it works, the date/time of the file change. You can display signature informations from file property dialog box.
 
+## Talks and conferences
+
+### Twitch
+
+Follow my development streams of software, video games, mobile applications and websites on [my Twitch channel](https://www.twitch.tv/patrickpremartin) or as replays on [Serial Streameur](https://serialstreameur.fr) mostly in French.
+
 ## Using this software
 
 This software is available in a directly installable or executable production version. It is distributed as shareware.

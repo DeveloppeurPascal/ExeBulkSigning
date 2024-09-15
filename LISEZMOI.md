@@ -60,6 +60,12 @@ La signature des fichiers MSIX n'est possible que si le MSIX n'est pas signé ou
 En cas d'erreur, rien n'est fait, le fichier ne change pas.
 En cas de succès, la date et l'heure du fichier sont modifiées. Vous pouvez afficher les informations de signature à partir de la boîte de dialogue des propriétés du fichier.
 
+## Présentations et conférences
+
+### Twitch
+
+Suivez mes streams de développement de logiciels, jeux vidéo, applications mobiles et sites web sur [ma chaîne Twitch](https://www.twitch.tv/patrickpremartin) ou en rediffusion sur [Serial Streameur](https://serialstreameur.fr) la plupart du temps en français.
+
 ## Utiliser ce logiciel
 
 Ce logiciel est disponible dans une version de production directement installable ou exécutable. Il est distribué en shareware.
