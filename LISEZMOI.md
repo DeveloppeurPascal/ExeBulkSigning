@@ -78,7 +78,7 @@ Il est aussi disponible [depuis GetIt](https://getitnow.embarcadero.com/exe-bulk
 
 Si vous utilisez régulièrement ce logiciel et en êtes satisfait vous êtes invité à en acheter une licence d'utilisateur final. L'achat d'une licence vous donnera accès aux mises à jour du logiciel en plus d'activer d'évenuelles fonctionnalités optionnelles.
 
-[Acheter une licence](https://olfsoftware.lemonsqueezy.com/checkout/buy/8a5006e1-aebd-41ed-a531-0102fad08cd8)
+[Acheter une licence](https://store.olfsoftware.fr/logiciels-pour-developpeurs-c-3/developpement-windows-c-8/exe-bulk-signing-p-4)
 
 Vous pouvez aussi [consulter le site du logiciel](https://exebulksigning.olfsoftware.fr/) pour en savoir plus sur son fonctionnement, accéder à des vidéos et articles, connaître les différentes versions disponibles et leurs fonctionnalités, contacter le support utilisateurs...
 

@@ -78,7 +78,7 @@ It is also available [from GetIt](https://getitnow.embarcadero.com/exe-bulk-sign
 
 If you use this software regularly and are satisfied with it, you are invited to purchase an end-user license. Purchasing a license will give you access to software updates, as well as enabling optional features.
 
-[Buy a license](https://olfsoftware.lemonsqueezy.com/checkout/buy/8a5006e1-aebd-41ed-a531-0102fad08cd8)
+[Buy a license](https://store.olfsoftware.fr/en/developer-software-c-3/windows-development-c-8/exe-bulk-signing-p-4)
 
 You can also [visit the software website](https://exebulksigning.olfsoftware.fr/) to find out more about how it works, access videos and articles, find out about the different versions available and their features, contact user support...
 
