@@ -1,0 +1,1050 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="Microsoft&reg; HTML Help Workshop 4.1">
+<!-- Sitemap 1.0 -->
+</HEAD>
+<BODY>
+    <OBJECT type="text/site properties">
+      <param name="Window Styles" value="0x800227">
+    </OBJECT>
+    <UL>      <LI> <OBJECT type="text/sitemap">
+          <param name="Name" value="ExeBulkSigning">
+          <param name="Local" value="ExeBulkSigning.html">
+          </OBJECT>
+          <UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="ExeBulkSigningClientLib">
+                  <param name="Local" value="ExeBulkSigningClientLib.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TESBClient">
+                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.Create.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Destroy">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.Destroy.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ClientConnected">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.ClientConnected.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="HasWaitingFiles">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.HasWaitingFiles.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ReceiveErrorMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.ReceiveErrorMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ReceiveLoginAnswerMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.ReceiveLoginAnswerMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ReceiveSignedFileMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.ReceiveSignedFileMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SendErrorMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.SendErrorMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SendFileToServer">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.SendFileToServer.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="isConnected">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.isConnected.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FAuthKey">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.FAuthKey.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FSessionID">
+                                                  <param name="Local" value="ExeBulkSigningClientLib.TESBClient.FSessionID.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="ExeBulkSigningClientServerAPI">
+                  <param name="Local" value="ExeBulkSigningClientServerAPI.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TErrorMessage">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TErrorMessage.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TErrorMessage.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ErrorCode">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TErrorMessage.ErrorCode.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ErrorText">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TErrorMessage.ErrorText.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetNewInstance">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TErrorMessage.GetNewInstance.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TErrorMessage.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TErrorMessage.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TExeBulkSigningClientServerAPIClient">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveMessage5">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.onReceiveMessage5.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveMessage8">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.onReceiveMessage8.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveMessage9">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.onReceiveMessage9.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveErrorMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.onReceiveErrorMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveLoginAnswerMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.onReceiveLoginAnswerMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveSignedFileMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIClient.onReceiveSignedFileMessage.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TExeBulkSigningClientServerAPIServer">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveMessage1">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveMessage1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveMessage6">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveMessage6.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveMessage7">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveMessage7.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveMessage9">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveMessage9.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveErrorMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveErrorMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveFileToSignMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveFileToSignMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveLoginMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveLoginMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onReceiveLogoutMessage">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TExeBulkSigningClientServerAPIServer.onReceiveLogoutMessage.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TFileToSignMessage">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.Create.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Destroy">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.Destroy.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FileBuffer">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.FileBuffer.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FileID">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.FileID.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FileNameWithItsExtension">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.FileNameWithItsExtension.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SessionID">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.SessionID.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SignToolTitle">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.SignToolTitle.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SignToolURL">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.SignToolURL.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetNewInstance">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.GetNewInstance.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TFileToSignMessage.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TLoginAnswerMessage">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginAnswerMessage.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginAnswerMessage.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SessionID">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginAnswerMessage.SessionID.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetNewInstance">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginAnswerMessage.GetNewInstance.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginAnswerMessage.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginAnswerMessage.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TLoginMessage">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginMessage.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginMessage.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="APIVersionNumber">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginMessage.APIVersionNumber.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="AuthorizationKey">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginMessage.AuthorizationKey.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetNewInstance">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginMessage.GetNewInstance.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginMessage.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLoginMessage.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TLogoutMessage">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLogoutMessage.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLogoutMessage.Create.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetNewInstance">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLogoutMessage.GetNewInstance.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLogoutMessage.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TLogoutMessage.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TSignedFileMessage">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.Create.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Destroy">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.Destroy.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FileBuffer">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.FileBuffer.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FileID">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.FileID.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GetNewInstance">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.GetNewInstance.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LoadFromStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.LoadFromStream.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SaveToStream">
+                                                  <param name="Local" value="ExeBulkSigningClientServerAPI.TSignedFileMessage.SaveToStream.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Routines">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="RegisterMessagesReceivedByTheClient">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.RegisterMessagesReceivedByTheClient.html">
+                                  </OBJECT>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="RegisterMessagesReceivedByTheServer">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPI.RegisterMessagesReceivedByTheServer.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="ExeBulkSigningClientServerAPIConsts">
+                  <param name="Local" value="ExeBulkSigningClientServerAPIConsts.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Constants">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="CESBAPIVersion">
+                                  <param name="Local" value="ExeBulkSigningClientServerAPIConsts.CESBAPIVersion.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="ExeBulkSigningServerLib">
+                  <param name="Local" value="ExeBulkSigningServerLib.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TESBServer">
+                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Constructors">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Create">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.Create.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="Destroy">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.Destroy.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Properties">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="onSignFile">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.onSignFile.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ReceiveErrorMessage">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.ReceiveErrorMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ReceiveFileToSignMessage">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.ReceiveFileToSignMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ReceiveLoginMessage">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.ReceiveLoginMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ReceiveLogoutMessage">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.ReceiveLogoutMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="SendErrorMessage">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.SendErrorMessage.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ServerConnected">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.ServerConnected.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ServerDisconnected">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.ServerDisconnected.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FAuthKey">
+                                                  <param name="Local" value="ExeBulkSigningServerLib.TESBServer.FAuthKey.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Delegates">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TGetSignFileCommandEvent">
+                                  <param name="Local" value="ExeBulkSigningServerLib.TGetSignFileCommandEvent.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="fMain">
+                  <param name="Local" value="fMain.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TfrmMain">
+                                  <param name="Local" value="fMain.TfrmMain.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Methods">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="EllipsesEditButton2Click">
+                                                  <param name="Local" value="fMain.TfrmMain.EllipsesEditButton2Click.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="EllipsesEditButton3Click">
+                                                  <param name="Local" value="fMain.TfrmMain.EllipsesEditButton3Click.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FormCloseQuery">
+                                                  <param name="Local" value="fMain.TfrmMain.FormCloseQuery.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FormCreate">
+                                                  <param name="Local" value="fMain.TfrmMain.FormCreate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FormDestroy">
+                                                  <param name="Local" value="fMain.TfrmMain.FormDestroy.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfAboutDialog1URLClick">
+                                                  <param name="Local" value="fMain.TfrmMain.OlfAboutDialog1URLClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ShowCertificateManagerClick">
+                                                  <param name="Local" value="fMain.TfrmMain.ShowCertificateManagerClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCSCancelClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCSCancelClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCSSaveClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCSSaveClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCertificateCancelClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCertificateCancelClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCertificateSaveClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCertificateSaveClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnMSSDKCancelClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnMSSDKCancelClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnMSSDKSaveClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnMSSDKSaveClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnSignLocallyClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnSignLocallyClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnSignRemotelyClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnSignRemotelyClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnSignedFolderPathFindClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnSignedFolderPathFindClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnStartSigningServerClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnStartSigningServerClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnStopSigningServerClick">
+                                                  <param name="Local" value="fMain.TfrmMain.btnStopSigningServerClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblBuyACodeSigningCertificateClick">
+                                                  <param name="Local" value="fMain.TfrmMain.lblBuyACodeSigningCertificateClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblDownloadWindowsSDKClick">
+                                                  <param name="Local" value="fMain.TfrmMain.lblDownloadWindowsSDKClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="mnuAboutClick">
+                                                  <param name="Local" value="fMain.TfrmMain.mnuAboutClick.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="mnuQuitClick">
+                                                  <param name="Local" value="fMain.TfrmMain.mnuQuitClick.html">
+                                                  </OBJECT>
+                                          </UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ChooseFolderToSignIn">
+                                                  <param name="Local" value="fMain.TfrmMain.ChooseFolderToSignIn.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FindPFXFileDialog">
+                                                  <param name="Local" value="fMain.TfrmMain.FindPFXFileDialog.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="FindSigntoolDialog">
+                                                  <param name="Local" value="fMain.TfrmMain.FindSigntoolDialog.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GridPanelLayout1">
+                                                  <param name="Local" value="fMain.TfrmMain.GridPanelLayout1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GridPanelLayout2">
+                                                  <param name="Local" value="fMain.TfrmMain.GridPanelLayout2.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GridPanelLayout3">
+                                                  <param name="Local" value="fMain.TfrmMain.GridPanelLayout3.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="GridPanelLayout4">
+                                                  <param name="Local" value="fMain.TfrmMain.GridPanelLayout4.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LockScreen">
+                                                  <param name="Local" value="fMain.TfrmMain.LockScreen.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LockScreenAnimation">
+                                                  <param name="Local" value="fMain.TfrmMain.LockScreenAnimation.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="LockScreenBackground">
+                                                  <param name="Local" value="fMain.TfrmMain.LockScreenBackground.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="MainMenu1">
+                                                  <param name="Local" value="fMain.TfrmMain.MainMenu1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="OlfAboutDialog1">
+                                                  <param name="Local" value="fMain.TfrmMain.OlfAboutDialog1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="PasswordEditButton1">
+                                                  <param name="Local" value="fMain.TfrmMain.PasswordEditButton1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="ShowCertificateManager">
+                                                  <param name="Local" value="fMain.TfrmMain.ShowCertificateManager.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="StyleBook1">
+                                                  <param name="Local" value="fMain.TfrmMain.StyleBook1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="TabControl1">
+                                                  <param name="Local" value="fMain.TfrmMain.TabControl1.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCSCancel">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCSCancel.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCSSave">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCSSave.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCertificateCancel">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCertificateCancel.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnCertificateSave">
+                                                  <param name="Local" value="fMain.TfrmMain.btnCertificateSave.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnMSSDKCancel">
+                                                  <param name="Local" value="fMain.TfrmMain.btnMSSDKCancel.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnMSSDKSave">
+                                                  <param name="Local" value="fMain.TfrmMain.btnMSSDKSave.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnPFXFilePathFind">
+                                                  <param name="Local" value="fMain.TfrmMain.btnPFXFilePathFind.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnSignLocally">
+                                                  <param name="Local" value="fMain.TfrmMain.btnSignLocally.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnSignRemotely">
+                                                  <param name="Local" value="fMain.TfrmMain.btnSignRemotely.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnSignedFolderPathFind">
+                                                  <param name="Local" value="fMain.TfrmMain.btnSignedFolderPathFind.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnSigntoolPathFind">
+                                                  <param name="Local" value="fMain.TfrmMain.btnSigntoolPathFind.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnStartSigningServer">
+                                                  <param name="Local" value="fMain.TfrmMain.btnStartSigningServer.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="btnStopSigningServer">
+                                                  <param name="Local" value="fMain.TfrmMain.btnStopSigningServer.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="cbCSServerAutoStart">
+                                                  <param name="Local" value="fMain.TfrmMain.cbCSServerAutoStart.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="cbRecursivity">
+                                                  <param name="Local" value="fMain.TfrmMain.cbRecursivity.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtCSAuthorizationKey">
+                                                  <param name="Local" value="fMain.TfrmMain.edtCSAuthorizationKey.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtCSServerIP">
+                                                  <param name="Local" value="fMain.TfrmMain.edtCSServerIP.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtCSServerPort">
+                                                  <param name="Local" value="fMain.TfrmMain.edtCSServerPort.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtCertificateName">
+                                                  <param name="Local" value="fMain.TfrmMain.edtCertificateName.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtPFXFilePath">
+                                                  <param name="Local" value="fMain.TfrmMain.edtPFXFilePath.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtPFXPassword">
+                                                  <param name="Local" value="fMain.TfrmMain.edtPFXPassword.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtPFXPasswordShowBtn">
+                                                  <param name="Local" value="fMain.TfrmMain.edtPFXPasswordShowBtn.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtProgramTitle">
+                                                  <param name="Local" value="fMain.TfrmMain.edtProgramTitle.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtProgramURL">
+                                                  <param name="Local" value="fMain.TfrmMain.edtProgramURL.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtSignToolOtherOptions">
+                                                  <param name="Local" value="fMain.TfrmMain.edtSignToolOtherOptions.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtSignedFolderPath">
+                                                  <param name="Local" value="fMain.TfrmMain.edtSignedFolderPath.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtSigntoolPath">
+                                                  <param name="Local" value="fMain.TfrmMain.edtSigntoolPath.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="edtTimeStampServerURL">
+                                                  <param name="Local" value="fMain.TfrmMain.edtTimeStampServerURL.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblBuyACodeSigningCertificate">
+                                                  <param name="Local" value="fMain.TfrmMain.lblBuyACodeSigningCertificate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblCSAuthorizationKey">
+                                                  <param name="Local" value="fMain.TfrmMain.lblCSAuthorizationKey.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblCSServerIP">
+                                                  <param name="Local" value="fMain.TfrmMain.lblCSServerIP.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblCSServerPort">
+                                                  <param name="Local" value="fMain.TfrmMain.lblCSServerPort.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblCertificateName">
+                                                  <param name="Local" value="fMain.TfrmMain.lblCertificateName.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblDownloadWindowsSDK">
+                                                  <param name="Local" value="fMain.TfrmMain.lblDownloadWindowsSDK.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblPFXFilePath">
+                                                  <param name="Local" value="fMain.TfrmMain.lblPFXFilePath.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblPFXPassword">
+                                                  <param name="Local" value="fMain.TfrmMain.lblPFXPassword.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblProgramTitle">
+                                                  <param name="Local" value="fMain.TfrmMain.lblProgramTitle.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblProgramURL">
+                                                  <param name="Local" value="fMain.TfrmMain.lblProgramURL.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblSignToolOtherOptions">
+                                                  <param name="Local" value="fMain.TfrmMain.lblSignToolOtherOptions.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblSignToolPath">
+                                                  <param name="Local" value="fMain.TfrmMain.lblSignToolPath.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblSignedFolderPath">
+                                                  <param name="Local" value="fMain.TfrmMain.lblSignedFolderPath.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="lblTimeStampServerURL">
+                                                  <param name="Local" value="fMain.TfrmMain.lblTimeStampServerURL.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="mnuAbout">
+                                                  <param name="Local" value="fMain.TfrmMain.mnuAbout.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="mnuFile">
+                                                  <param name="Local" value="fMain.TfrmMain.mnuFile.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="mnuHelp">
+                                                  <param name="Local" value="fMain.TfrmMain.mnuHelp.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="mnuQuit">
+                                                  <param name="Local" value="fMain.TfrmMain.mnuQuit.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="tiCertificate">
+                                                  <param name="Local" value="fMain.TfrmMain.tiCertificate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="tiClientServer">
+                                                  <param name="Local" value="fMain.TfrmMain.tiClientServer.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="tiProject">
+                                                  <param name="Local" value="fMain.TfrmMain.tiProject.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="tiSignTool">
+                                                  <param name="Local" value="fMain.TfrmMain.tiSignTool.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="vsbCertificate">
+                                                  <param name="Local" value="fMain.TfrmMain.vsbCertificate.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="vsbClientServer">
+                                                  <param name="Local" value="fMain.TfrmMain.vsbClientServer.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="vsbProject">
+                                                  <param name="Local" value="fMain.TfrmMain.vsbProject.html">
+                                                  </OBJECT>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="vsbSignTool">
+                                                  <param name="Local" value="fMain.TfrmMain.vsbSignTool.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Variables">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="frmMain">
+                                  <param name="Local" value="fMain.frmMain.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+              <LI> <OBJECT type="text/sitemap">
+                  <param name="Name" value="uDMProjectLogo">
+                  <param name="Local" value="uDMProjectLogo.html">
+                  </OBJECT>
+                  <UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Classes">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="TdmProjectLogo">
+                                  <param name="Local" value="uDMProjectLogo.TdmProjectLogo.html">
+                                  </OBJECT>
+                                  <UL>
+                                      <LI> <OBJECT type="text/sitemap">
+                                          <param name="Name" value="Fields">
+                                          </OBJECT>
+                                          <UL>
+                                              <LI> <OBJECT type="text/sitemap">
+                                                  <param name="Name" value="imgProjectLogo">
+                                                  <param name="Local" value="uDMProjectLogo.TdmProjectLogo.imgProjectLogo.html">
+                                                  </OBJECT>
+                                          </UL>
+                                  </UL>
+                          </UL>
+                      <LI> <OBJECT type="text/sitemap">
+                          <param name="Name" value="Variables">
+                          </OBJECT>
+                          <UL>
+                              <LI> <OBJECT type="text/sitemap">
+                                  <param name="Name" value="dmProjectLogo">
+                                  <param name="Local" value="uDMProjectLogo.dmProjectLogo.html">
+                                  </OBJECT>
+                          </UL>
+                  </UL>
+          </UL>
+    </UL>
+</BODY>
+</HTML>
