@@ -2,6 +2,19 @@
 
 [Cette page en français.](LISEZMOI.md)
 
+> [!WARNING]
+> Following Microsoft's decision to merge GitHub into its AI division in the summer of 2025 and therefore to consider what we publish on it only as a source of training for its models without any compensation (apart from hosting the source codes) or to bombard us with their injunctions to use Copilot everywhere, for everything and anything, I have decided to stop maintaining the repositories here.
+>
+> Maintenance of this project has been moved to Codeberg at https://codeberg.org/PatrickPremartin/ExeBulkSigning
+>
+> Codeberg is a community-based hosting service located in Europe that respects developers, the license of each project, and the privacy of those who connect to it.
+
+> [!NOTE]
+> To open or work on a ticket for this project, go to https://codeberg.org/PatrickPremartin/ExeBulkSigning/issues
+> To make a PULL REQUEST on this project, go to https://codeberg.org/PatrickPremartin/ExeBulkSigning/pulls
+> For any other information or to contact me, you can also visit the project website at https://exebulksigning.olfsoftware.fr or its devlog at https://exebulksigning.olfsoftware.fr/dev-corner.html.
+> This code repository will be archived once the migration is complete and will no longer be updated on GitHub.
+
 Simple tool to sign all EXE and MSIX files in a folder.
 
 This program is a Delphi FireMonkey project but only useful in Windows environment because it uses a Windows SDK utility.
